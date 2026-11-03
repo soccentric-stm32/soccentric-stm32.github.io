@@ -12,4 +12,8 @@ Published with GitHub Pages from the `main` branch root at
 python3 -m http.server 8000
 ```
 
+## License
+
+[MIT](LICENSE) © 2026 Sandesh Ghimire.
+
 Author: Sandesh Ghimire
