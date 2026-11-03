@@ -15,12 +15,10 @@
   var toggle = $('.theme-toggle');
   function current() { return root.dataset.theme || (darkMq.matches ? 'dark' : 'light'); }
   if (toggle) {
-    var themeLabel = $('.theme-label', toggle);
     var sync = function () {
       var dark = current() === 'dark';
       toggle.setAttribute('aria-label', dark ? 'Switch to paper theme' : 'Switch to blueprint theme');
       toggle.setAttribute('title', dark ? 'Switch to paper theme' : 'Switch to blueprint theme');
-      if (themeLabel) { themeLabel.textContent = dark ? 'Blueprint' : 'Paper'; }
     };
     sync();
     toggle.addEventListener('click', function () {
@@ -218,7 +216,9 @@
   var scenes = ['tests', 'tests', 'fw', 'swd', 'hist'];   // operator prompt reuses the test page
   var navFor = ['tests', 'tests', 'fw', 'swd', 'hist'];
   var activity = $('#activity');
+  var sceneStatus = $('#scene-status');
   var buttons = $$('#scenebar button');
+  var sceneNames = ['Tests', 'Operator', 'Update', 'Flash', 'History'];
   var timers = [];
   var cur = -1;
   var auto = !reduce;
@@ -365,6 +365,7 @@
   function show(i) {
     clearTimers();
     cur = i;
+    if (sceneStatus) { sceneStatus.textContent = 'Preview scene ' + (i + 1) + ' of ' + players.length + ': ' + sceneNames[i]; }
     $$('.scene', app).forEach(function (s) { s.classList.toggle('on', s.dataset.scene === scenes[i]); });
     $$('.side a', app).forEach(function (a) { a.classList.toggle('on', a.dataset.nav === navFor[i]); });
     buttons.forEach(function (b, k) {
@@ -389,19 +390,29 @@
     });
   });
 
-  // Pause while the visitor reads or points at the preview.
+  // Pause while the visitor reads, points at or tabs through the preview.
   var demo = $('.hero-demo');
+  function pause() {
+    hovered = true;
+    clearTimeout(autoTimer);
+    autoTimer = null;
+  }
+  function resume() {
+    hovered = false;
+    if (auto && !document.hidden && cur >= 0) { show(cur); }
+  }
   if (demo) {
-    demo.addEventListener('mouseenter', function () {
-      hovered = true;
-      clearTimeout(autoTimer);
-      autoTimer = null;
-    });
-    demo.addEventListener('mouseleave', function () {
-      hovered = false;
-      if (auto) { show(cur); }
+    demo.addEventListener('mouseenter', pause);
+    demo.addEventListener('mouseleave', resume);
+    demo.addEventListener('focusin', pause);
+    demo.addEventListener('focusout', function (e) {
+      if (!demo.contains(e.relatedTarget)) { resume(); }
     });
   }
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) { clearTimeout(autoTimer); autoTimer = null; clearTimers(); }
+    else if (auto && !hovered && cur >= 0) { show(cur); }
+  });
 
   // Start when the preview is visible; pause while it is off-screen.
   if ('IntersectionObserver' in window && auto) {
