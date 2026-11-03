@@ -7,13 +7,35 @@
  * theme follows the OS until the visitor picks one (stored in localStorage).
  */
 
+/* ---------------------------------------------------------------- fonts */
+/* Self-hosted so the site makes no third-party requests. */
+@font-face {
+  font-family: "Space Grotesk"; font-style: normal; font-weight: 300 700;
+  font-display: swap; src: url("fonts/space-grotesk-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Geist Mono"; font-style: normal; font-weight: 300 600;
+  font-display: swap; src: url("fonts/geist-mono-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Geist Mono"; font-style: normal; font-weight: 300 600;
+  font-display: swap; src: url("fonts/geist-mono-symbols.woff2") format("woff2");
+  unicode-range: U+2000-2001, U+2004-2008, U+200A, U+23B8-23BD, U+2500-259F;
+}
+
 /* ---------------------------------------------------------------- tokens */
 :root {
   --bg: #f6f4ee;
   --bg-2: #efede5;
   --ink: #1d1c1a;
   --ink-2: #4b4a45;
-  --muted: #6f6d65;
+  --muted: #6b6961;
   --faint: #8b887e;
   --line: rgba(29, 28, 26, .13);
   --line-2: rgba(29, 28, 26, .24);
@@ -181,9 +203,9 @@ li { list-style: none; }
 .brand svg { width: 24px; height: 24px; flex: none; }
 .brand b { font-weight: 700; color: var(--accent); }
 
-.site-nav { display: flex; gap: 22px; margin-left: auto; }
+.site-nav { display: flex; gap: 17px; margin-left: auto; }
 .site-nav a {
-  font-size: 14px; color: var(--ink-2);
+  font-size: 13.5px; color: var(--ink-2); white-space: nowrap;
   padding: 6px 0; border-bottom: 1px solid transparent;
   transition: color .2s, border-color .2s;
 }
@@ -221,16 +243,16 @@ li { list-style: none; }
 .btn-ghost:hover { background: var(--ink); border-color: var(--ink); color: var(--bg); }
 .header-cta { height: 36px; font-size: 13px; }
 
-/* GitHub links are icon only; the mark is currentColor so it follows light/dark */
+/* GitHub links show the repository name next to the mark. */
 .gh-link {
-  display: inline-flex; align-items: center; justify-content: center;
-  color: inherit; line-height: 0;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  color: inherit; line-height: 1.2;
 }
-.gh-link svg { display: block; width: 18px; height: 18px; fill: currentColor; }
-.btn.gh-link { width: 44px; padding: 0; }
+.gh-link svg { display: block; width: 18px; height: 18px; flex: none; fill: currentColor; }
 .btn.gh-link svg { width: 20px; height: 20px; }
 .contact-links .gh-link svg { width: 22px; height: 22px; }
 .repo.gh-link, .repo-links .gh-link { padding: 2px 0; }
+.repo.gh-link span, .repo-links .gh-link span { overflow-wrap: anywhere; }
 
 .theme-toggle {
   display: inline-flex; align-items: center; gap: 8px;
@@ -260,8 +282,8 @@ li { list-style: none; }
 .menu:not([open]) nav { display: none; }
 .menu nav {
   position: absolute; right: 0; top: calc(100% + 8px); z-index: 60;
-  min-width: 210px; padding: 6px;
-  background: var(--bg); border: 1px solid var(--line-2); box-shadow: var(--shadow);
+  min-width: 210px; max-height: calc(100vh - 80px); overflow-y: auto;
+  padding: 6px; background: var(--bg); border: 1px solid var(--line-2); box-shadow: var(--shadow);
 }
 .menu nav a { display: block; padding: 10px 12px; font-size: 14px; }
 .menu nav a:hover { background: var(--bg-2); }
@@ -559,6 +581,11 @@ h1 {
 }
 .ticks li::before { content: ""; position: absolute; left: 0; top: 13px; width: 6px; height: 6px; background: var(--accent); }
 .panel .repo, .panel .repo-links { margin-top: auto; padding-top: 6px; color: var(--muted); overflow-wrap: anywhere; }
+.panel .repo.gh-link { align-self: flex-start; justify-content: flex-start; }
+.panel .repo, .repo-links .gh-link, .paths .card .repo {
+  text-transform: none; letter-spacing: .02em;
+}
+.paths .card .repo.gh-link { align-self: flex-start; justify-content: flex-start; }
 .panel .repo:hover, .panel .repo-links a:hover { color: var(--accent); }
 .repo-links { display: flex; flex-wrap: wrap; gap: 6px 20px; }
 .flash {
@@ -644,6 +671,24 @@ h1 {
 
 /* engagement */
 .eng .card { min-height: clamp(140px, 19vh, 170px); }
+.start-steps {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+  margin-top: clamp(10px, 1.8vh, 18px);
+  border: 1px solid var(--line-2); background: var(--line-2);
+}
+.start-steps li {
+  display: grid; grid-template-columns: auto 1fr; gap: 2px 12px;
+  padding: 14px 18px; background: var(--bg); align-items: baseline;
+}
+.start-steps .mono { color: var(--accent); }
+.start-steps b { font-size: 14px; text-transform: uppercase; letter-spacing: -.005em; }
+.start-steps p { grid-column: 2; color: var(--ink-2); font-size: 13.5px; line-height: 1.45; }
+
+/* open source footnote */
+.status-key {
+  margin-top: 10px; color: var(--muted); font-size: 10.5px; line-height: 1.5;
+  letter-spacing: .03em; text-transform: none;
+}
 
 /* contact */
 .contact { min-height: calc(100vh - var(--header-h) - var(--footer-h)); min-height: calc(100svh - var(--header-h) - var(--footer-h)); }
@@ -653,14 +698,21 @@ h1 {
 .contact h2 { font-size: clamp(40px, min(6vw, 9vh), 78px); line-height: .94; text-transform: uppercase; }
 .contact-links { display: grid; border-top: 1px solid var(--line-2); }
 .contact-links a {
-  display: flex; justify-content: space-between; align-items: flex-end; gap: 16px;
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
   padding: 16px 0; border-bottom: 1px solid var(--line-2);
   font-size: 17px; letter-spacing: -.01em; transition: color .2s, padding-left .2s;
 }
 .contact-links a:hover { color: var(--accent); padding-left: 6px; }
+.contact-links .gh-link { display: grid; grid-template-columns: auto 1fr auto; }
+.contact-links .gh-link svg { flex: none; }
+.contact-link-text { display: block; min-width: 0; overflow-wrap: anywhere; }
 .contact-links small {
   display: block; font: 500 10.5px var(--mono); letter-spacing: .09em;
   text-transform: uppercase; color: var(--muted); margin-bottom: 2px;
+}
+.contact-note {
+  margin-top: 28px; max-width: 62ch; color: var(--muted);
+  font-size: 14px; line-height: 1.55;
 }
 
 /* footer */
@@ -696,6 +748,7 @@ h1 {
   .sec-head .eyebrow::before { display: none; }
   .cards-3 { grid-template-columns: repeat(2, 1fr); }
   .blocks, .contact-grid, .split { grid-template-columns: 1fr; gap: 20px; }
+  .start-steps { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 640px) {

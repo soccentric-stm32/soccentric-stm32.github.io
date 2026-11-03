@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Page not found — SoCcentric STM32</title>
+  <meta name="theme-color" content="#f6f4ee" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#101215" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="/assets/chip.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script>
+    (function () {
+      var d = document.documentElement;
+      try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') d.dataset.theme = t; } catch (e) {}
+    })();
+  </script>
+  <style>
+    .nf { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding: 48px 0; }
+    .nf h1 { font-size: clamp(40px, min(7vw, 10vh), 88px); margin-bottom: 18px; }
+    .nf p { max-width: 46ch; color: var(--ink-2); }
+    .nf .links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="/" aria-label="SoCcentric STM32 home">
+      <svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="6.5" y="6.5" width="13" height="13"/><rect x="10" y="10" width="6" height="6" fill="currentColor"/><path d="M9 2v4.5M13 2v4.5M17 2v4.5M9 19.5V24M13 19.5V24M17 19.5V24M2 9h4.5M2 13h4.5M2 17h4.5M19.5 9H24M19.5 13H24M19.5 17H24"/></svg>
+      <span>SoCcentric <b>STM32</b></span>
+    </a>
+    <div class="header-actions" style="margin-left:auto">
+      <a class="btn btn-accent header-cta" href="/">Back to the site</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap nf">
+  <p class="eyebrow"><span class="num">404</span>Page not found</p>
+  <h1>This page<br><span class="dim">isn't wired up.</span></h1>
+  <p>The address may have changed, or the link may be broken. The site is one page — everything is reachable from the start.</p>
+  <div class="links">
+    <a class="btn btn-accent" href="/">Go to the start <span aria-hidden="true">→</span></a>
+    <a class="btn btn-ghost" href="/#contact">Contact</a>
+  </div>
+</main>
+
+</body>
+</html>

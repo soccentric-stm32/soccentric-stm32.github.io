@@ -12,15 +12,19 @@ Live site: <https://soccentric-stm32.github.io/>
 - One-page, full-height slides with scroll snapping, a page navigator on
   wide screens, and a light/dark "paper / blueprint" theme.
 - Every slide has a menu item: Bootloader; Application (C/C++, Rust);
-  RTOS (FreeRTOS, Zephyr); Validation (Firmware, Python app); End
-  line testing; Open source;
-  Engagement; Contact. The logo (or Home in the mobile menu) returns
-  to the intro.
-- The header menu has dropdowns for Application, RTOS and
-  Validation; each item turns to its slide. Deep links work too, e.g. `#app-rust`,
+  RTOS (FreeRTOS, Zephyr); Validation (Test firmware, HWVAL Studio);
+  End-of-line; Building blocks; Engagement; Contact. The logo (or Home in
+  the mobile menu) returns to the intro.
+- The header menu has dropdowns for Application, RTOS and Validation; each
+  item turns to its slide. Deep links work too, e.g. `#app-rust`,
   `#rtos-zephyr`, `#eol`.
+- Status labels are honest by design: *Feature-complete* (SRS implemented,
+  bench run next), *Skeleton* (builds, core features pending) and
+  *Specified* (design complete, not built).
 - No build step, no framework: `index.html`, `assets/style.css` and
   `assets/main.js`.
+- Fonts are self-hosted (Space Grotesk and Geist Mono, both OFL), so the
+  page makes no third-party requests and sets no cookies.
 - Works without JavaScript: all content is static; only scrolling
   snap, the theme toggle and the animated preview need JS.
 
@@ -40,11 +44,13 @@ keeps the files served as-is.
 
 ```
 index.html                  content, metadata and JSON-LD
-assets/style.css            design tokens, layout, themes
+assets/style.css            design tokens, fonts, layout, themes
 assets/main.js              theme, menu, slide navigator, preview
+assets/fonts/               self-hosted Space Grotesk and Geist Mono
 assets/chip.svg             favicon
 assets/apple-touch-icon.png
-assets/og.png               social preview (1200 × 630)
+assets/og.png               social preview (1200 x 630)
+404.html                    branded not-found page
 robots.txt
 sitemap.xml
 ```
