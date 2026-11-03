@@ -411,6 +411,11 @@ h1 {
 .proj .card { min-height: 190px; }
 .proj .card .repo { margin-top: auto; color: var(--muted); overflow-wrap: anywhere; }
 .proj .card:hover .repo { color: var(--accent); }
+.proj .proj-cta { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.proj .proj-cta p, .proj .proj-cta .mono { color: color-mix(in srgb, var(--bg) 72%, transparent); }
+.proj .proj-cta .status { color: var(--accent); }
+.proj .proj-cta .repo { color: var(--bg); }
+.proj .proj-cta:hover .repo { color: var(--accent); }
 
 .status { display: inline-flex; align-items: center; gap: 6px; font: 500 10px var(--mono); letter-spacing: .07em; text-transform: uppercase; }
 .status::before { content: ""; width: 6px; height: 6px; background: currentColor; }

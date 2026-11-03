@@ -167,7 +167,7 @@
       <li><b>25+</b><span>years in embedded</span></li>
       <li><b>15+</b><span>years on STM32</span></li>
       <li><b>201</b><span>hardware test cases</span></li>
-      <li><b>6</b><span>MIT repositories</span></li>
+      <li><b>7</b><span>MIT repositories</span></li>
     </ul>
   </div>
 </section>
@@ -209,7 +209,7 @@
       <article class="card">
         <div class="ico"><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="8" width="36" height="24"/><path d="M14 40h16M22 32v8M10 16h10M10 22h16"/></svg></div>
         <h3>Production test &amp; tools</h3>
-        <p>Host tools and GUIs for flashing, test stations and update workflows, plus code and design reviews.</p>
+        <p>End-of-line stations with provisioning and traceability, host GUIs for flashing and updates, plus code reviews.</p>
       </article>
     </div>
   </div>
@@ -230,7 +230,7 @@
       <li><span class="stage-n">04</span><h3>Validation</h3><p>201 test cases over 28 groups, with harness, equipment and operator levels.</p><a class="ev" href="https://github.com/soccentric-stm32/soccentric-stm32-validation-firmware" target="_blank" rel="noopener">HWVAL ↗</a></li>
       <li><span class="stage-n">05</span><h3>Update path</h3><p>A/B bootloader: dual-bank, CRC32, trial boot and automatic rollback.</p><a class="ev" href="https://github.com/soccentric-stm32/soccentric-stm32-bootloader" target="_blank" rel="noopener">Bootloader ↗</a></li>
       <li><span class="stage-n">06</span><h3>Application</h3><p>One spec, three stacks: C on FreeRTOS, Rust on Embassy, Zephyr.</p><p class="ev-links"><a href="https://github.com/soccentric-stm32/soccentric-stm32-application" target="_blank" rel="noopener">C ↗</a> <a href="https://github.com/soccentric-stm32/soccentric-stm32-rust-application" target="_blank" rel="noopener">Rust ↗</a> <a href="https://github.com/soccentric-stm32/soccentric-stm32-zephyr-application" target="_blank" rel="noopener">Zephyr ↗</a></p></li>
-      <li><span class="stage-n">07</span><h3>Production</h3><p>Desktop app for test runs, reports, firmware updates and SWD flashing.</p><a class="ev" href="https://github.com/soccentric-stm32/soccentric-stm32-validation-gui" target="_blank" rel="noopener">HWVAL Studio ↗</a></li>
+      <li><span class="stage-n">07</span><h3>Production</h3><p>Engineering GUI for tests and updates; an end-of-line station for test, provisioning and labels.</p><p class="ev-links"><a href="https://github.com/soccentric-stm32/soccentric-stm32-validation-gui" target="_blank" rel="noopener">Studio</a> · <a href="https://github.com/soccentric-stm32/soccentric-stm32-factory-provisioning" target="_blank" rel="noopener">Factory ↗</a></p></li>
       <li class="life-cta"><span class="stage-n">→</span><h3>Your project</h3><p>Bring a stalled prototype or a fresh spec. We start at whichever stage you need.</p><a class="ev" href="#contact">Talk it through ↗</a></li>
     </ol>
   </div>
@@ -361,6 +361,7 @@
         <a class="blk" href="https://github.com/soccentric-stm32/soccentric-stm32-validation-firmware" target="_blank" rel="noopener"><span class="mono">B.03</span><div><b>Validation framework</b><span>Test table, levels, harness detection, operator prompts, text/JSON reports.</span></div><span class="go" aria-hidden="true">↗</span></a>
         <a class="blk" href="https://github.com/soccentric-stm32/soccentric-stm32-application" target="_blank" rel="noopener"><span class="mono">B.04</span><div><b>Application template</b><span>Clock, faults, watchdog, health check and bootloader contract, in C, Rust and Zephyr.</span></div><span class="go" aria-hidden="true">↗</span></a>
         <a class="blk" href="https://github.com/soccentric-stm32/soccentric-stm32-validation-firmware/blob/HEAD/docker/README.md" target="_blank" rel="noopener"><span class="mono">B.05</span><div><b>Build environment</b><span>Docker image with toolchain, SDK and OpenOCD: build, flash and debug with one command.</span></div><span class="go" aria-hidden="true">↗</span></a>
+        <a class="blk" href="https://github.com/soccentric-stm32/soccentric-stm32-factory-provisioning" target="_blank" rel="noopener"><span class="mono">B.06</span><div><b>Factory provisioning</b><span>EOL flow engine, product profiles, provisioning record, serial and MAC allocation, ZPL labels.</span></div><span class="go" aria-hidden="true">↗</span></a>
       </div>
     </div>
     <p class="mit"><span class="tag">MIT</span><b>MIT licensed.</b> Use any of it as a starting point for your product. No fees, no lock-in.</p>
@@ -372,7 +373,7 @@
   <div class="wrap">
     <div class="sec-head">
       <p class="eyebrow"><span class="num">04</span>Projects</p>
-      <h2>Six repositories, <span class="dim">one system</span></h2>
+      <h2>Seven repositories, <span class="dim">one system</span></h2>
       <p class="sec-lead">Each repository has its own requirements specification and builds in the same Docker environment.</p>
     </div>
     <div class="cards cards-3 proj">
@@ -405,6 +406,21 @@
         <div class="card-top"><span class="mono">P.06</span><span class="status s-spec">Specified</span></div>
         <h3>HWVAL Studio</h3><p>PySide6 desktop app for macOS, Windows and Linux: tests, history, updates, SWD.</p>
         <span class="repo mono">soccentric-stm32-validation-gui ↗</span>
+      </a>
+      <a class="card" href="https://github.com/soccentric-stm32/soccentric-stm32-factory-provisioning" target="_blank" rel="noopener">
+        <div class="card-top"><span class="mono">P.07</span><span class="status s-spec">Specified</span></div>
+        <h3>HWVAL Factory</h3><p>End-of-line test and provisioning: parallel fixtures, serial numbers and MACs, flash protection, labels, traceability.</p>
+        <span class="repo mono">soccentric-stm32-factory-provisioning ↗</span>
+      </a>
+      <a class="card" href="https://github.com/soccentric-stm32/soccentric-stm32-factory-provisioning/blob/HEAD/SRS.md#3-architecture-and-shared-core" target="_blank" rel="noopener">
+        <div class="card-top"><span class="mono">P.08</span><span class="status s-spec">Planned</span></div>
+        <h3>Host core</h3><p>The Python package Studio and Factory share: HWLINK, OpenOCD control, image tools, theme and widgets.</p>
+        <span class="repo mono">soccentric-stm32-hostcore · planned ↗</span>
+      </a>
+      <a class="card proj-cta" href="#contact">
+        <div class="card-top"><span class="mono">P.09</span><span class="status">Next</span></div>
+        <h3>Your project</h3><p>Bring your board and requirements, and start from these blocks instead of from zero.</p>
+        <span class="repo mono">Get in touch →</span>
       </a>
     </div>
   </div>
