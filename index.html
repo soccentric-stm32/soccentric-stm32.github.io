@@ -4,14 +4,24 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SoCcentric STM32 — STM32 firmware, from first power-on to production</title>
-  <meta name="description" content="STM32 firmware consulting by Sandesh Ghimire: 25+ years in embedded, 15+ on STM32. Bring-up, validation, bootloaders, RTOS and production test, built on open-source MIT building blocks.">
+  <meta name="description" content="STM32 firmware consulting by Sandesh Ghimire: 25+ years in embedded, 15+ on STM32. Bootloaders, applications in C/C++ and Rust, FreeRTOS and Zephyr, validation and end-of-line testing, built on open-source MIT building blocks.">
   <meta name="author" content="Sandesh Ghimire">
   <meta name="theme-color" content="#f6f4ee" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#101215" media="(prefers-color-scheme: dark)">
   <meta property="og:title" content="SoCcentric STM32 — STM32 firmware, from first power-on to production">
   <meta property="og:description" content="25+ years in embedded, 15+ on STM32. Open-source building blocks (MIT) and hands-on help to finish your STM32 project.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://soccentric-stm32.github.io/">
+  <meta property="og:site_name" content="SoCcentric STM32">
+  <meta property="og:image" content="https://soccentric-stm32.github.io/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="SoCcentric STM32 — STM32 firmware from first power-on to production">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://soccentric-stm32.github.io/assets/og.png">
+  <link rel="canonical" href="https://soccentric-stm32.github.io/">
   <link rel="icon" href="assets/chip.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <script>
     (function () {
       var d = document.documentElement;
@@ -22,10 +32,30 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="assets/style.css">
+  <noscript><style>.theme-toggle,.scene-bar{display:none}</style></noscript>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "SoCcentric STM32",
+    "url": "https://soccentric-stm32.github.io/",
+    "description": "Embedded firmware consultancy for STM32: A/B bootloaders, applications in C/C++ and Rust, FreeRTOS and Zephyr, validation and end-of-line testing.",
+    "email": "sandesh@soccentric.com",
+    "founder": { "@type": "Person", "name": "Sandesh Ghimire" },
+    "knowsAbout": ["STM32", "Embedded firmware", "FreeRTOS", "Zephyr", "Rust no_std", "C/C++", "A/B bootloaders", "Hardware validation", "End-of-line testing", "Factory provisioning"],
+    "sameAs": ["https://github.com/soccentric-stm32"]
+  }
+  </script>
 </head>
 <body>
 
 <a class="skip-link" href="#main">Skip to content</a>
+
+<svg class="sr-only" aria-hidden="true" focusable="false">
+  <symbol id="gh-icon" viewBox="0 0 16 16">
+    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/>
+  </symbol>
+</svg>
 
 <header class="site-header">
   <div class="wrap header-inner">
@@ -34,59 +64,90 @@
       <span>SoCcentric <b>STM32</b></span>
     </a>
 
-    <nav class="site-nav" aria-label="Primary">
-      <a href="#services">Services</a>
-      <a href="#lifecycle">Lifecycle</a>
-      <a href="#blocks">Building blocks</a>
-      <a href="#projects">Projects</a>
-      <a href="#engage">Engagement</a>
+    <nav class="site-nav" aria-label="Products">
+      <a href="#bootloader" data-flash="bootloader">Bootloader</a>
+      <div class="dd">
+        <a href="#app-c" data-flash="app-c" class="dd-top">Application</a>
+        <div class="dd-menu">
+          <a href="#app-c" data-flash="app-c">C/C++</a>
+          <a href="#app-rust" data-flash="app-rust">Rust</a>
+        </div>
+      </div>
+      <div class="dd">
+        <a href="#rtos-freertos" data-flash="rtos-freertos" class="dd-top">RTOS</a>
+        <div class="dd-menu">
+          <a href="#rtos-freertos" data-flash="rtos-freertos">FreeRTOS</a>
+          <a href="#rtos-zephyr" data-flash="rtos-zephyr">Zephyr</a>
+        </div>
+      </div>
+      <div class="dd">
+        <a href="#validation" data-flash="validation" class="dd-top">Validation</a>
+        <div class="dd-menu">
+          <a href="#validation" data-flash="validation">Firmware</a>
+          <a href="#validation-app" data-flash="validation-app">Python app</a>
+        </div>
+      </div>
+      <a href="#eol" data-flash="eol">End line testing</a>
+      <a href="#blocks" data-flash="blocks">Open source</a>
+      <a href="#engage" data-flash="engage">Engagement</a>
     </nav>
 
     <div class="header-actions">
-      <button class="theme-toggle" type="button" aria-label="Switch to blueprint theme">
+      <button class="theme-toggle" type="button" aria-label="Switch to blueprint theme" title="Switch to blueprint theme">
         <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="4.2"/><path d="M10 1v2.6M10 16.4V19M1 10h2.6M16.4 10H19M3.6 3.6l1.9 1.9M14.5 14.5l1.9 1.9M16.4 3.6l-1.9 1.9M5.5 14.5l-1.9 1.9"/></svg>
         <span class="theme-label">Theme</span>
       </button>
-      <a class="btn btn-accent header-cta" href="#contact">Work with me</a>
+      <a class="btn btn-accent header-cta" href="#contact" data-flash="contact">Contact</a>
 
       <details class="menu">
         <summary aria-label="Open menu"><span class="menu-lines" aria-hidden="true"></span>Menu</summary>
-        <nav aria-label="Mobile">
-          <a href="#services">Services</a>
-          <a href="#lifecycle">Lifecycle</a>
-          <a href="#blocks">Building blocks</a>
-          <a href="#projects">Projects</a>
-          <a href="#engage">Engagement</a>
-          <a href="#contact">Contact</a>
+        <nav aria-label="Mobile menu">
+          <a href="#top" data-flash="top">Home</a>
+          <a href="#bootloader" data-flash="bootloader">Bootloader</a>
+          <span class="grp">Application</span>
+          <a class="sub" href="#app-c" data-flash="app-c">C/C++</a>
+          <a class="sub" href="#app-rust" data-flash="app-rust">Rust</a>
+          <span class="grp">RTOS</span>
+          <a class="sub" href="#rtos-freertos" data-flash="rtos-freertos">FreeRTOS</a>
+          <a class="sub" href="#rtos-zephyr" data-flash="rtos-zephyr">Zephyr</a>
+          <span class="grp">Validation</span>
+          <a class="sub" href="#validation" data-flash="validation">Firmware</a>
+          <a class="sub" href="#validation-app" data-flash="validation-app">Python app</a>
+          <a href="#eol" data-flash="eol">End line testing</a>
+          <a href="#blocks" data-flash="blocks">Open source</a>
+          <a href="#engage" data-flash="engage">Engagement</a>
+          <a href="#contact" data-flash="contact">Contact</a>
         </nav>
       </details>
     </div>
   </div>
 </header>
 
-<main id="main">
+<nav class="deck-nav" id="decknav" aria-label="Page sections"></nav>
+
+<main id="main" tabindex="-1">
 
 <!-- ------------------------------------------------------------- hero -->
-<section class="hero" id="top">
+<section class="hero" id="top" data-slide="Intro">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <p class="eyebrow"><span class="pip"></span>STM32 firmware consultancy</p>
+      <p class="eyebrow"><span class="pip"></span>Embedded firmware consultant · STM32</p>
       <h1>STM32 firmware,<br>from first power&#8209;on<br>to production.</h1>
-      <p class="lead">I help teams finish STM32 projects. I start from open-source building blocks proven in production and adapt them to your hardware: bring-up, validation, bootloaders and field updates, RTOS architecture, production test.</p>
+      <p class="lead">25+ years in embedded systems, 15+ of them on STM32. I have shipped projects bare metal, on FreeRTOS and on Zephyr, and open-sourced the building blocks behind them: bootloader, applications, validation and end-of-line test. Use them freely under MIT, or let me customize them for your product.</p>
       <div class="hero-cta">
         <a class="btn btn-accent" href="mailto:sandesh@soccentric.com?subject=STM32%20project">Work with me <span aria-hidden="true">→</span></a>
-        <a class="btn btn-ghost" href="https://github.com/soccentric-stm32" target="_blank" rel="noopener">Browse the code <span aria-hidden="true">↗</span></a>
+        <a class="btn btn-ghost gh-link" href="https://github.com/soccentric-stm32" target="_blank" rel="noopener" aria-label="Browse the code on GitHub" title="Browse the code on GitHub"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"/></svg><span class="sr-only">Browse the code on GitHub</span></a>
       </div>
       <dl class="hero-spec">
         <div><dt>Experience</dt><dd>25+ yrs embedded · 15+ yrs STM32</dd></div>
-        <div><dt>Reference target</dt><dd>NUCLEO-F767ZI · Cortex-M7 · 216 MHz</dd></div>
-        <div><dt>Stacks</dt><dd>C · Rust · Zephyr · FreeRTOS</dd></div>
-        <div><dt>License</dt><dd>Open source, MIT</dd></div>
+        <div><dt>Runtimes</dt><dd>Bare metal · FreeRTOS · Zephyr</dd></div>
+        <div><dt>Languages</dt><dd>C/C++ · Rust · Python</dd></div>
+        <div><dt>License</dt><dd>Open source, MIT, no restrictions</dd></div>
       </dl>
     </div>
 
     <div class="hero-demo">
-      <div class="screen" id="app" role="img" aria-label="Animated preview of HWVAL Studio running tests, an operator prompt, a firmware update, SWD flashing and the run history">
+      <div class="screen" id="app" aria-hidden="true">
         <div class="tb">
           <div class="lights" aria-hidden="true"><i></i><i></i><i></i></div>
           <span class="port">ttyACM0 · 921600</span>
@@ -94,11 +155,11 @@
         </div>
         <div class="app">
           <nav class="side" aria-hidden="true">
-            <h6>Device</h6><a data-nav="0">Overview</a>
-            <h6>Test &amp; validation</h6>
+            <p class="side-h">Device</p><a data-nav="0">Overview</a>
+            <p class="side-h">Test &amp; validation</p>
             <a>All Tests <em>201</em></a><a>CPU &amp; System <em>✓31</em></a><a data-nav="tests">Analog <em id="badge">–</em></a><a>Communication <em>✓18</em></a><a>Memory <em>✓22</em></a>
-            <h6>Firmware</h6><a data-nav="fw">Update (UART)</a><a data-nav="swd">Flash (SWD)</a>
-            <h6>Data</h6><a data-nav="hist">History</a>
+            <p class="side-h">Firmware</p><a data-nav="fw">Update (UART)</a><a data-nav="swd">Flash (SWD)</a>
+            <p class="side-h">Data</p><a data-nav="hist">History</a>
           </nav>
           <div class="main">
             <!-- scene 1+2: test run and operator prompt -->
@@ -116,7 +177,7 @@
               <div class="bar"><i id="tbar"></i></div>
               <div class="scrim" id="scrim"></div>
               <div class="prompt" id="prompt">
-                <h4>BTN.001 · Operator</h4>
+                <p class="prompt-title">BTN.001 · Operator</p>
                 <p>Press the blue user button <b>B1</b> on the board.</p>
                 <div class="prompt-row"><span class="cd" id="cd">60 s</span><span class="btn-mini" id="pbtn">Waiting for B1…</span></div>
               </div>
@@ -151,19 +212,20 @@
           </div>
         </div>
       </div>
-      <div class="scene-bar" id="scenebar">
-        <button type="button" data-go="0"><i>01</i>Tests</button>
-        <button type="button" data-go="1"><i>02</i>Operator</button>
-        <button type="button" data-go="2"><i>03</i>Update</button>
-        <button type="button" data-go="3"><i>04</i>Flash</button>
-        <button type="button" data-go="4"><i>05</i>History</button>
+      <div class="scene-bar" id="scenebar" role="group" aria-label="HWVAL Studio preview scenes">
+        <button type="button" data-go="0"><i aria-hidden="true">01</i>Tests</button>
+        <button type="button" data-go="1"><i aria-hidden="true">02</i>Operator</button>
+        <button type="button" data-go="2"><i aria-hidden="true">03</i>Update</button>
+        <button type="button" data-go="3"><i aria-hidden="true">04</i>Flash</button>
+        <button type="button" data-go="4"><i aria-hidden="true">05</i>History</button>
       </div>
+      <p class="sr-only">Preview of HWVAL Studio: a test run, an operator prompt, an A/B firmware update, an SWD flash and the run history.</p>
       <p class="preview-note">Concept preview of HWVAL Studio · in development</p>
     </div>
   </div>
 
   <div class="wrap">
-    <ul class="stat-strip">
+    <ul class="stat-strip" role="list">
       <li><b>25+</b><span>years in embedded</span></li>
       <li><b>15+</b><span>years on STM32</span></li>
       <li><b>201</b><span>hardware test cases</span></li>
@@ -172,77 +234,297 @@
   </div>
 </section>
 
-<!-- --------------------------------------------------------- services -->
-<section class="section" id="services">
+<!-- ------------------------------------------------------- bootloader -->
+<section class="section" id="bootloader" data-slide="Bootloader">
   <div class="wrap">
     <div class="sec-head">
-      <p class="eyebrow"><span class="num">01</span>Services</p>
-      <h2>What I do <span class="dim">for STM32 teams</span></h2>
-      <p class="sec-lead">Join a project at any stage, or own a piece of it end to end. Each service is backed by working, public code you can read before we talk.</p>
+      <p class="eyebrow"><span class="num">01</span>Bootloader</p>
+      <h2>A/B bootloader, <span class="dim">updates that can't brick</span></h2>
+      <p class="sec-lead">I have built bootloaders with A/B firmware upload for STM32 products. A new image goes into the inactive slot, is verified, gets a trial boot, and is kept only when the application confirms it is healthy.</p>
     </div>
-    <div class="cards cards-3">
-      <article class="card">
-        <div class="ico"><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 34h32M10 34V20l12-8 12 8v14"/><path d="M18 34v-8h8v8"/><path d="M30 8l6 6"/></svg></div>
-        <h3>Finish &amp; rescue</h3>
-        <p>Take over a late or stalled STM32 project, find what blocks it and get it to release.</p>
+    <div class="split">
+      <article class="panel">
+        <div class="panel-head"><span class="mono">B.01 · Bare metal · C</span><span class="status s-wip">Skeleton</span></div>
+        <h3>What it does</h3>
+        <ul class="ticks" role="list">
+          <li>Two slots, one per flash bank, so the running image is never overwritten</li>
+          <li>Image header with version and size, checked with CRC32 before activation</li>
+          <li>Trial boot with a boot counter and automatic rollback to the last good image</li>
+          <li>Firmware upload over UART using the HWLINK host protocol</li>
+          <li>Small: 32 KB, no RTOS, no dynamic memory</li>
+        </ul>
+        <p class="panel-note">Adapted to your flash map and your update path: UART, USB, CAN or Ethernet.</p>
+        <a class="repo mono gh-link" href="https://github.com/soccentric-stm32/soccentric-stm32-bootloader" target="_blank" rel="noopener" aria-label="soccentric-stm32-bootloader on GitHub" title="soccentric-stm32-bootloader"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"/></svg><span class="sr-only">soccentric-stm32-bootloader on GitHub</span></a>
       </article>
-      <article class="card">
-        <div class="ico"><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="12" y="12" width="20" height="20"/><path d="M16 4v8M22 4v8M28 4v8M16 32v8M22 32v8M28 32v8M4 16h8M4 22h8M4 28h8M32 16h8M32 22h8M32 28h8"/></svg></div>
-        <h3>Board bring-up</h3>
-        <p>Clocks, power, memory map, MPU and caches, peripherals: a new board brought up step by step and documented.</p>
-      </article>
-      <article class="card">
-        <div class="ico"><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 22l8 8 20-20"/><rect x="4" y="4" width="36" height="36"/></svg></div>
-        <h3>Hardware validation</h3>
-        <p>A test suite that checks every block of the chip and the board, with operator prompts and reports.</p>
-      </article>
-      <article class="card">
-        <div class="ico"><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="10" width="16" height="24"/><rect x="24" y="10" width="16" height="24"/><path d="M12 4v6M32 34v6M20 22h4"/></svg></div>
-        <h3>Bootloaders &amp; updates</h3>
-        <p>A/B images, integrity checks, trial boot and rollback, so field updates can't brick the device.</p>
-      </article>
-      <article class="card">
-        <div class="ico"><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="22" cy="22" r="16"/><path d="M22 10v12l8 6"/></svg></div>
-        <h3>RTOS &amp; architecture</h3>
-        <p>FreeRTOS, Zephyr or Rust/Embassy: task design, timing, interrupts, DMA and memory layout that hold up.</p>
-      </article>
-      <article class="card">
-        <div class="ico"><svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="8" width="36" height="24"/><path d="M14 40h16M22 32v8M10 16h10M10 22h16"/></svg></div>
-        <h3>Production test &amp; tools</h3>
-        <p>End-of-line stations with provisioning and traceability, host GUIs for flashing and updates, plus code reviews.</p>
-      </article>
+      <div class="figure">
+        <p class="fig-cap mono">Flash layout · STM32F767 · dual bank</p>
+        <div class="flashmap" role="img" aria-label="Bank 1 holds the 32 KB bootloader and slot A; bank 2 holds slot B">
+          <div class="bank"><small>Bank 1</small><span class="fm boot">Bootloader · 32 KB</span><span class="fm on">Slot A · active</span></div>
+          <div class="bank"><small>Bank 2</small><span class="fm">Slot B · update target</span></div>
+        </div>
+        <ol class="flow" role="list">
+          <li><i>1</i>Upload</li>
+          <li><i>2</i>Verify CRC</li>
+          <li><i>3</i>Activate</li>
+          <li><i>4</i>Trial boot</li>
+          <li><i>5</i>Confirm or roll back</li>
+        </ol>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- -------------------------------------------------------- lifecycle -->
-<section class="section" id="lifecycle">
+<!-- ------------------------------------------------- application · C/C++ -->
+<section class="section" id="app-c" data-slide="C/C++">
   <div class="wrap">
     <div class="sec-head">
-      <p class="eyebrow"><span class="num">02</span>Lifecycle</p>
-      <h2>The whole project, <span class="dim">shown in code</span></h2>
-      <p class="sec-lead">Each stage of an STM32 project, with the public repository that demonstrates it. All of it runs on one reference board.</p>
+      <p class="eyebrow"><span class="num">02</span>Application · C/C++</p>
+      <h2>Applications <span class="dim">in C/C++</span></h2>
+      <p class="sec-lead">The language most STM32 products ship in. I have built applications bare metal on HAL/LL and on top of an RTOS, with the bootloader contract built in from day one.</p>
     </div>
-    <ol class="life">
-      <li><span class="stage-n">01</span><h3>Requirements</h3><p>An SRS per project: testable requirements, levels, methods, open items.</p><a class="ev" href="https://github.com/soccentric-stm32/soccentric-stm32-validation-firmware/blob/HEAD/SRS.md" target="_blank" rel="noopener">SRS-HWVAL ↗</a></li>
-      <li><span class="stage-n">02</span><h3>Architecture</h3><p>Flash layout, boot flow and one host ↔ device protocol for every image.</p><a class="ev" href="https://github.com/soccentric-stm32/soccentric-stm32-validation-gui/blob/HEAD/SRS.md#appendix-a--hwlink-protocol" target="_blank" rel="noopener">HWLINK spec ↗</a></li>
-      <li><span class="stage-n">03</span><h3>Bring-up</h3><p>216 MHz clock tree, MPU, caches, faults, watchdog; reproducible Docker builds.</p><a class="ev" href="https://github.com/soccentric-stm32/soccentric-stm32-validation-firmware" target="_blank" rel="noopener">Firmware ↗</a></li>
-      <li><span class="stage-n">04</span><h3>Validation</h3><p>201 test cases over 28 groups, with harness, equipment and operator levels.</p><a class="ev" href="https://github.com/soccentric-stm32/soccentric-stm32-validation-firmware" target="_blank" rel="noopener">HWVAL ↗</a></li>
-      <li><span class="stage-n">05</span><h3>Update path</h3><p>A/B bootloader: dual-bank, CRC32, trial boot and automatic rollback.</p><a class="ev" href="https://github.com/soccentric-stm32/soccentric-stm32-bootloader" target="_blank" rel="noopener">Bootloader ↗</a></li>
-      <li><span class="stage-n">06</span><h3>Application</h3><p>One spec, three stacks: C on FreeRTOS, Rust on Embassy, Zephyr.</p><p class="ev-links"><a href="https://github.com/soccentric-stm32/soccentric-stm32-application" target="_blank" rel="noopener">C ↗</a> <a href="https://github.com/soccentric-stm32/soccentric-stm32-rust-application" target="_blank" rel="noopener">Rust ↗</a> <a href="https://github.com/soccentric-stm32/soccentric-stm32-zephyr-application" target="_blank" rel="noopener">Zephyr ↗</a></p></li>
-      <li><span class="stage-n">07</span><h3>Production</h3><p>Engineering GUI for tests and updates; an end-of-line station for test, provisioning and labels.</p><p class="ev-links"><a href="https://github.com/soccentric-stm32/soccentric-stm32-validation-gui" target="_blank" rel="noopener">Studio</a> · <a href="https://github.com/soccentric-stm32/soccentric-stm32-factory-provisioning" target="_blank" rel="noopener">Factory ↗</a></p></li>
-      <li class="life-cta"><span class="stage-n">→</span><h3>Your project</h3><p>Bring a stalled prototype or a fresh spec. We start at whichever stage you need.</p><a class="ev" href="#contact">Talk it through ↗</a></li>
-    </ol>
+    <div class="split">
+      <article class="panel">
+        <div class="panel-head"><span class="mono">A.01 · C/C++ · FreeRTOS</span><span class="status s-wip">Skeleton</span></div>
+        <h3>What you get</h3>
+        <ul class="ticks" role="list">
+          <li>216 MHz clock tree, MPU and caches, fault handlers, watchdog</li>
+          <li>Drivers on DMA and interrupts: UART, SPI, I2C, CAN, ADC, timers</li>
+          <li>Health check that confirms a new image to the bootloader</li>
+          <li>HWLINK host protocol for status, logs and updates</li>
+          <li>CMake build in Docker; cppcheck and clang-tidy in CI</li>
+        </ul>
+        <a class="repo mono gh-link" href="https://github.com/soccentric-stm32/soccentric-stm32-application" target="_blank" rel="noopener" aria-label="soccentric-stm32-application on GitHub" title="soccentric-stm32-application"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"/></svg><span class="sr-only">soccentric-stm32-application on GitHub</span></a>
+      </article>
+      <div class="figure">
+        <p class="fig-cap mono">Firmware layers</p>
+        <ol class="stack" role="list">
+          <li class="hi"><b>Application</b><span>your product logic, tasks</span></li>
+          <li><b>Services</b><span>HWLINK · health check · logging</span></li>
+          <li><b>Drivers</b><span>DMA · interrupts · peripherals</span></li>
+          <li><b>HAL / LL · CMSIS</b><span>startup · linker script · clocks</span></li>
+          <li class="base"><b>Bootloader contract</b><span>slot · image header · confirm</span></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- -------------------------------------------------- application · Rust -->
+<section class="section" id="app-rust" data-slide="Rust">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow"><span class="num">03</span>Application · Rust</p>
+      <h2>Applications <span class="dim">in Rust</span></h2>
+      <p class="sec-lead">The same application in Rust: memory safety checked at compile time, with no runtime cost on the MCU. A good fit for new products and for teams moving off C.</p>
+    </div>
+    <div class="split">
+      <article class="panel">
+        <div class="panel-head"><span class="mono">A.02 · Rust · Embassy</span><span class="status s-wip">Skeleton</span></div>
+        <h3>What you get</h3>
+        <ul class="ticks" role="list">
+          <li><code>no_std</code> on Embassy, with async tasks instead of threads</li>
+          <li>Same specification as the C and Zephyr versions</li>
+          <li>Same flash slot and bootloader contract, so one updater serves all</li>
+          <li>Current stable toolchain, clippy clean</li>
+          <li>One-command build and flash in the shared Docker image</li>
+        </ul>
+        <a class="repo mono gh-link" href="https://github.com/soccentric-stm32/soccentric-stm32-rust-application" target="_blank" rel="noopener" aria-label="soccentric-stm32-rust-application on GitHub" title="soccentric-stm32-rust-application"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"/></svg><span class="sr-only">soccentric-stm32-rust-application on GitHub</span></a>
+      </article>
+      <div class="figure">
+        <p class="fig-cap mono">Firmware layers</p>
+        <ol class="stack" role="list">
+          <li class="hi"><b>Async tasks</b><span>your product logic</span></li>
+          <li><b>Services</b><span>HWLINK · health check · logging</span></li>
+          <li><b>embassy-stm32</b><span>async drivers · DMA · timers</span></li>
+          <li><b>Executor · cortex-m-rt</b><span>startup · memory.x</span></li>
+          <li class="base"><b>Bootloader contract</b><span>slot · image header · confirm</span></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- --------------------------------------------------------- RTOS · FreeRTOS -->
+<section class="section" id="rtos-freertos" data-slide="FreeRTOS">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow"><span class="num">04</span>RTOS · FreeRTOS</p>
+      <h2>Applications <span class="dim">on FreeRTOS</span></h2>
+      <p class="sec-lead">Small, predictable and well known. I have built several STM32 products on it; the validation firmware and the C application in my blocks both run on it.</p>
+    </div>
+    <div class="split">
+      <article class="panel">
+        <div class="panel-head"><span class="mono">R.01 · FreeRTOS · C</span><span class="status s-done">In use</span></div>
+        <h3>What I do</h3>
+        <ul class="ticks" role="list">
+          <li>Task and priority design that keeps deadlines under load</li>
+          <li>Queues and task notifications between ISRs and tasks</li>
+          <li>Interrupt work deferred to tasks; DMA-driven drivers</li>
+          <li>Stack and heap sizing, runtime stats, watchdog per task</li>
+        </ul>
+        <p class="repo-links mono"><a class="gh-link" href="https://github.com/soccentric-stm32/soccentric-stm32-validation-firmware" target="_blank" rel="noopener" aria-label="validation-firmware on GitHub" title="soccentric-stm32-validation-firmware"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"/></svg><span class="sr-only">validation-firmware on GitHub</span></a><a class="gh-link" href="https://github.com/soccentric-stm32/soccentric-stm32-application" target="_blank" rel="noopener" aria-label="application on GitHub" title="soccentric-stm32-application"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"/></svg><span class="sr-only">application on GitHub</span></a></p>
+      </article>
+      <div class="figure">
+        <p class="fig-cap mono">Firmware layers</p>
+        <ol class="stack" role="list">
+          <li class="hi"><b>Tasks</b><span>by priority and deadline</span></li>
+          <li><b>Queues · notifications</b><span>ISR to task, task to task</span></li>
+          <li><b>FreeRTOS kernel</b><span>scheduler · timers · heap</span></li>
+          <li><b>Drivers · HAL / LL</b><span>DMA · interrupts</span></li>
+          <li class="base"><b>Bootloader contract</b><span>slot · image header · confirm</span></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ----------------------------------------------------------- RTOS · Zephyr -->
+<section class="section" id="rtos-zephyr" data-slide="Zephyr">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow"><span class="num">05</span>RTOS · Zephyr</p>
+      <h2>Applications <span class="dim">on Zephyr</span></h2>
+      <p class="sec-lead">A full OS with drivers, networking and a device model, for products that need more than a scheduler. The same application, built the Zephyr way.</p>
+    </div>
+    <div class="split">
+      <article class="panel">
+        <div class="panel-head"><span class="mono">R.02 · Zephyr 4.4</span><span class="status s-wip">Skeleton</span></div>
+        <h3>What I do</h3>
+        <ul class="ticks" role="list">
+          <li>Board support with devicetree overlays and Kconfig</li>
+          <li>Threads and work queues for the application</li>
+          <li>Flash partitions that match the A/B bootloader slots</li>
+          <li>west build in the shared Docker image</li>
+        </ul>
+        <a class="repo mono gh-link" href="https://github.com/soccentric-stm32/soccentric-stm32-zephyr-application" target="_blank" rel="noopener" aria-label="soccentric-stm32-zephyr-application on GitHub" title="soccentric-stm32-zephyr-application"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"/></svg><span class="sr-only">soccentric-stm32-zephyr-application on GitHub</span></a>
+      </article>
+      <div class="figure">
+        <p class="fig-cap mono">Firmware layers</p>
+        <ol class="stack" role="list">
+          <li class="hi"><b>Threads</b><span>your product logic</span></li>
+          <li><b>Subsystems</b><span>logging · shell · networking</span></li>
+          <li><b>Device drivers</b><span>described in devicetree</span></li>
+          <li><b>Zephyr kernel</b><span>configured with Kconfig</span></li>
+          <li class="base"><b>Partitions</b><span>bootloader · slot A · slot B</span></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ------------------------------------------------ validation · firmware -->
+<section class="section" id="validation" data-slide="Validation FW">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow"><span class="num">06</span>Validation · Firmware</p>
+      <h2>Validation <span class="dim">firmware</span></h2>
+      <p class="sec-lead">Firmware that tests every block of the chip and the board, so you know the hardware works before the application is written and before each board ships.</p>
+    </div>
+    <div class="split">
+      <article class="panel">
+        <div class="panel-head"><span class="mono">V.01 · C · FreeRTOS</span><span class="status s-done">Implemented</span></div>
+        <h3>What it covers</h3>
+        <ul class="ticks" role="list">
+          <li>201 test cases in 28 groups: CPU, memory, clocks, analog, communication and more</li>
+          <li>Test levels for harness, lab equipment and operator checks</li>
+          <li>Operator prompts for buttons, LEDs and anything a person must confirm</li>
+          <li>Scriptable CLI over UART, with text and JSON reports</li>
+          <li>Requirements written down in an SRS</li>
+        </ul>
+        <p class="repo-links mono"><a class="gh-link" href="https://github.com/soccentric-stm32/soccentric-stm32-validation-firmware" target="_blank" rel="noopener" aria-label="soccentric-stm32-validation-firmware on GitHub" title="soccentric-stm32-validation-firmware"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"/></svg><span class="sr-only">soccentric-stm32-validation-firmware on GitHub</span></a><a href="https://github.com/soccentric-stm32/soccentric-stm32-validation-firmware/blob/HEAD/SRS.md" target="_blank" rel="noopener">SRS ↗</a></p>
+      </article>
+      <div class="figure">
+        <p class="fig-cap mono">One validation run</p>
+        <ol class="flow flow-v" role="list">
+          <li><i>1</i><b>Detect</b><span>Board, harness and equipment present</span></li>
+          <li><i>2</i><b>Select</b><span>Groups and level for this run</span></li>
+          <li><i>3</i><b>Run</b><span>Each test against its limits</span></li>
+          <li><i>4</i><b>Ask</b><span>Operator confirms what only a person can</span></li>
+          <li><i>5</i><b>Report</b><span>Pass, fail, skip in text or JSON</span></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------------------------------------------- validation · python app -->
+<section class="section" id="validation-app" data-slide="Validation app">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow"><span class="num">07</span>Validation · Python app</p>
+      <h2>HWVAL Studio, <span class="dim">the Python app</span></h2>
+      <p class="sec-lead">A desktop app to validate the board: run the tests, answer the prompts, keep the history and update the firmware, without typing commands.</p>
+    </div>
+    <div class="split">
+      <article class="panel">
+        <div class="panel-head"><span class="mono">V.02 · Python · PySide6</span><span class="status s-spec">In development</span></div>
+        <h3>What it does</h3>
+        <ul class="ticks" role="list">
+          <li>Runs on macOS, Windows and Linux</li>
+          <li>Run tests by group or level and watch the results live</li>
+          <li>Operator prompts shown as dialogs, with a countdown</li>
+          <li>Run history and exported reports per board</li>
+          <li>Firmware update through the bootloader, and SWD flashing</li>
+        </ul>
+        <p class="repo-links mono"><a class="gh-link" href="https://github.com/soccentric-stm32/soccentric-stm32-validation-gui" target="_blank" rel="noopener" aria-label="soccentric-stm32-validation-gui on GitHub" title="soccentric-stm32-validation-gui"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"/></svg><span class="sr-only">soccentric-stm32-validation-gui on GitHub</span></a><a href="#top" data-flash="top">See the preview ↑</a></p>
+      </article>
+      <div class="figure">
+        <p class="fig-cap mono">App sections</p>
+        <ol class="stack" role="list">
+          <li><b>Device</b><span>board, firmware role, unique ID</span></li>
+          <li class="hi"><b>Test &amp; validation</b><span>groups · levels · live results</span></li>
+          <li><b>Firmware update</b><span>UART · A/B slots · rollback</span></li>
+          <li><b>Flash (SWD)</b><span>OpenOCD · ST-LINK</span></li>
+          <li class="base"><b>History</b><span>every run · exported reports</span></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- -------------------------------------------------- end line testing -->
+<section class="section" id="eol" data-slide="End line">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow"><span class="num">08</span>End line testing</p>
+      <h2>End-of-line test <span class="dim">and provisioning</span></h2>
+      <p class="sec-lead">A station tool for the factory floor: every board is flashed, tested, given its identity and locked, and the record is kept.</p>
+    </div>
+    <div class="split">
+      <article class="panel">
+        <div class="panel-head"><span class="mono">E.01 · HWVAL Factory · Python</span><span class="status s-spec">Specified</span></div>
+        <h3>Factory automation</h3>
+        <ul class="ticks" role="list">
+          <li>Flow engine driven by product profiles, not code changes</li>
+          <li>Several fixtures in parallel, simple screens for operators</li>
+          <li>Serial number and MAC allocation, written to the device</li>
+          <li>Readout and write protection set before the board leaves</li>
+          <li>ZPL labels and a full provisioning record for traceability</li>
+        </ul>
+        <a class="repo mono gh-link" href="https://github.com/soccentric-stm32/soccentric-stm32-factory-provisioning" target="_blank" rel="noopener" aria-label="soccentric-stm32-factory-provisioning on GitHub" title="soccentric-stm32-factory-provisioning"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"/></svg><span class="sr-only">soccentric-stm32-factory-provisioning on GitHub</span></a>
+      </article>
+      <div class="figure">
+        <p class="fig-cap mono">One board on the station</p>
+        <ol class="flow flow-v" role="list">
+          <li><i>1</i><b>Flash</b><span>Test firmware over SWD</span></li>
+          <li><i>2</i><b>Test</b><span>Selected HWVAL groups with fixture limits</span></li>
+          <li><i>3</i><b>Provision</b><span>Serial number and MAC address</span></li>
+          <li><i>4</i><b>Program</b><span>Bootloader and production image</span></li>
+          <li><i>5</i><b>Lock</b><span>Option bytes and readout protection</span></li>
+          <li><i>6</i><b>Label &amp; record</b><span>Printed label, stored test record</span></li>
+        </ol>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- ---------------------------------------------------- building blocks -->
-<section class="section" id="blocks">
+<section class="section" id="blocks" data-slide="Open source">
   <div class="wrap">
     <div class="sec-head">
-      <p class="eyebrow"><span class="num">03</span>Building blocks</p>
-      <h2>Open building blocks, <span class="dim">proven in production</span></h2>
-      <p class="sec-lead">Core components I've refined over years of client work, open-sourced under MIT. Configure them into your product, or bring me in to do it.</p>
+      <p class="eyebrow"><span class="num">09</span>Open source</p>
+      <h2>My building blocks, <span class="dim">free to use</span></h2>
+      <p class="sec-lead">Together these projects cover almost every part of embedded firmware development. They are the foundation I start every client project from, and they are on GitHub under MIT.</p>
     </div>
     <div class="blocks">
       <div class="drawing">
@@ -335,141 +617,71 @@
 <text x="113.0" y="205" text-anchor="middle" transform="rotate(-90 113.0 205)">2 MB FLASH · 512 KB RAM</text>
 <circle class="accf" cx="275.0" cy="164.0" r="2.4"/>
 <path class="acc" d="M275.0 164.0 L329.0 140.0 H520.0"/>
-<text x="333.0" y="135.0">01 BOOT · A/B · CRC32 · ROLLBACK</text>
+<text x="333.0" y="135.0">01 BOOTLOADER · A/B · ROLLBACK</text>
 <circle class="ln" cx="275.0" cy="185.0" r="2.4"/>
 <path class="ln2" d="M275.0 185.0 L329.0 178.0 H520.0"/>
-<text x="333.0" y="173.0">02 HWLINK · COBS + FLATBUFFERS</text>
+<text x="333.0" y="173.0">02 APPLICATION · C/C++ · RUST</text>
 <circle class="ln" cx="275.0" cy="206.0" r="2.4"/>
 <path class="ln2" d="M275.0 206.0 L329.0 216.0 H520.0"/>
-<text x="333.0" y="211.0">03 HWVAL · 201 HW TESTS</text>
+<text x="333.0" y="211.0">03 RTOS · FREERTOS · ZEPHYR</text>
 <circle class="ln" cx="275.0" cy="227.0" r="2.4"/>
 <path class="ln2" d="M275.0 227.0 L329.0 254.0 H520.0"/>
-<text x="333.0" y="249.0">04 RTOS · FREERTOS/ZEPHYR/RUST</text>
+<text x="333.0" y="249.0">04 VALIDATION · 201 TESTS</text>
 <circle class="ln" cx="275.0" cy="248.0" r="2.4"/>
 <path class="ln2" d="M275.0 248.0 L329.0 292.0 H520.0"/>
-<text x="333.0" y="287.0">05 BUILD · DOCKER · 1 COMMAND</text>
+<text x="333.0" y="287.0">05 END-OF-LINE · PROVISIONING</text>
 <rect class="ln" x="330" y="360" width="222" height="62"/>
 <line class="ln2" x1="330" y1="382" x2="552" y2="382"/><line class="ln2" x1="450" y1="382" x2="450" y2="422"/>
 <text x="338" y="375">SOCCENTRIC STM32 · BUILDING BLOCKS</text>
 <text x="338" y="398">SHEET 1 / 1</text><text x="338" y="413">LICENSE MIT</text>
-<text x="458" y="398">REV 0.3</text><text x="458" y="413">2026-11</text>
+<text x="458" y="398">REV 0.4</text><text x="458" y="413">2026-11</text>
 </svg>
       </div>
-      <div class="blk-list">
-        <a class="blk" href="https://github.com/soccentric-stm32/soccentric-stm32-bootloader" target="_blank" rel="noopener"><span class="mono">B.01</span><div><b>A/B bootloader</b><span>Dual-bank slots, image header, CRC32, trial boot, rollback, UART updates.</span></div><span class="go" aria-hidden="true">↗</span></a>
-        <a class="blk" href="https://github.com/soccentric-stm32/soccentric-stm32-validation-gui/blob/HEAD/SRS.md#appendix-a--hwlink-protocol" target="_blank" rel="noopener"><span class="mono">B.02</span><div><b>HWLINK protocol</b><span>COBS framing, CRC32 and one FlatBuffers schema for host and devices.</span></div><span class="go" aria-hidden="true">↗</span></a>
-        <a class="blk" href="https://github.com/soccentric-stm32/soccentric-stm32-validation-firmware" target="_blank" rel="noopener"><span class="mono">B.03</span><div><b>Validation framework</b><span>Test table, levels, harness detection, operator prompts, text/JSON reports.</span></div><span class="go" aria-hidden="true">↗</span></a>
-        <a class="blk" href="https://github.com/soccentric-stm32/soccentric-stm32-application" target="_blank" rel="noopener"><span class="mono">B.04</span><div><b>Application template</b><span>Clock, faults, watchdog, health check and bootloader contract, in C, Rust and Zephyr.</span></div><span class="go" aria-hidden="true">↗</span></a>
-        <a class="blk" href="https://github.com/soccentric-stm32/soccentric-stm32-validation-firmware/blob/HEAD/docker/README.md" target="_blank" rel="noopener"><span class="mono">B.05</span><div><b>Build environment</b><span>Docker image with toolchain, SDK and OpenOCD: build, flash and debug with one command.</span></div><span class="go" aria-hidden="true">↗</span></a>
-        <a class="blk" href="https://github.com/soccentric-stm32/soccentric-stm32-factory-provisioning" target="_blank" rel="noopener"><span class="mono">B.06</span><div><b>Factory provisioning</b><span>EOL flow engine, product profiles, provisioning record, serial and MAC allocation, ZPL labels.</span></div><span class="go" aria-hidden="true">↗</span></a>
+      <div class="paths">
+        <article class="card">
+          <span class="mono muted">Option 1</span>
+          <h3>Use them yourself</h3>
+          <p>If you already have a team, take the blocks and build on them. MIT licence: use, change and ship them in your product as you please, with no licence restrictions and no fees.</p>
+          <a class="repo mono gh-link" href="https://github.com/soccentric-stm32" target="_blank" rel="noopener" aria-label="github.com/soccentric-stm32" title="github.com/soccentric-stm32"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"/></svg><span class="sr-only">github.com/soccentric-stm32</span></a>
+        </article>
+        <article class="card card-ink">
+          <span class="mono">Option 2</span>
+          <h3>Have me customize them</h3>
+          <p>I adapt the blocks to your board, your requirements and your production line, and work with your team until the product ships.</p>
+          <a class="repo mono" href="#contact">Talk to me →</a>
+        </article>
       </div>
-    </div>
-    <p class="mit"><span class="tag">MIT</span><b>MIT licensed.</b> Use any of it as a starting point for your product. No fees, no lock-in.</p>
-  </div>
-</section>
-
-<!-- --------------------------------------------------------- projects -->
-<section class="section" id="projects">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow"><span class="num">04</span>Projects</p>
-      <h2>Seven repositories, <span class="dim">one system</span></h2>
-      <p class="sec-lead">Each repository has its own requirements specification and builds in the same Docker environment.</p>
-    </div>
-    <div class="cards cards-3 proj">
-      <a class="card" href="https://github.com/soccentric-stm32/soccentric-stm32-validation-firmware" target="_blank" rel="noopener">
-        <div class="card-top"><span class="mono">P.01</span><span class="status s-done">Implemented</span></div>
-        <h3>Validation firmware</h3><p>FreeRTOS firmware that tests every block of the STM32F767ZI and the board through a scriptable CLI.</p>
-        <span class="repo mono">soccentric-stm32-validation-firmware ↗</span>
-      </a>
-      <a class="card" href="https://github.com/soccentric-stm32/soccentric-stm32-bootloader" target="_blank" rel="noopener">
-        <div class="card-top"><span class="mono">P.02</span><span class="status s-wip">Skeleton</span></div>
-        <h3>A/B bootloader</h3><p>Bare metal, 32 KB: one slot per flash bank, CRC32 checks, trial boot and rollback.</p>
-        <span class="repo mono">soccentric-stm32-bootloader ↗</span>
-      </a>
-      <a class="card" href="https://github.com/soccentric-stm32/soccentric-stm32-application" target="_blank" rel="noopener">
-        <div class="card-top"><span class="mono">P.03</span><span class="status s-wip">Skeleton</span></div>
-        <h3>Application · C</h3><p>FreeRTOS reference app under the bootloader: LEDs, button, HWLINK, health check.</p>
-        <span class="repo mono">soccentric-stm32-application ↗</span>
-      </a>
-      <a class="card" href="https://github.com/soccentric-stm32/soccentric-stm32-rust-application" target="_blank" rel="noopener">
-        <div class="card-top"><span class="mono">P.04</span><span class="status s-wip">Skeleton</span></div>
-        <h3>Application · Rust</h3><p>The same app on Embassy: no_std, async tasks, current toolchain, clippy clean.</p>
-        <span class="repo mono">soccentric-stm32-rust-application ↗</span>
-      </a>
-      <a class="card" href="https://github.com/soccentric-stm32/soccentric-stm32-zephyr-application" target="_blank" rel="noopener">
-        <div class="card-top"><span class="mono">P.05</span><span class="status s-wip">Skeleton</span></div>
-        <h3>Application · Zephyr</h3><p>The same app on Zephyr 4.4: devicetree, Kconfig, threads, bootloader slot.</p>
-        <span class="repo mono">soccentric-stm32-zephyr-application ↗</span>
-      </a>
-      <a class="card" href="https://github.com/soccentric-stm32/soccentric-stm32-validation-gui" target="_blank" rel="noopener">
-        <div class="card-top"><span class="mono">P.06</span><span class="status s-spec">Specified</span></div>
-        <h3>HWVAL Studio</h3><p>PySide6 desktop app for macOS, Windows and Linux: tests, history, updates, SWD.</p>
-        <span class="repo mono">soccentric-stm32-validation-gui ↗</span>
-      </a>
-      <a class="card" href="https://github.com/soccentric-stm32/soccentric-stm32-factory-provisioning" target="_blank" rel="noopener">
-        <div class="card-top"><span class="mono">P.07</span><span class="status s-spec">Specified</span></div>
-        <h3>HWVAL Factory</h3><p>End-of-line test and provisioning: parallel fixtures, serial numbers and MACs, flash protection, labels, traceability.</p>
-        <span class="repo mono">soccentric-stm32-factory-provisioning ↗</span>
-      </a>
-      <a class="card" href="https://github.com/soccentric-stm32/soccentric-stm32-factory-provisioning/blob/HEAD/SRS.md#3-architecture-and-shared-core" target="_blank" rel="noopener">
-        <div class="card-top"><span class="mono">P.08</span><span class="status s-spec">Planned</span></div>
-        <h3>Host core</h3><p>The Python package Studio and Factory share: HWLINK, OpenOCD control, image tools, theme and widgets.</p>
-        <span class="repo mono">soccentric-stm32-hostcore · planned ↗</span>
-      </a>
-      <a class="card proj-cta" href="#contact">
-        <div class="card-top"><span class="mono">P.09</span><span class="status">Next</span></div>
-        <h3>Your project</h3><p>Bring your board and requirements, and start from these blocks instead of from zero.</p>
-        <span class="repo mono">Get in touch →</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ------------------------------------------------------------- tech -->
-<section class="section" id="tech">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow"><span class="num">05</span>Range</p>
-      <h2>Tools of the trade</h2>
-      <p class="sec-lead">From register-level C to Rust and Zephyr, and the host tooling around them.</p>
-    </div>
-    <div class="tech">
-      <div><h6>Languages</h6><ul><li>C (C11/C17)</li><li>Rust (no_std)</li><li>Python</li><li>CMake, shell</li></ul></div>
-      <div><h6>Runtimes</h6><ul><li>Bare metal, HAL/LL</li><li>FreeRTOS</li><li>Zephyr RTOS</li><li>Embassy</li></ul></div>
-      <div><h6>Peripherals</h6><ul><li>DMA, timers, ADC/DAC</li><li>UART, SPI, I2C, CAN</li><li>Ethernet/LwIP, USB</li><li>Flash, MPU, caches</li></ul></div>
-      <div><h6>Tooling</h6><ul><li>Docker builds, CI gates</li><li>OpenOCD, GDB, SWO</li><li>cppcheck, clang-tidy, clippy</li><li>PySide6 host apps</li></ul></div>
     </div>
   </div>
 </section>
 
 <!-- ------------------------------------------------------- engagement -->
-<section class="section" id="engage">
+<section class="section" id="engage" data-slide="Engagement">
   <div class="wrap">
     <div class="sec-head">
-      <p class="eyebrow"><span class="num">06</span>Engagement</p>
+      <p class="eyebrow"><span class="num">10</span>Engagement</p>
       <h2>How we can work</h2>
       <p class="sec-lead">Start small with a review, or hand over a whole subsystem. You keep all the code.</p>
     </div>
     <div class="cards cards-4 eng">
-      <article class="card"><span class="mono muted">E.01</span><h3>Review</h3><p>A focused look at your firmware, architecture or test strategy, with a written list of findings and fixes.</p></article>
-      <article class="card"><span class="mono muted">E.02</span><h3>Fixed scope</h3><p>A defined deliverable, such as a bootloader, a validation suite or a driver set, against an agreed spec.</p></article>
-      <article class="card"><span class="mono muted">E.03</span><h3>Finish the project</h3><p>Join your team until release: plan, implement, validate and hand over.</p></article>
-      <article class="card"><span class="mono muted">E.04</span><h3>Ongoing support</h3><p>A retainer for questions, reviews and maintenance after launch.</p></article>
+      <article class="card"><span class="mono muted">W.01</span><h3>Review</h3><p>A focused look at your firmware, architecture or test strategy, with a written list of findings and fixes.</p></article>
+      <article class="card"><span class="mono muted">W.02</span><h3>Customize a block</h3><p>One deliverable built from my blocks: a bootloader, a validation suite or an end-of-line station for your product.</p></article>
+      <article class="card"><span class="mono muted">W.03</span><h3>Finish the project</h3><p>Join your team until release: plan, implement, validate and hand over.</p></article>
+      <article class="card"><span class="mono muted">W.04</span><h3>Ongoing support</h3><p>A retainer for questions, reviews and maintenance after launch.</p></article>
     </div>
   </div>
 </section>
 
 <!-- ---------------------------------------------------------- contact -->
-<section class="section contact" id="contact">
+<section class="section contact" id="contact" data-slide="Contact">
   <div class="wrap contact-grid">
     <div>
-      <p class="eyebrow"><span class="num">07</span>Contact</p>
-      <h2>Let's finish<br>your STM32<br><span class="accent">project.</span></h2>
+      <p class="eyebrow"><span class="num">11</span>Contact</p>
+      <h2>Let's build<br>your STM32<br><span class="accent">product.</span></h2>
     </div>
     <div class="contact-links">
       <a href="mailto:sandesh@soccentric.com?subject=STM32%20project"><span><small class="mono">Email</small>sandesh@soccentric.com</span><span aria-hidden="true">→</span></a>
-      <a href="https://github.com/soccentric-stm32" target="_blank" rel="noopener"><span><small class="mono">GitHub</small>soccentric-stm32</span><span aria-hidden="true">↗</span></a>
+      <a class="gh-link" href="https://github.com/soccentric-stm32" target="_blank" rel="noopener" aria-label="soccentric-stm32 on GitHub" title="github.com/soccentric-stm32"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"/></svg><span class="sr-only">soccentric-stm32 on GitHub</span></a>
       <a href="#blocks"><span><small class="mono">Code</small>Open building blocks · MIT</span><span aria-hidden="true">↑</span></a>
     </div>
   </div>
