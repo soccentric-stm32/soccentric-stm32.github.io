@@ -551,14 +551,14 @@ h1 {
 
 .sec-head {
   display: grid; grid-template-columns: 1fr;
-  gap: 12px; justify-items: start;
+  gap: 12px;
   margin-bottom: clamp(16px, 2.6vh, 32px);
 }
 .sec-head .eyebrow { grid-column: 1 / -1; margin-bottom: 0; }
 .sec-head .eyebrow::before { content: ""; width: 28px; height: 1px; background: var(--line-2); order: 1; margin-left: 2px; }
 .sec-head h2 { font-size: clamp(27px, min(3vw, 4.4vh), 42px); text-transform: uppercase; }
-.sec-head h2 .dim { display: block; }
-.sec-lead { color: var(--ink-2); font-size: 15.5px; max-width: 78ch; }
+.sec-head h2 .dim { display: inline; }
+.sec-lead { color: var(--ink-2); font-size: 15.5px; }
 
 /* cards */
 .cards { display: grid; gap: clamp(10px, 1.6vh, 16px); }
@@ -764,7 +764,6 @@ h1 {
   .hero-spec { max-width: 640px; }
   .stat-strip { margin-top: 40px; }
   .sec-head { grid-template-columns: 1fr; gap: 14px; margin-bottom: 28px; }
-  .sec-head h2 { max-width: 20ch; }
   .sec-head .eyebrow::before { display: none; }
   .cards-3 { grid-template-columns: repeat(2, 1fr); }
   .blocks, .contact-grid, .split { grid-template-columns: 1fr; gap: 20px; }
