@@ -74,3 +74,16 @@ under the MIT licence, so you can use it as you please.
 ## Licence
 
 Site content © Sandesh Ghimire. Code and open building blocks: MIT.
+
+## CI and releases
+
+The [Jenkinsfile](Jenkinsfile) runs the build and checks, then **Package**
+builds `dist/website-<version>.tar.gz` with the outputs, a `manifest.json`
+(version, commit, build) and `SHA256SUMS`, and archives `dist/`. For a tag
+`v<version>`, **Release** publishes `dist/` as a GitHub release
+(`ci/github_release.py`, Jenkins credential `github-release-token`); the tag
+must match the version the build reports (`ci/version.sh`), and 0.x versions
+are marked as pre-releases.
+
+GitHub Pages deploys the site on every push to `main`; tagging `v<version>`
+only attaches the bundle to a GitHub release.
