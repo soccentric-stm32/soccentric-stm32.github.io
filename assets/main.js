@@ -61,8 +61,6 @@
   var slides = $$('main > section');
   var header = $('.site-header');
   var footer = $('.site-footer');
-  var decknav = $('#decknav');
-  var navBtns = [];
   var active = -1;
   var ticking = false;
 
@@ -104,10 +102,6 @@
   function setActive(i) {
     if (i === active) { return; }
     active = i;
-    navBtns.forEach(function (b, k) {
-      if (k === i) { b.setAttribute('aria-current', 'true'); }
-      else { b.removeAttribute('aria-current'); }
-    });
     slides.forEach(function (s, k) { s.classList.toggle('in', k === i); });
     // header menu: mark the item (and its dropdown) for the current slide
     var id = slides[i] ? slides[i].id : '';
@@ -140,25 +134,6 @@
 
   if (slides.length) {
     root.classList.add('deck');
-
-    if (decknav) {
-      slides.forEach(function (s, i) {
-        var label = s.dataset.slide || 'Section ' + (i + 1);
-        var b = document.createElement('button');
-        b.type = 'button';
-        b.setAttribute('aria-label', 'Go to ' + label);
-        var dot = document.createElement('span');
-        dot.className = 'dot';
-        var lbl = document.createElement('span');
-        lbl.className = 'lbl';
-        lbl.textContent = label;
-        b.appendChild(dot);
-        b.appendChild(lbl);
-        b.addEventListener('click', function () { goTo(i); });
-        decknav.appendChild(b);
-        navBtns.push(b);
-      });
-    }
 
     markSnap();
     syncSlides();
