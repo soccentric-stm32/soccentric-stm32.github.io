@@ -150,7 +150,7 @@
     <div class="hero-copy">
       <p class="eyebrow"><span class="pip"></span>Open STM32 building blocks</p>
       <h1>A complete STM32 product, from boot to factory floor.</h1>
-      <p class="lead">Seven open-source projects that work together: an A/B bootloader, the same application in C/C++ on FreeRTOS, in Rust and on Zephyr, validation firmware with a desktop bench app, and an end-of-line test and provisioning station. They share one flash layout, one host protocol and one update path. I'm Sandesh Ghimire, and I use them as the baseline for every STM32 project I build.</p>
+      <p class="lead">Seven open-source projects that work together: an A/B bootloader, the same application in C/C++ on FreeRTOS, in Rust and on Zephyr, validation firmware with a desktop bench app, and an end-of-line test and provisioning station. The bootloader, the application builds, the validation firmware and the bench app share one boot contract and one host protocol (HWLINK); the factory station is the production-line counterpart. I'm Sandesh Ghimire, and I use them as the baseline for every STM32 project I build.</p>
       <div class="hero-cta">
         <a class="btn btn-accent" href="mailto:sandesh@soccentric.com?subject=STM32%20project&amp;body=Board%20or%20chip%3A%0AWhat%20is%20already%20built%3A%0ADeadline%3A%0AWhat%20is%20blocking%3A">Get in touch <span aria-hidden="true">→</span></a>
         <a class="btn btn-ghost gh-link" href="https://github.com/soccentric-stm32" target="_blank" rel="noopener" aria-label="Browse the code on GitHub" title="Browse the code on GitHub"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span>Browse the code</span></a>
@@ -485,11 +485,11 @@
       <p class="eyebrow"><span class="num">07</span>End-of-line</p>
       <a class="icon-btn sec-repo" href="https://github.com/soccentric-stm32/soccentric-stm32-factory-provisioning" target="_blank" rel="noopener" aria-label="soccentric-stm32-factory-provisioning on GitHub" title="soccentric-stm32-factory-provisioning on GitHub"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg></a>
       <h2>HWVAL Factory, <span class="dim">test and provisioning</span></h2>
-      <p class="sec-lead">The end-of-line station for the factory floor. With one operator action per board, it flashes and tests the board, gives it its identity, programs the product, locks the chip, prints the label and keeps the record. It runs up to eight fixtures per PC.</p>
+      <p class="sec-lead">The end-of-line station for the factory floor. In one operator action per board it is designed to flash and test the board, give it its identity, program the product, apply flash protection, print the label and keep the record. It runs up to eight fixtures per PC; the hardware integration is still in development.</p>
     </div>
     <div class="split">
       <article class="panel">
-        <div class="panel-head"><span class="mono">Python · PySide6 · OpenOCD</span><span class="status s-done">Implemented · v0.1.0</span></div>
+        <div class="panel-head"><span class="mono">Python · PySide6 · OpenOCD</span><span class="status s-wip">In development · v0.1.0</span></div>
         <h3>Features</h3>
         <ul class="ticks" role="list">
           <li>Product profiles with SHA-256-pinned images and Ed25519 signatures; no code changes per product</li>
