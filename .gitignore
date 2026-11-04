@@ -1,2 +1,5 @@
 .DS_Store
 .review/
+
+# --- CI release bundle (ci/package.py) ---
+dist/

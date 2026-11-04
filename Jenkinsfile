@@ -1,6 +1,12 @@
 // Jenkinsfile - multi-stage CI for the SoCcentric STM32 website.
 //
-//   Checkout -> Validate site -> Package -> Publish
+//   Checkout -> Validate site -> Package -> Release (tags) -> Archive
+//
+// Package builds dist/website-<version>.tar.gz (the site, manifest.json,
+// SHA256SUMS) on every run; untagged builds are versioned by date and
+// commit.  Release runs only for a tag v<version> and attaches the bundle to
+// a GitHub release with the Jenkins secret-text credential
+// github-release-token.
 //
 // The site is static (index.html, assets/style.css, assets/main.js) and has
 // no build step. CI verifies that every local asset and anchor exists, that
@@ -120,21 +126,27 @@ PY
         stage('Package') {
             steps {
                 sh '''
-                    mkdir -p build
-                    tar -czf build/soccentric-stm32-site.tar.gz \
-                        index.html 404.html assets .nojekyll robots.txt sitemap.xml \
-                        LICENSE README.md
-                    tar -tzf build/soccentric-stm32-site.tar.gz
-                    sha256sum build/soccentric-stm32-site.tar.gz > build/SHA256SUMS
-                    cat build/SHA256SUMS
+                    python3 ci/package.py --name website --version "$(ci/version.sh)" \\
+                        index.html 404.html assets .nojekyll robots.txt sitemap.xml \\
+                        README.md LICENSE
                 '''
             }
         }
 
-        stage('Publish') {
+        stage('Release') {
+            // Only for a tag build (Multibranch job with tag discovery).  The
+            // tag must be v<version>; ci/github_release.py checks it.
+            when { buildingTag() }
             steps {
-                archiveArtifacts artifacts: 'build/soccentric-stm32-site.tar.gz,build/SHA256SUMS',
-                                 fingerprint: true
+                withCredentials([string(credentialsId: 'github-release-token', variable: 'GITHUB_TOKEN')]) {
+                    sh 'python3 ci/github_release.py --tag "${TAG_NAME}" --version "$(ci/version.sh)" dist/*'
+                }
+            }
+        }
+
+        stage('Archive') {
+            steps {
+                archiveArtifacts artifacts: 'dist/*', fingerprint: true
             }
         }
     }
