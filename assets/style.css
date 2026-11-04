@@ -550,15 +550,15 @@ h1 {
 .section { border-top: 1px solid var(--line); }
 
 .sec-head {
-  display: grid; grid-template-columns: 1.1fr .9fr;
-  gap: 10px 56px; align-items: end;
+  display: grid; grid-template-columns: 1fr;
+  gap: 12px; justify-items: start;
   margin-bottom: clamp(16px, 2.6vh, 32px);
 }
 .sec-head .eyebrow { grid-column: 1 / -1; margin-bottom: 0; }
 .sec-head .eyebrow::before { content: ""; width: 28px; height: 1px; background: var(--line-2); order: 1; margin-left: 2px; }
 .sec-head h2 { font-size: clamp(27px, min(3vw, 4.4vh), 42px); text-transform: uppercase; }
 .sec-head h2 .dim { display: block; }
-.sec-lead { color: var(--ink-2); font-size: 15.5px; max-width: 46ch; padding-bottom: 4px; }
+.sec-lead { color: var(--ink-2); font-size: 15.5px; max-width: 78ch; }
 
 /* cards */
 .cards { display: grid; gap: clamp(10px, 1.6vh, 16px); }
