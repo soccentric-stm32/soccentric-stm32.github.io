@@ -1,10 +1,10 @@
 # SoCcentric STM32
 
-The website of **SoCcentric STM32**: a showcase of seven open-source
+The website of **SoCcentric STM32**: a showcase of eight open-source
 projects that together form a complete STM32 product baseline. They are an
-A/B bootloader, the same application in C/C++ on FreeRTOS, in Rust (Embassy)
-and on Zephyr, the HWVAL validation firmware, the HWVAL Studio bench app,
-and the HWVAL Factory end-of-line station. Sandesh Ghimire uses them as the
+A/B bootloader, the same application in C/C++ and in Rust on both FreeRTOS
+and Zephyr, the HWVAL validation firmware and GUI, and the HWVAL Factory
+provisioning station. Sandesh Ghimire uses them as the
 starting point for client projects.
 
 Live site: <https://soccentric-stm32.github.io/>
@@ -13,11 +13,12 @@ Live site: <https://soccentric-stm32.github.io/>
 
 - One-page, full-height slides with scroll snapping and a light/dark "paper / blueprint" theme.
 - One slide per project. Each one says what the project is, lists its
-  features and links to the repository: Bootloader; C/C++ · FreeRTOS;
-  Rust · Embassy; Zephyr; HWVAL firmware; HWVAL Studio; End-of-line.
+  features and links to the repository: Bootloader; RTOS · FreeRTOS;
+  RTOS · Zephyr; Rust · FreeRTOS; Rust · Zephyr; Validation · Firmware;
+  Validation · GUI; Factory Provisioning.
   Intro and Contact frame them.
-- The header menu has dropdowns for Applications and Validation. Deep
-  links work, e.g. `#app-rust`, `#app-zephyr`, `#eol`.
+- The header menu has dropdowns for RTOS (C/C++), Rust and Validation.
+  Deep links work, e.g. `#app-zephyr`, `#rust-freertos`, `#rust-zephyr`, `#eol`.
 - Features and status come from each repository's README. Update the
   slide when a project changes.
 - No build step, no framework: `index.html`, `assets/style.css` and

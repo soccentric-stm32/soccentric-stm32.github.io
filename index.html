@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SoCcentric STM32 — Open Building Blocks for STM32</title>
-  <meta name="description" content="Seven open-source STM32 projects that work together: A/B bootloader, C/C++ FreeRTOS, Rust and Zephyr applications, validation firmware, a bench app and an end-of-line station. MIT.">
+  <meta name="description" content="Eight open-source STM32 projects that work together: A/B bootloader, the same application in C/C++ and Rust on FreeRTOS and Zephyr, validation firmware and GUI, and a factory provisioning station. MIT.">
   <meta name="author" content="Sandesh Ghimire">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="theme-color" content="#f6f4ee" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#101215" media="(prefers-color-scheme: dark)">
   <meta property="og:title" content="SoCcentric STM32 — open building blocks for STM32 products">
-  <meta property="og:description" content="Seven open-source STM32 projects that work together: A/B bootloader, C/C++ FreeRTOS, Rust and Zephyr applications, validation firmware, a bench app and an end-of-line station. MIT.">
+  <meta property="og:description" content="Eight open-source STM32 projects that work together: A/B bootloader, the same application in C/C++ and Rust on FreeRTOS and Zephyr, validation firmware and GUI, and a factory provisioning station. MIT.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://soccentric-stm32.github.io/">
   <meta property="og:site_name" content="SoCcentric STM32">
@@ -21,7 +21,7 @@
   <meta property="og:image:alt" content="SoCcentric STM32 — a complete STM32 product, from boot to factory floor">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="SoCcentric STM32 — open building blocks for STM32 products">
-  <meta name="twitter:description" content="Seven open-source STM32 projects that work together: A/B bootloader, C/C++ FreeRTOS, Rust and Zephyr applications, validation firmware, a bench app and an end-of-line station. MIT.">
+  <meta name="twitter:description" content="Eight open-source STM32 projects that work together: A/B bootloader, the same application in C/C++ and Rust on FreeRTOS and Zephyr, validation firmware and GUI, and a factory provisioning station. MIT.">
   <meta name="twitter:image" content="https://soccentric-stm32.github.io/assets/og.png">
   <meta name="twitter:image:alt" content="SoCcentric STM32 — a complete STM32 product, from boot to factory floor">
   <link rel="canonical" href="https://soccentric-stm32.github.io/">
@@ -46,7 +46,7 @@
         "@id": "https://soccentric-stm32.github.io/#website",
         "url": "https://soccentric-stm32.github.io/",
         "name": "SoCcentric STM32",
-        "description": "Seven open-source STM32 projects that work together: A/B bootloader, C/C++ FreeRTOS, Rust and Zephyr applications, validation firmware, a bench app and an end-of-line station. MIT.",
+        "description": "Eight open-source STM32 projects that work together: A/B bootloader, the same application in C/C++ and Rust on FreeRTOS and Zephyr, validation firmware and GUI, and a factory provisioning station. MIT.",
         "inLanguage": "en",
         "publisher": { "@id": "https://soccentric-stm32.github.io/#person" }
       },
@@ -97,21 +97,27 @@
     <nav class="site-nav" aria-label="Primary">
       <a href="#bootloader" data-flash="bootloader">Bootloader</a>
       <div class="dd">
-        <a href="#app-c" data-flash="app-c" class="dd-top">Applications</a>
+        <a href="#app-c" data-flash="app-c" class="dd-top">RTOS</a>
         <div class="dd-menu">
-          <a href="#app-c" data-flash="app-c">C/C++ · FreeRTOS</a>
-          <a href="#app-rust" data-flash="app-rust">Rust · Embassy</a>
+          <a href="#app-c" data-flash="app-c">FreeRTOS</a>
           <a href="#app-zephyr" data-flash="app-zephyr">Zephyr</a>
+        </div>
+      </div>
+      <div class="dd">
+        <a href="#rust-freertos" data-flash="rust-freertos" class="dd-top">Rust</a>
+        <div class="dd-menu">
+          <a href="#rust-freertos" data-flash="rust-freertos">FreeRTOS</a>
+          <a href="#rust-zephyr" data-flash="rust-zephyr">Zephyr</a>
         </div>
       </div>
       <div class="dd">
         <a href="#validation" data-flash="validation" class="dd-top">Validation</a>
         <div class="dd-menu">
-          <a href="#validation" data-flash="validation">HWVAL firmware</a>
-          <a href="#validation-app" data-flash="validation-app">HWVAL Studio</a>
+          <a href="#validation" data-flash="validation">Firmware</a>
+          <a href="#validation-app" data-flash="validation-app">GUI</a>
         </div>
       </div>
-      <a href="#eol" data-flash="eol">End-of-line</a>
+      <a href="#eol" data-flash="eol">Factory Provisioning</a>
     </nav>
 
     <div class="header-actions">
@@ -127,14 +133,16 @@
         <nav aria-label="Mobile menu">
           <a href="#top" data-flash="top">Home</a>
           <a href="#bootloader" data-flash="bootloader">Bootloader</a>
-          <span class="grp">Applications</span>
-          <a class="sub" href="#app-c" data-flash="app-c">C/C++ · FreeRTOS</a>
-          <a class="sub" href="#app-rust" data-flash="app-rust">Rust · Embassy</a>
+          <span class="grp">RTOS</span>
+          <a class="sub" href="#app-c" data-flash="app-c">FreeRTOS</a>
           <a class="sub" href="#app-zephyr" data-flash="app-zephyr">Zephyr</a>
+          <span class="grp">Rust</span>
+          <a class="sub" href="#rust-freertos" data-flash="rust-freertos">FreeRTOS</a>
+          <a class="sub" href="#rust-zephyr" data-flash="rust-zephyr">Zephyr</a>
           <span class="grp">Validation</span>
-          <a class="sub" href="#validation" data-flash="validation">HWVAL firmware</a>
-          <a class="sub" href="#validation-app" data-flash="validation-app">HWVAL Studio</a>
-          <a href="#eol" data-flash="eol">End-of-line</a>
+          <a class="sub" href="#validation" data-flash="validation">Firmware</a>
+          <a class="sub" href="#validation-app" data-flash="validation-app">GUI</a>
+          <a href="#eol" data-flash="eol">Factory Provisioning</a>
           <a href="#contact" data-flash="contact">Contact</a>
         </nav>
       </details>
@@ -150,14 +158,14 @@
     <div class="hero-copy">
       <p class="eyebrow"><span class="pip"></span>Open STM32 building blocks</p>
       <h1>A complete STM32 product, from boot to factory floor.</h1>
-      <p class="lead">Seven open-source projects that work together: an A/B bootloader, the same application in C/C++ on FreeRTOS, in Rust and on Zephyr, validation firmware with a desktop bench app, and an end-of-line test and provisioning station. The bootloader, the application builds, the validation firmware and the bench app share one boot contract and one host protocol (HWLINK); the factory station is the production-line counterpart. I'm Sandesh Ghimire, and I use them as the baseline for every STM32 project I build.</p>
+      <p class="lead">Eight open-source projects that work together: an A/B bootloader, the same application in C/C++ and in Rust on both FreeRTOS and Zephyr, validation firmware with a desktop GUI, and a factory test and provisioning station. The bootloader, the application builds, the validation firmware and the bench app share one boot contract and one host protocol (HWLINK); the factory station is the production-line counterpart. I'm Sandesh Ghimire, and I use them as the baseline for every STM32 project I build.</p>
       <div class="hero-cta">
         <a class="btn btn-accent" href="mailto:sandesh@soccentric.com?subject=STM32%20project&amp;body=Board%20or%20chip%3A%0AWhat%20is%20already%20built%3A%0ADeadline%3A%0AWhat%20is%20blocking%3A">Get in touch <span aria-hidden="true">→</span></a>
         <a class="btn btn-ghost gh-link" href="https://github.com/soccentric-stm32" target="_blank" rel="noopener" aria-label="Browse the code on GitHub" title="Browse the code on GitHub"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span>Browse the code</span></a>
       </div>
       <dl class="hero-spec">
         <div><dt>Reference board</dt><dd>NUCLEO-F767ZI · Cortex-M7 · 216 MHz</dd></div>
-        <div><dt>Stacks</dt><dd>Bare metal · FreeRTOS · Embassy · Zephyr</dd></div>
+        <div><dt>Stacks</dt><dd>Bare metal · FreeRTOS · Zephyr</dd></div>
         <div><dt>Languages</dt><dd>C/C++ · Rust · Python</dd></div>
         <div><dt>Shared</dt><dd>HWLINK protocol · A/B flash layout · Docker builds</dd></div>
       </dl>
@@ -244,8 +252,8 @@
 
   <div class="wrap">
     <ul class="stat-strip" role="list">
-      <li><b>7</b><span>projects, one system</span></li>
-      <li><b>3</b><span>applications, one spec</span></li>
+      <li><b>8</b><span>projects, one system</span></li>
+      <li><b>4</b><span>applications, one spec</span></li>
       <li><b>201</b><span>hardware test cases</span></li>
       <li><b>MIT</b><span>use, modify and ship</span></li>
     </ul>
@@ -297,7 +305,7 @@
 <section class="section" id="app-c" data-slide="C · FreeRTOS">
   <div class="wrap">
     <div class="sec-head">
-      <p class="eyebrow"><span class="num">02</span>Application · C/C++ · FreeRTOS</p>
+      <p class="eyebrow"><span class="num">02</span>RTOS · FreeRTOS</p>
       <a class="icon-btn sec-repo" href="https://github.com/soccentric-stm32/soccentric-stm32-application" target="_blank" rel="noopener" aria-label="soccentric-stm32-application on GitHub" title="soccentric-stm32-application on GitHub"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg></a>
       <h2>FreeRTOS application <span class="dim">in C/C++</span></h2>
       <p class="sec-lead">The reference application and the template for new products. It runs under the A/B bootloader, talks to the host over HWLINK, supervises its own tasks and confirms a new image only after a health check.</p>
@@ -330,47 +338,11 @@
   </div>
 </section>
 
-<!-- -------------------------------------------------- application · Rust -->
-<section class="section" id="app-rust" data-slide="Rust">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow"><span class="num">03</span>Application · Rust</p>
-      <a class="icon-btn sec-repo" href="https://github.com/soccentric-stm32/soccentric-stm32-rust-application" target="_blank" rel="noopener" aria-label="soccentric-stm32-rust-application on GitHub" title="soccentric-stm32-rust-application on GitHub"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg></a>
-      <h2>Rust application <span class="dim">on Embassy</span></h2>
-      <p class="sec-lead">The same application written in <code>no_std</code> Rust with async tasks on Embassy. It meets the same specification and the same bootloader contract as the C version, so the two can be compared like for like.</p>
-    </div>
-    <div class="split">
-      <article class="panel">
-        <div class="panel-head"><span class="mono">Rust · Embassy · no_std</span><span class="status s-done">Feature-complete</span></div>
-        <h3>Features</h3>
-        <ul class="ticks" role="list">
-          <li>Async tasks with static channels; no allocator</li>
-          <li>Same HWLINK protocol, with a fixed-buffer FlatBuffers codec verified against <code>flatc</code></li>
-          <li>Health task with watchdog ownership, task check-ins and the <code>CONFIRMED</code> record</li>
-          <li>Fault record, reset cause and status reporting, the same as the C version</li>
-          <li>Builds the bootloader image file directly</li>
-          <li>Rust toolchain, clippy and rustfmt in a Docker image; crates locked in <code>Cargo.lock</code></li>
-        </ul>
-      </article>
-      <div class="figure">
-        <p class="fig-cap mono">Firmware layers</p>
-        <ol class="stack" role="list">
-          <li class="hi"><b>Async tasks</b><span>health · comms · button · LED</span></li>
-          <li><b>Services</b><span>HWLINK · watchdog · fault record</span></li>
-          <li><b>embassy-stm32</b><span>async drivers · DMA · timers</span></li>
-          <li><b>Executor · cortex-m-rt</b><span>startup · memory.x</span></li>
-          <li class="base"><b>Bootloader contract</b><span>slot · image header · confirm</span></li>
-        </ol>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ----------------------------------------------------- application · Zephyr -->
-<section class="section" id="app-zephyr" data-slide="Zephyr">
+<section class="section" id="app-zephyr" data-slide="C · Zephyr">
   <div class="wrap">
     <div class="sec-head">
-      <p class="eyebrow"><span class="num">04</span>Application · Zephyr</p>
+      <p class="eyebrow"><span class="num">03</span>RTOS · Zephyr</p>
       <a class="icon-btn sec-repo" href="https://github.com/soccentric-stm32/soccentric-stm32-zephyr-application" target="_blank" rel="noopener" aria-label="soccentric-stm32-zephyr-application on GitHub" title="soccentric-stm32-zephyr-application on GitHub"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg></a>
       <h2>Zephyr application <span class="dim">on Zephyr 4.4</span></h2>
       <p class="sec-lead">The same application built the Zephyr way, with devicetree, Kconfig and threads, for products that need a full OS with drivers and networking. It uses the same slot, protocol and health contract as the others.</p>
@@ -402,11 +374,82 @@
   </div>
 </section>
 
-<!-- ------------------------------------------------ validation · firmware -->
-<section class="section" id="validation" data-slide="Validation FW">
+<!-- ------------------------------------------------ application · Rust FreeRTOS -->
+<section class="section" id="rust-freertos" data-slide="Rust · FreeRTOS">
   <div class="wrap">
     <div class="sec-head">
-      <p class="eyebrow"><span class="num">05</span>Validation · Firmware</p>
+      <p class="eyebrow"><span class="num">04</span>Rust · FreeRTOS</p>
+      <a class="icon-btn sec-repo" href="https://github.com/soccentric-stm32/soccentric-stm32-rust-application" target="_blank" rel="noopener" aria-label="soccentric-stm32-rust-application on GitHub" title="soccentric-stm32-rust-application on GitHub"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg></a>
+      <h2>Rust application <span class="dim">on FreeRTOS</span></h2>
+      <p class="sec-lead">The same application in <code>no_std</code> Rust, with its tasks running on the FreeRTOS kernel. It is being ported from the existing Embassy build, which already meets the same specification and bootloader contract as the C version.</p>
+    </div>
+    <div class="split">
+      <article class="panel">
+        <div class="panel-head"><span class="mono">Rust · FreeRTOS · no_std</span><span class="status s-wip">Porting from Embassy</span></div>
+        <h3>Features</h3>
+        <ul class="ticks" role="list">
+          <li>Rust tasks on the FreeRTOS kernel through FFI bindings, statically allocated</li>
+          <li>Same HWLINK protocol, with a fixed-buffer FlatBuffers codec verified against <code>flatc</code></li>
+          <li>Health task with watchdog ownership, task check-ins and the <code>CONFIRMED</code> record</li>
+          <li>Fault record, reset cause and status reporting, the same as the C version</li>
+          <li>Builds the bootloader image file directly</li>
+          <li>Rust toolchain, clippy and rustfmt in a Docker image; crates locked in <code>Cargo.lock</code></li>
+        </ul>
+      </article>
+      <div class="figure">
+        <p class="fig-cap mono">Firmware layers</p>
+        <ol class="stack" role="list">
+          <li class="hi"><b>Rust tasks</b><span>health · comms · button · LED</span></li>
+          <li><b>Services</b><span>HWLINK · watchdog · fault record</span></li>
+          <li><b>FreeRTOS bindings</b><span>tasks · queues · notifications</span></li>
+          <li><b>FreeRTOS kernel · cortex-m-rt</b><span>startup · memory.x</span></li>
+          <li class="base"><b>Bootloader contract</b><span>slot · image header · confirm</span></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- -------------------------------------------------- application · Rust Zephyr -->
+<section class="section" id="rust-zephyr" data-slide="Rust · Zephyr">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow"><span class="num">05</span>Rust · Zephyr</p>
+      <h2>Rust application <span class="dim">on Zephyr</span></h2>
+      <p class="sec-lead">The same application in Rust on the Zephyr kernel, using Zephyr's Rust support for threads and drivers while devicetree and Kconfig describe the board. It will share the slot, protocol and health contract with the other applications.</p>
+    </div>
+    <div class="split">
+      <article class="panel">
+        <div class="panel-head"><span class="mono">Rust · Zephyr · no_std</span><span class="status s-spec">Planned</span></div>
+        <h3>Planned features</h3>
+        <ul class="ticks" role="list">
+          <li>Rust threads on the Zephyr kernel, built as a Zephyr application</li>
+          <li>Devicetree overlay with flash partitions that match the bootloader layout</li>
+          <li>Same HWLINK protocol and fixed-buffer FlatBuffers codec as the other Rust build</li>
+          <li>Health thread as the only watchdog feeder, with the <code>CONFIRMED</code> record</li>
+          <li>Fault record, reset cause and status reporting, the same as the C version</li>
+          <li>Reproducible build in a Docker image</li>
+        </ul>
+      </article>
+      <div class="figure">
+        <p class="fig-cap mono">Firmware layers</p>
+        <ol class="stack" role="list">
+          <li class="hi"><b>Rust threads</b><span>health · comms · button · LED</span></li>
+          <li><b>Services</b><span>HWLINK · watchdog · fault record</span></li>
+          <li><b>Zephyr Rust bindings</b><span>threads · drivers · sync</span></li>
+          <li><b>Zephyr kernel</b><span>devicetree · Kconfig</span></li>
+          <li class="base"><b>Partitions</b><span>bootloader · metadata · slot</span></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ------------------------------------------------ validation · firmware -->
+<section class="section" id="validation" data-slide="Validation · Firmware">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow"><span class="num">06</span>Validation · Firmware</p>
       <a class="icon-btn sec-repo" href="https://github.com/soccentric-stm32/soccentric-stm32-validation-firmware" target="_blank" rel="noopener" aria-label="soccentric-stm32-validation-firmware on GitHub" title="soccentric-stm32-validation-firmware on GitHub"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg></a>
       <h2>HWVAL, <span class="dim">the validation firmware</span></h2>
       <p class="sec-lead">FreeRTOS firmware that tests every usable hardware block of the STM32F767ZI and the NUCLEO board, both at bring-up and before each board ships. It runs from a terminal or under the desktop and factory apps.</p>
@@ -441,10 +484,10 @@
 </section>
 
 <!-- ---------------------------------------------- validation · desktop app -->
-<section class="section" id="validation-app" data-slide="HWVAL Studio">
+<section class="section" id="validation-app" data-slide="Validation · GUI">
   <div class="wrap">
     <div class="sec-head">
-      <p class="eyebrow"><span class="num">06</span>Validation · Desktop app</p>
+      <p class="eyebrow"><span class="num">07</span>Validation · GUI</p>
       <a class="icon-btn sec-repo" href="https://github.com/soccentric-stm32/soccentric-stm32-validation-gui" target="_blank" rel="noopener" aria-label="soccentric-stm32-validation-gui on GitHub" title="soccentric-stm32-validation-gui on GitHub"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg></a>
       <h2>HWVAL Studio, <span class="dim">the bench app</span></h2>
       <p class="sec-lead">A cross-platform desktop app for macOS, Windows and Linux. It runs the HWVAL tests, shows operator prompts, keeps the run history, updates firmware through the bootloader and flashes over SWD, all without typing commands.</p>
@@ -479,10 +522,10 @@
 </section>
 
 <!-- -------------------------------------------------- end-of-line / factory -->
-<section class="section" id="eol" data-slide="End-of-line">
+<section class="section" id="eol" data-slide="Factory Provisioning">
   <div class="wrap">
     <div class="sec-head">
-      <p class="eyebrow"><span class="num">07</span>End-of-line</p>
+      <p class="eyebrow"><span class="num">08</span>Factory Provisioning</p>
       <a class="icon-btn sec-repo" href="https://github.com/soccentric-stm32/soccentric-stm32-factory-provisioning" target="_blank" rel="noopener" aria-label="soccentric-stm32-factory-provisioning on GitHub" title="soccentric-stm32-factory-provisioning on GitHub"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg></a>
       <h2>HWVAL Factory, <span class="dim">test and provisioning</span></h2>
       <p class="sec-lead">The end-of-line station for the factory floor. In one operator action per board it is designed to flash and test the board, give it its identity, program the product, apply flash protection, print the label and keep the record. It runs up to eight fixtures per PC; the hardware integration is still in development.</p>
@@ -521,9 +564,9 @@
   <div class="wrap">
     <div class="contact-grid">
       <div class="contact-main">
-        <p class="eyebrow"><span class="num">08</span>Contact</p>
+        <p class="eyebrow"><span class="num">09</span>Contact</p>
         <h2>Build your STM32 product <span class="accent">on these blocks.</span></h2>
-        <p class="contact-note">All seven projects are MIT-licensed. Use them as they are, or have me adapt them to your board, your requirements and your production line. I use them as the baseline for every client project, and I read and answer every email myself.</p>
+        <p class="contact-note">All eight projects are MIT-licensed. Use them as they are, or have me adapt them to your board, your requirements and your production line. I use them as the baseline for every client project, and I read and answer every email myself.</p>
         <div class="contact-cta">
           <a class="btn btn-accent" href="mailto:sandesh@soccentric.com?subject=STM32%20project&amp;body=Board%20or%20chip%3A%0AWhat%20is%20already%20built%3A%0ADeadline%3A%0AWhat%20is%20blocking%3A">Email sandesh@soccentric.com <span aria-hidden="true">→</span></a>
           <a class="btn btn-ghost gh-link" href="https://github.com/soccentric-stm32" target="_blank" rel="noopener" title="github.com/soccentric-stm32"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span>GitHub</span></a>
@@ -549,15 +592,16 @@
       </article>
     </div>
     <div class="repo-index">
-      <p class="fig-cap mono">All seven projects</p>
+      <p class="fig-cap mono">All eight projects</p>
       <ul role="list">
         <li><a class="gh-link" href="https://github.com/soccentric-stm32/soccentric-stm32-bootloader" target="_blank" rel="noopener" title="soccentric-stm32-bootloader"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span><small class="mono">01</small>Bootloader</span><span aria-hidden="true">↗</span></a></li>
-        <li><a class="gh-link" href="https://github.com/soccentric-stm32/soccentric-stm32-application" target="_blank" rel="noopener" title="soccentric-stm32-application"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span><small class="mono">02</small>C/C++ · FreeRTOS</span><span aria-hidden="true">↗</span></a></li>
-        <li><a class="gh-link" href="https://github.com/soccentric-stm32/soccentric-stm32-rust-application" target="_blank" rel="noopener" title="soccentric-stm32-rust-application"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span><small class="mono">03</small>Rust · Embassy</span><span aria-hidden="true">↗</span></a></li>
-        <li><a class="gh-link" href="https://github.com/soccentric-stm32/soccentric-stm32-zephyr-application" target="_blank" rel="noopener" title="soccentric-stm32-zephyr-application"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span><small class="mono">04</small>Zephyr</span><span aria-hidden="true">↗</span></a></li>
-        <li><a class="gh-link" href="https://github.com/soccentric-stm32/soccentric-stm32-validation-firmware" target="_blank" rel="noopener" title="soccentric-stm32-validation-firmware"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span><small class="mono">05</small>HWVAL firmware</span><span aria-hidden="true">↗</span></a></li>
-        <li><a class="gh-link" href="https://github.com/soccentric-stm32/soccentric-stm32-validation-gui" target="_blank" rel="noopener" title="soccentric-stm32-validation-gui"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span><small class="mono">06</small>HWVAL Studio</span><span aria-hidden="true">↗</span></a></li>
-        <li><a class="gh-link" href="https://github.com/soccentric-stm32/soccentric-stm32-factory-provisioning" target="_blank" rel="noopener" title="soccentric-stm32-factory-provisioning"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span><small class="mono">07</small>HWVAL Factory</span><span aria-hidden="true">↗</span></a></li>
+        <li><a class="gh-link" href="https://github.com/soccentric-stm32/soccentric-stm32-application" target="_blank" rel="noopener" title="soccentric-stm32-application"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span><small class="mono">02</small>RTOS · FreeRTOS</span><span aria-hidden="true">↗</span></a></li>
+        <li><a class="gh-link" href="https://github.com/soccentric-stm32/soccentric-stm32-zephyr-application" target="_blank" rel="noopener" title="soccentric-stm32-zephyr-application"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span><small class="mono">03</small>RTOS · Zephyr</span><span aria-hidden="true">↗</span></a></li>
+        <li><a class="gh-link" href="https://github.com/soccentric-stm32/soccentric-stm32-rust-application" target="_blank" rel="noopener" title="soccentric-stm32-rust-application"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span><small class="mono">04</small>Rust · FreeRTOS</span><span aria-hidden="true">↗</span></a></li>
+        <li><a class="gh-link" href="#rust-zephyr" data-flash="rust-zephyr" title="Rust · Zephyr (planned)"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span><small class="mono">05</small>Rust · Zephyr · planned</span><span aria-hidden="true">↓</span></a></li>
+        <li><a class="gh-link" href="https://github.com/soccentric-stm32/soccentric-stm32-validation-firmware" target="_blank" rel="noopener" title="soccentric-stm32-validation-firmware"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span><small class="mono">06</small>Validation · Firmware</span><span aria-hidden="true">↗</span></a></li>
+        <li><a class="gh-link" href="https://github.com/soccentric-stm32/soccentric-stm32-validation-gui" target="_blank" rel="noopener" title="soccentric-stm32-validation-gui"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span><small class="mono">07</small>Validation · GUI</span><span aria-hidden="true">↗</span></a></li>
+        <li><a class="gh-link" href="https://github.com/soccentric-stm32/soccentric-stm32-factory-provisioning" target="_blank" rel="noopener" title="soccentric-stm32-factory-provisioning"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span><small class="mono">08</small>Factory Provisioning</span><span aria-hidden="true">↗</span></a></li>
       </ul>
     </div>
   </div>
