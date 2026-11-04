@@ -415,20 +415,21 @@
   <div class="wrap">
     <div class="sec-head">
       <p class="eyebrow"><span class="num">05</span>Rust · Zephyr</p>
+      <a class="icon-btn sec-repo" href="https://github.com/soccentric-stm32/soccentric-stm32-rust-zephyr-application" target="_blank" rel="noopener" aria-label="soccentric-stm32-rust-zephyr-application on GitHub" title="soccentric-stm32-rust-zephyr-application on GitHub"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg></a>
       <h2>Rust application <span class="dim">on Zephyr</span></h2>
-      <p class="sec-lead">The same application in Rust on the Zephyr kernel, using Zephyr's Rust support for threads and drivers while devicetree and Kconfig describe the board. It will share the slot, protocol and health contract with the other applications.</p>
+      <p class="sec-lead">The same application written in <code>no_std</code> Rust on Zephyr 4.4, with Zephyr's own Rust support for threads, GPIO and flash. A small C layer covers the drivers the Rust bindings do not reach yet. It uses the same slot, protocol and health contract as the others.</p>
     </div>
     <div class="split">
       <article class="panel">
-        <div class="panel-head"><span class="mono">Rust · Zephyr · no_std</span><span class="status s-spec">Planned</span></div>
-        <h3>Planned features</h3>
+        <div class="panel-head"><span class="mono">Rust · Zephyr 4.4.2 · no_std</span><span class="status s-wip">Implemented · bench test pending</span></div>
+        <h3>Features</h3>
         <ul class="ticks" role="list">
-          <li>Rust threads on the Zephyr kernel, built as a Zephyr application</li>
-          <li>Devicetree overlay with flash partitions that match the bootloader layout</li>
-          <li>Same HWLINK protocol and fixed-buffer FlatBuffers codec as the other Rust build</li>
+          <li>Four Rust threads with the C Zephyr version's priorities; no allocator</li>
+          <li>Same HWLINK protocol and fixed-buffer FlatBuffers codec as the Embassy build</li>
           <li>Health thread as the only watchdog feeder, with the <code>CONFIRMED</code> record</li>
-          <li>Fault record, reset cause and status reporting, the same as the C version</li>
-          <li>Reproducible build in a Docker image</li>
+          <li>Fault record for CPU faults, stack overflows and Rust panics, shown on LD3</li>
+          <li>Thin C layer for UART, watchdog and the fatal handler, mirroring the C Zephyr version</li>
+          <li>Docker build on the Zephyr image; rustfmt and clippy in CI</li>
         </ul>
       </article>
       <div class="figure">
@@ -436,7 +437,7 @@
         <ol class="stack" role="list">
           <li class="hi"><b>Rust threads</b><span>health · comms · button · LED</span></li>
           <li><b>Services</b><span>HWLINK · watchdog · fault record</span></li>
-          <li><b>Zephyr Rust bindings</b><span>threads · drivers · sync</span></li>
+          <li><b>zephyr crate · C platform layer</b><span>threads · GPIO · flash · UART</span></li>
           <li><b>Zephyr kernel</b><span>devicetree · Kconfig</span></li>
           <li class="base"><b>Partitions</b><span>bootloader · metadata · slot</span></li>
         </ol>
@@ -598,7 +599,7 @@
         <li><a class="gh-link" href="https://github.com/soccentric-stm32/soccentric-stm32-application" target="_blank" rel="noopener" title="soccentric-stm32-application"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span><small class="mono">02</small>RTOS · FreeRTOS</span><span aria-hidden="true">↗</span></a></li>
         <li><a class="gh-link" href="https://github.com/soccentric-stm32/soccentric-stm32-zephyr-application" target="_blank" rel="noopener" title="soccentric-stm32-zephyr-application"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span><small class="mono">03</small>RTOS · Zephyr</span><span aria-hidden="true">↗</span></a></li>
         <li><a class="gh-link" href="https://github.com/soccentric-stm32/soccentric-stm32-rust-application" target="_blank" rel="noopener" title="soccentric-stm32-rust-application"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span><small class="mono">04</small>Rust · FreeRTOS</span><span aria-hidden="true">↗</span></a></li>
-        <li><a class="gh-link" href="#rust-zephyr" data-flash="rust-zephyr" title="Rust · Zephyr (planned)"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span><small class="mono">05</small>Rust · Zephyr · planned</span><span aria-hidden="true">↓</span></a></li>
+        <li><a class="gh-link" href="https://github.com/soccentric-stm32/soccentric-stm32-rust-zephyr-application" target="_blank" rel="noopener" title="soccentric-stm32-rust-zephyr-application"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span><small class="mono">05</small>Rust · Zephyr</span><span aria-hidden="true">↗</span></a></li>
         <li><a class="gh-link" href="https://github.com/soccentric-stm32/soccentric-stm32-validation-firmware" target="_blank" rel="noopener" title="soccentric-stm32-validation-firmware"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span><small class="mono">06</small>Validation · Firmware</span><span aria-hidden="true">↗</span></a></li>
         <li><a class="gh-link" href="https://github.com/soccentric-stm32/soccentric-stm32-validation-gui" target="_blank" rel="noopener" title="soccentric-stm32-validation-gui"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span><small class="mono">07</small>Validation · GUI</span><span aria-hidden="true">↗</span></a></li>
         <li><a class="gh-link" href="https://github.com/soccentric-stm32/soccentric-stm32-factory-provisioning" target="_blank" rel="noopener" title="soccentric-stm32-factory-provisioning"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span><small class="mono">08</small>Factory Provisioning</span><span aria-hidden="true">↗</span></a></li>
