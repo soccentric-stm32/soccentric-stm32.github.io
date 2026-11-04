@@ -180,7 +180,7 @@
     });
     window.addEventListener('load', function () {
       measure(); markSnap(); requestSync();
-      // deep links like #app-rust arrive on the topic's page; jump with
+      // deep links like #rust-freertos arrive on the topic's page; jump with
       // 'instant' ('auto' follows the CSS smooth scrolling, which strict
       // snapping cancels at load)
       var deepLink = location.hash ? document.getElementById(location.hash.slice(1)) : null;
