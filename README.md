@@ -1,9 +1,11 @@
 # SoCcentric STM32
 
-The website of **SoCcentric STM32**, the STM32 firmware consultancy of
-Sandesh Ghimire. It presents the open-source building blocks behind the
-work — A/B bootloader, applications in C/C++ and Rust, FreeRTOS and
-Zephyr, hardware validation and end-of-line testing — and how to engage.
+The website of **SoCcentric STM32**: a showcase of seven open-source
+projects that together form a complete STM32 product baseline. They are an
+A/B bootloader, the same application in C/C++ on FreeRTOS, in Rust (Embassy)
+and on Zephyr, the HWVAL validation firmware, the HWVAL Studio bench app,
+and the HWVAL Factory end-of-line station. Sandesh Ghimire uses them as the
+starting point for client projects.
 
 Live site: <https://soccentric-stm32.github.io/>
 
@@ -11,16 +13,14 @@ Live site: <https://soccentric-stm32.github.io/>
 
 - One-page, full-height slides with scroll snapping, a page navigator on
   wide screens, and a light/dark "paper / blueprint" theme.
-- Every slide has a menu item: Bootloader; Application (C/C++, Rust);
-  RTOS (FreeRTOS, Zephyr); Validation (Test firmware, HWVAL Studio);
-  End-of-line; Building blocks; Engagement; Contact. The logo (or Home in
-  the mobile menu) returns to the intro.
-- The header menu has dropdowns for Application, RTOS and Validation; each
-  item turns to its slide. Deep links work too, e.g. `#app-rust`,
-  `#rtos-zephyr`, `#eol`.
-- Status labels are honest by design: *Feature-complete* (SRS implemented,
-  bench run next), *Skeleton* (builds, core features pending) and
-  *Specified* (design complete, not built).
+- One slide per project. Each one says what the project is, lists its
+  features and links to the repository: Bootloader; C/C++ · FreeRTOS;
+  Rust · Embassy; Zephyr; HWVAL firmware; HWVAL Studio; End-of-line.
+  Intro and Contact frame them.
+- The header menu has dropdowns for Applications and Validation. Deep
+  links work, e.g. `#app-rust`, `#app-zephyr`, `#eol`.
+- Features and status come from each repository's README. Update the
+  slide when a project changes.
 - No build step, no framework: `index.html`, `assets/style.css` and
   `assets/main.js`.
 - Fonts are self-hosted (Space Grotesk and Geist Mono, both OFL), so the
