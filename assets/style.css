@@ -279,6 +279,7 @@ li { list-style: none; }
   fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
   transition: opacity .3s, transform .45s cubic-bezier(.2, .8, .2, 1);
 }
+.gh-org svg { width: 17px; height: 17px; fill: currentColor; }
 .theme-toggle .i-moon { opacity: 0; transform: rotate(-60deg) scale(.6); }
 .theme-toggle[data-mode="dark"] .i-sun { opacity: 0; transform: rotate(90deg) scale(.6); }
 .theme-toggle[data-mode="dark"] .i-moon { opacity: 1; transform: none; }
@@ -518,11 +519,21 @@ h1 {
 .section { border-top: 1px solid var(--line); }
 
 .sec-head {
-  display: grid; grid-template-columns: 1fr;
-  gap: 12px;
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 12px 24px; align-items: center;
   margin-bottom: clamp(16px, 2.6vh, 32px);
 }
-.sec-head .eyebrow { grid-column: 1 / -1; margin-bottom: 0; }
+.sec-head .eyebrow { margin-bottom: 0; }
+.sec-head h2, .sec-head .sec-lead { grid-column: 1 / -1; }
+.sec-repo {
+  justify-self: end; height: 32px; padding: 0 12px; gap: 8px;
+  border: 1px solid var(--line-2); color: var(--ink-2);
+  font: 500 11.5px var(--mono); letter-spacing: .02em; white-space: nowrap;
+  transition: color .2s, border-color .2s, background .2s;
+}
+.sec-repo:hover { color: var(--accent); border-color: var(--accent); background: var(--bg-2); }
+.sec-repo svg { width: 15px; height: 15px; }
+.sec-repo .short { display: none; }
 .sec-head .eyebrow::before { content: ""; width: 28px; height: 1px; background: var(--line-2); order: 1; margin-left: 2px; }
 .sec-head h2 { font-size: clamp(27px, min(3vw, 4.4vh), 42px); text-transform: uppercase; }
 .sec-head h2 .dim { display: inline; }
@@ -753,7 +764,7 @@ h1 {
   .hero .lead { max-width: 60ch; }
   .hero-spec { max-width: 640px; }
   .stat-strip { margin-top: 40px; }
-  .sec-head { grid-template-columns: 1fr; gap: 14px; margin-bottom: 28px; }
+  .sec-head { grid-template-columns: 1fr auto; gap: 14px 16px; margin-bottom: 28px; }
   .sec-head .eyebrow::before { display: none; }
   .cards-3 { grid-template-columns: repeat(2, 1fr); }
   .blocks, .contact-grid, .split { grid-template-columns: 1fr; gap: 20px; }
@@ -766,6 +777,8 @@ h1 {
   :root { --header-h: 59px; }
   .header-inner { gap: 12px; height: 58px; }
   .header-cta { display: none; }
+  .sec-repo .long { display: none; }
+  .sec-repo .short { display: inline; }
   .brand { font-size: 14px; }
   .brand svg { width: 22px; height: 22px; }
   h1 { font-size: clamp(30px, 9.5vw, 42px); }
