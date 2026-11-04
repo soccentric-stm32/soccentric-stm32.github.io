@@ -141,8 +141,6 @@
   </div>
 </header>
 
-<nav class="deck-nav" id="decknav" aria-label="Page sections"></nav>
-
 <main id="main" tabindex="-1">
 
 <!-- ------------------------------------------------------------- hero -->
@@ -517,15 +515,47 @@
 
 <!-- ---------------------------------------------------------- contact -->
 <section class="section contact" id="contact" data-slide="Contact">
-  <div class="wrap contact-grid">
-    <div>
-      <p class="eyebrow"><span class="num">08</span>Contact</p>
-      <h2>Build your<br>STM32 product<br><span class="accent">on these blocks.</span></h2>
-      <p class="contact-note">All seven projects are MIT-licensed: use them as they are, or have me adapt them to your board, your requirements and your production line. I use them as the baseline for every client project.</p>
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-main">
+        <p class="eyebrow"><span class="num">08</span>Contact</p>
+        <h2>Build your STM32 product <span class="accent">on these blocks.</span></h2>
+        <p class="contact-note">All seven projects are MIT-licensed. Use them as they are, or have me adapt them to your board, your requirements and your production line. I use them as the baseline for every client project, and I read and answer every email myself.</p>
+        <div class="contact-cta">
+          <a class="btn btn-accent" href="mailto:sandesh@soccentric.com?subject=STM32%20project&amp;body=Board%20or%20chip%3A%0AWhat%20is%20already%20built%3A%0ADeadline%3A%0AWhat%20is%20blocking%3A">Email sandesh@soccentric.com <span aria-hidden="true">→</span></a>
+          <a class="btn btn-ghost gh-link" href="https://github.com/soccentric-stm32" target="_blank" rel="noopener" title="github.com/soccentric-stm32"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span>GitHub</span></a>
+        </div>
+        <div class="brief">
+          <p class="mono">Useful to include</p>
+          <ul role="list">
+            <li>Board or chip</li>
+            <li>What is already built</li>
+            <li>Deadline</li>
+            <li>What is blocking</li>
+          </ul>
+        </div>
+      </div>
+      <article class="panel help">
+        <div class="panel-head"><span class="mono">How I can help</span></div>
+        <ol class="help-list" role="list">
+          <li><i>01</i><div><b>Use them as they are</b><span>Clone, build in the Docker image, flash and ship. MIT, no fees.</span></div></li>
+          <li><i>02</i><div><b>Port to your board</b><span>Another STM32 part, your pins, clocks and flash map.</span></div></li>
+          <li><i>03</i><div><b>Extend a block</b><span>A new update path (USB, CAN, Ethernet), new tests or your own end-of-line flow.</span></div></li>
+          <li><i>04</i><div><b>Build the product</b><span>Your application on this baseline, from bring-up to the production line.</span></div></li>
+        </ol>
+      </article>
     </div>
-    <div class="contact-links">
-      <a href="mailto:sandesh@soccentric.com?subject=STM32%20project&amp;body=Board%20or%20chip%3A%0AWhat%20is%20already%20built%3A%0ADeadline%3A%0AWhat%20is%20blocking%3A"><span><small class="mono">Email</small>sandesh@soccentric.com</span><span aria-hidden="true">→</span></a>
-      <a class="gh-link" href="https://github.com/soccentric-stm32" target="_blank" rel="noopener" aria-label="soccentric-stm32 on GitHub" title="github.com/soccentric-stm32"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span class="contact-link-text"><small class="mono">GitHub</small>github.com/soccentric-stm32</span><span aria-hidden="true">↗</span></a>
+    <div class="repo-index">
+      <p class="fig-cap mono">All seven projects</p>
+      <ul role="list">
+        <li><a class="gh-link" href="https://github.com/soccentric-stm32/soccentric-stm32-bootloader" target="_blank" rel="noopener" title="soccentric-stm32-bootloader"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span><small class="mono">01</small>Bootloader</span><span aria-hidden="true">↗</span></a></li>
+        <li><a class="gh-link" href="https://github.com/soccentric-stm32/soccentric-stm32-application" target="_blank" rel="noopener" title="soccentric-stm32-application"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span><small class="mono">02</small>C/C++ · FreeRTOS</span><span aria-hidden="true">↗</span></a></li>
+        <li><a class="gh-link" href="https://github.com/soccentric-stm32/soccentric-stm32-rust-application" target="_blank" rel="noopener" title="soccentric-stm32-rust-application"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span><small class="mono">03</small>Rust · Embassy</span><span aria-hidden="true">↗</span></a></li>
+        <li><a class="gh-link" href="https://github.com/soccentric-stm32/soccentric-stm32-zephyr-application" target="_blank" rel="noopener" title="soccentric-stm32-zephyr-application"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span><small class="mono">04</small>Zephyr</span><span aria-hidden="true">↗</span></a></li>
+        <li><a class="gh-link" href="https://github.com/soccentric-stm32/soccentric-stm32-validation-firmware" target="_blank" rel="noopener" title="soccentric-stm32-validation-firmware"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span><small class="mono">05</small>HWVAL firmware</span><span aria-hidden="true">↗</span></a></li>
+        <li><a class="gh-link" href="https://github.com/soccentric-stm32/soccentric-stm32-validation-gui" target="_blank" rel="noopener" title="soccentric-stm32-validation-gui"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span><small class="mono">06</small>HWVAL Studio</span><span aria-hidden="true">↗</span></a></li>
+        <li><a class="gh-link" href="https://github.com/soccentric-stm32/soccentric-stm32-factory-provisioning" target="_blank" rel="noopener" title="soccentric-stm32-factory-provisioning"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span><small class="mono">07</small>HWVAL Factory</span><span aria-hidden="true">↗</span></a></li>
+      </ul>
     </div>
   </div>
 </section>

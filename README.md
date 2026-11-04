@@ -11,8 +11,7 @@ Live site: <https://soccentric-stm32.github.io/>
 
 ## The site
 
-- One-page, full-height slides with scroll snapping, a page navigator on
-  wide screens, and a light/dark "paper / blueprint" theme.
+- One-page, full-height slides with scroll snapping and a light/dark "paper / blueprint" theme.
 - One slide per project. Each one says what the project is, lists its
   features and links to the repository: Bootloader; C/C++ · FreeRTOS;
   Rust · Embassy; Zephyr; HWVAL firmware; HWVAL Studio; End-of-line.
