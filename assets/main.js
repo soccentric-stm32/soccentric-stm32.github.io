@@ -17,8 +17,10 @@
   if (toggle) {
     var sync = function () {
       var dark = current() === 'dark';
-      toggle.setAttribute('aria-label', dark ? 'Switch to paper theme' : 'Switch to blueprint theme');
-      toggle.setAttribute('title', dark ? 'Switch to paper theme' : 'Switch to blueprint theme');
+      var label = dark ? 'Switch to light theme' : 'Switch to dark theme';
+      toggle.dataset.mode = dark ? 'dark' : 'light';
+      toggle.setAttribute('aria-label', label);
+      toggle.setAttribute('title', label);
     };
     sync();
     toggle.addEventListener('click', function () {
@@ -107,6 +109,14 @@
       else { b.removeAttribute('aria-current'); }
     });
     slides.forEach(function (s, k) { s.classList.toggle('in', k === i); });
+    // header menu: mark the item (and its dropdown) for the current slide
+    var id = slides[i] ? slides[i].id : '';
+    $$('.site-nav a, .menu nav a').forEach(function (a) {
+      var on = a.getAttribute('data-flash') === id;
+      var dd = a.classList.contains('dd-top') && a.closest('.dd');
+      if (dd) { on = !!$('.dd-menu a[data-flash="' + id + '"]', dd); }
+      a.classList.toggle('is-current', on);
+    });
   }
 
   function syncSlides() {
