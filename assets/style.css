@@ -731,13 +731,18 @@ h1 {
 .repo-index small { display: block; color: var(--faint); font-size: 10px; letter-spacing: .08em; margin-bottom: 2px; }
 
 /* footer */
-.site-footer { border-top: 1px solid var(--line); padding: 22px 0; }
+.site-footer { border-top: 1px solid var(--line); padding: 20px 0 22px; }
 .footer-inner {
-  display: flex; flex-wrap: wrap; gap: 8px 32px; align-items: baseline;
+  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline;
+  gap: 9px 28px;
   font: 500 10.5px var(--mono); letter-spacing: .07em;
   text-transform: uppercase; color: var(--muted);
 }
-.footer-inner .fine { margin-left: auto; text-transform: none; letter-spacing: .02em; }
+.footer-inner .fine {
+  flex-basis: 100%; margin-top: 2px;
+  font-size: 10px; font-weight: 400;
+  text-transform: none; letter-spacing: .02em;
+}
 
 /* ------------------------------------------------------------- responsive */
 @media (max-width: 1080px) {
@@ -765,6 +770,7 @@ h1 {
   .start-steps { grid-template-columns: 1fr; }
   .repo-index ul { grid-template-columns: repeat(4, 1fr); }
   .brief { margin-top: 0; }
+  .footer-inner { justify-content: flex-start; }
 }
 
 @media (max-width: 640px) {
@@ -796,7 +802,6 @@ h1 {
   .contact h2 { font-size: clamp(30px, 9.5vw, 44px); }
   .contact-cta .btn { width: 100%; }
   .repo-index ul { grid-template-columns: 1fr 1fr; }
-  .footer-inner .fine { margin-left: 0; }
   .app { grid-template-columns: 1fr; height: 300px; }
   .side { display: none; }
   .tb .activity { min-width: 0; }
