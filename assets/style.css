@@ -525,15 +525,9 @@ h1 {
 }
 .sec-head .eyebrow { margin-bottom: 0; }
 .sec-head h2, .sec-head .sec-lead { grid-column: 1 / -1; }
-.sec-repo {
-  justify-self: end; height: 32px; padding: 0 12px; gap: 8px;
-  border: 1px solid var(--line-2); color: var(--ink-2);
-  font: 500 11.5px var(--mono); letter-spacing: .02em; white-space: nowrap;
-  transition: color .2s, border-color .2s, background .2s;
-}
-.sec-repo:hover { color: var(--accent); border-color: var(--accent); background: var(--bg-2); }
-.sec-repo svg { width: 15px; height: 15px; }
-.sec-repo .short { display: none; }
+.sec-repo { justify-self: end; color: var(--ink-2); }
+.sec-repo:hover { color: var(--accent); border-color: var(--accent); }
+.sec-repo svg { width: 17px; height: 17px; fill: currentColor; }
 .sec-head .eyebrow::before { content: ""; width: 28px; height: 1px; background: var(--line-2); order: 1; margin-left: 2px; }
 .sec-head h2 { font-size: clamp(27px, min(3vw, 4.4vh), 42px); text-transform: uppercase; }
 .sec-head h2 .dim { display: inline; }
@@ -777,8 +771,6 @@ h1 {
   :root { --header-h: 59px; }
   .header-inner { gap: 12px; height: 58px; }
   .header-cta { display: none; }
-  .sec-repo .long { display: none; }
-  .sec-repo .short { display: inline; }
   .brand { font-size: 14px; }
   .brand svg { width: 22px; height: 22px; }
   h1 { font-size: clamp(30px, 9.5vw, 42px); }
