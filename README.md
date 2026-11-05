@@ -1,89 +1,42 @@
 # SoCcentric STM32
 
-The website of **SoCcentric STM32**: a showcase of eight open-source
-projects that together form a complete STM32 product baseline. They are an
-A/B bootloader, the same application in C/C++ and in Rust on both FreeRTOS
-and Zephyr, the HWVAL validation firmware and GUI, and the HWVAL Factory
-provisioning station. Sandesh Ghimire uses them as the
-starting point for client projects.
+The website of SoCcentric STM32, a showcase of the open-source projects that together form a complete STM32 product baseline: an A/B bootloader, the same application in C and Rust on both FreeRTOS and Zephyr, the HWVAL validation firmware and desktop GUI, and the HWVAL Factory provisioning station. It is a single static page with one slide per project, no framework and no build step, served by GitHub Pages at https://soccentric-stm32.github.io/.
 
-Live site: <https://soccentric-stm32.github.io/>
+## Features
 
-## The site
+- One-page site with full-height slides and scroll snapping
+- One slide per project with features and a repository link
+- Light and dark theme
+- Header menu with dropdowns and deep links to each project
+- No framework and no build step: HTML, CSS and a small script
+- Self-hosted fonts, no third-party requests and no cookies
+- Works without JavaScript
+- Social preview image, sitemap and structured metadata
+- Branded 404 page
 
-- One-page, full-height slides with scroll snapping and a light/dark "paper / blueprint" theme.
-- One slide per project. Each one says what the project is, lists its
-  features and links to the repository: Bootloader; RTOS · FreeRTOS;
-  RTOS · Zephyr; Rust · FreeRTOS; Rust · Zephyr; Validation · Firmware;
-  Validation · GUI; Factory Provisioning.
-  Intro and Contact frame them.
-- The header menu has dropdowns for RTOS (C/C++), Rust and Validation.
-  Deep links work, e.g. `#app-zephyr`, `#rust-freertos`, `#rust-zephyr`, `#eol`.
-- Features and status come from each repository's README. Update the
-  slide when a project changes.
-- No build step, no framework: `index.html`, `assets/style.css` and
-  `assets/main.js`.
-- Fonts are self-hosted (Space Grotesk and Geist Mono, both OFL), so the
-  page makes no third-party requests and sets no cookies.
-- Works without JavaScript: all content is static; only scrolling
-  snap, the theme toggle and the animated preview need JS.
+## Build and run
 
-## Run locally
-
-```sh
-python3 -m http.server 8000
-# open http://localhost:8000/
+```bash
+python3 -m http.server 8000   # then open http://localhost:8000/
 ```
 
-## Deploy
+Pushing to `main` deploys the site with GitHub Pages.
 
-Push to `main`. GitHub Pages serves the repository root; `.nojekyll`
-keeps the files served as-is.
+## Related projects
 
-## Structure
+- [bootloader](https://github.com/soccentric-stm32/bootloader) — A/B bootloader with UART update, CRC32 checks, trial boot and rollback
+- [app-c-freertos](https://github.com/soccentric-stm32/app-c-freertos) — Demo application in C on FreeRTOS
+- [app-c-zephyr](https://github.com/soccentric-stm32/app-c-zephyr) — Demo application in C on Zephyr RTOS
+- [app-rust-freertos](https://github.com/soccentric-stm32/app-rust-freertos) — Demo application in Rust on Embassy
+- [app-rust-zephyr](https://github.com/soccentric-stm32/app-rust-zephyr) — Demo application in Rust on Zephyr RTOS
+- [validation-firmware](https://github.com/soccentric-stm32/validation-firmware) — HWVAL hardware validation firmware
+- [validation-gui](https://github.com/soccentric-stm32/validation-gui) — HWVAL Studio: desktop GUI for tests, updates and flashing
+- [factory-station](https://github.com/soccentric-stm32/factory-station) — HWVAL Factory: end-of-line test and provisioning station
 
-```
-index.html                  content, metadata and JSON-LD
-assets/style.css            design tokens, fonts, layout, themes
-assets/main.js              theme, menu, slide navigator, preview
-assets/fonts/               self-hosted Space Grotesk and Geist Mono
-assets/chip.svg             favicon
-assets/apple-touch-icon.png
-assets/og.png               social preview (1200 x 630)
-404.html                    branded not-found page
-robots.txt
-sitemap.xml
-```
+## License
 
-## About
+Released under the [MIT License](LICENSE) © 2026 Sandesh Ghimire. You are free
+to use, modify and ship it in your own products.
 
-I am an embedded software and firmware consultant with 25+ years in
-embedded systems and 15+ years on STM32 microcontrollers. I work bare
-metal and with FreeRTOS and Zephyr, and have built A/B bootloaders,
-complete validation and verification suites with a Python host app,
-end-of-line provisioning and factory automation tools, and applications
-in C/C++ and Rust, on FreeRTOS and on Zephyr.
-
-My open-source projects on GitHub are the foundation blocks I use, and
-I am happy to customise them for your product. Everything is released
-under the MIT licence, so you can use it as you please.
-
-- GitHub: <https://github.com/soccentric-stm32>
-- Email: <sandesh@soccentric.com>
-
-## Licence
-
-Site content © Sandesh Ghimire. Code and open building blocks: MIT.
-
-## CI and releases
-
-The [Jenkinsfile](Jenkinsfile) runs the build and checks, then **Package**
-builds `dist/website-<version>.tar.gz` with the outputs, a `manifest.json`
-(version, commit, build) and `SHA256SUMS`, and archives `dist/`. For a tag
-`v<version>`, **Release** publishes `dist/` as a GitHub release
-(`ci/github_release.py`, Jenkins credential `github-release-token`); the tag
-must match the version the build reports (`ci/version.sh`), and 0.x versions
-are marked as pre-releases.
-
-GitHub Pages deploys the site on every push to `main`; tagging `v<version>`
-only attaches the bundle to a GitHub release.
+Contributions are welcome. Fork the repository, make your change on a branch and
+open a pull request. Bug reports, ideas and improvements are all appreciated.
