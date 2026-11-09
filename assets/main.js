@@ -1,5 +1,5 @@
 /*
- * main.js - theme toggle, mobile menu and the HWVAL Studio concept preview
+ * main.js - theme toggle, mobile menu, hero screen showcase and slide deck
  * Author: Sandesh Ghimire
  */
 (function () {
@@ -30,6 +30,52 @@
       sync();
     });
     darkMq.addEventListener('change', sync);
+  }
+
+  /* ---- hero showcase: pick a capture and put it on the stage ---------- */
+  var reel = $('.reel');
+  var stageImg = $('#shot-img');
+  if (reel && stageImg) {
+    var tabs = $$('[role="tab"]', reel);
+    var panel = $('#shot-panel');
+    var frame = $('#shot-frame');
+    var shotTitle = $('#shot-title');
+    var shotTag = $('#shot-tag');
+    var shotCaption = $('#shot-caption');
+
+    var select = function (tab, focus) {
+      tabs.forEach(function (t) {
+        var on = t === tab;
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.tabIndex = on ? 0 : -1;
+      });
+      stageImg.src = tab.dataset.src;
+      stageImg.alt = tab.dataset.alt || '';
+      shotTitle.textContent = tab.dataset.title || '';
+      var tagText = tab.dataset.tag || '';
+      shotTag.textContent = tagText;
+      shotTag.hidden = !tagText;
+      shotCaption.textContent = tab.dataset.caption || '';
+      frame.className = 'stage-frame ' + (tab.dataset.kind === 'term' ? 'term' : 'win');
+      if (panel) { panel.setAttribute('aria-labelledby', tab.id); }
+      if (focus) { tab.focus(); }
+    };
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () { select(tab, false); });
+    });
+    reel.addEventListener('keydown', function (e) {
+      var i = tabs.indexOf(document.activeElement);
+      if (i < 0) { return; }
+      var next = -1;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { next = (i + 1) % tabs.length; }
+      else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { next = (i - 1 + tabs.length) % tabs.length; }
+      else if (e.key === 'Home') { next = 0; }
+      else if (e.key === 'End') { next = tabs.length - 1; }
+      if (next < 0) { return; }
+      e.preventDefault();
+      select(tabs[next], true);
+    });
   }
 
   /* ---- mobile menu: close after choosing a link ------------------------ */

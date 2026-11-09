@@ -462,10 +462,6 @@ h1 {
   12%, 55% { background: color-mix(in srgb, var(--accent) 11%, transparent); }
 }
 
-.figure {
-  display: flex; flex-direction: column; justify-content: center; gap: 16px;
-  padding: clamp(16px, 2.2vh, 24px); border: 1px solid var(--line); background: var(--bg-2);
-}
 .fig-cap { color: var(--muted); }
 .flashmap { display: grid; gap: 10px; }
 .bank { display: grid; grid-template-columns: 64px 1fr 1.6fr; gap: 6px; align-items: stretch; }
@@ -478,13 +474,6 @@ h1 {
 }
 .fm.boot { background: repeating-linear-gradient(45deg, transparent 0 5px, var(--line) 5px 6px), var(--bg); }
 .fm.on { border-color: var(--accent); color: var(--ink); box-shadow: inset 3px 0 0 var(--accent); }
-.flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--line-2); border: 1px solid var(--line-2); }
-.flow li {
-  display: flex; flex-direction: column; gap: 4px; padding: 10px; background: var(--bg);
-  font-size: 12.5px; line-height: 1.3; color: var(--ink-2);
-}
-.flow i { font: 600 18px/1 var(--display); font-style: normal; color: var(--accent); letter-spacing: -.03em; }
-.flow-v { grid-template-columns: 1fr; }
 .stack { display: grid; gap: 6px; }
 .stack li {
   display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
@@ -494,9 +483,6 @@ h1 {
 .stack span { font: 500 10.5px var(--mono); letter-spacing: .05em; text-transform: uppercase; color: var(--muted); text-align: right; }
 .stack .hi { border-color: var(--accent); box-shadow: inset 3px 0 0 var(--accent); }
 .stack .base { background: repeating-linear-gradient(45deg, transparent 0 5px, var(--line) 5px 6px), var(--bg); }
-.flow-v li { display: grid; grid-template-columns: 26px 110px 1fr; align-items: baseline; gap: 10px; padding: 9px 14px; }
-.flow-v b { font-size: 13px; text-transform: uppercase; color: var(--ink); }
-.flow-v span { font-size: 13px; }
 
 /* building blocks */
 .blocks { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 2.4vw, 24px); align-items: center; }
@@ -662,10 +648,6 @@ h1 {
   .cards-3, .cards-4 { grid-template-columns: 1fr; }
   .drawing { padding: 12px; }
   .mit { flex-wrap: wrap; gap: 10px; }
-  .flow { grid-template-columns: 1fr 1fr; }
-  .flow-v { grid-template-columns: 1fr; }
-  .flow-v li { grid-template-columns: 22px 1fr; }
-  .flow-v span { grid-column: 2; }
   .stack li { flex-direction: column; gap: 2px; }
   .stack span { text-align: left; }
   .bank { grid-template-columns: 1fr 1.4fr; }
@@ -695,7 +677,6 @@ h1 {
   .eng .card { min-height: 0; }
   .panel { padding: 15px 18px; gap: 8px; }
   .ticks li { padding: 4px 0 4px 18px; font-size: 13.5px; }
-  .flow-v li { padding: 7px 12px; }
   .mit { padding: 11px 14px; margin-top: 10px; }
 }
 
@@ -763,20 +744,28 @@ h1 {
 
 /* slide with the capture on a stage and the repo contents beside it; the two
    columns alternate sides from one slide to the next */
-.split.media { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); align-items: stretch; }
+.split.media { grid-template-columns: minmax(0, 7fr) minmax(0, 13fr); align-items: stretch; }
 .media-col {
-  display: flex; flex-direction: column; gap: 12px; margin: 0; min-width: 0;
-  padding: 0; border: 0; background: none;
+  display: flex; flex-direction: column; justify-content: center; gap: 12px;
+  margin: 0; min-width: 0; padding: 0; border: 0; background: none;
+  container-type: inline-size;
 }
-.media-col > .win { margin-block: auto; box-shadow: 0 2px 4px rgba(20,20,18,.08), 0 24px 48px -16px rgba(20,20,18,.45); }
-.media-col > .term { flex: 1; display: flex; flex-direction: column; }
+/* in the narrow capture column the terminal text wraps instead of running off */
+.media-col .term-body { font-size: clamp(9px, 2.9cqw, 12.5px); }
+.media-col .term-body code { min-width: 0; }
+.media-col .term-body .ln { white-space: pre-wrap; }
+@container (max-width: 430px) { .win-tag { display: none; } }
+.media-col > .win, .media-col > .term { margin-block: 0; }
+.media-col > .win { box-shadow: 0 2px 4px rgba(20,20,18,.08), 0 24px 48px -16px rgba(20,20,18,.45); }
+.media-col > .term { flex: 1 1 auto; display: flex; flex-direction: column; }
 .media-col .term-body { flex: 1; }
 .media-col .fig-cap { font-size: 10.5px; letter-spacing: .05em; text-transform: uppercase; }
 .split.media > .media-col, .split.media > .figure { order: -1; }
-.split.media > .panel { order: 0; }
+/* the repo panel floats like the capture: no box, no padding */
+.split.media > .panel { order: 0; padding: 0; border: 0; }
 /* every other slide swaps: repo panel on the left, capture on the right */
 @media (min-width: 901px) {
-  .section:nth-of-type(odd) .split.media { grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); }
+  .section:nth-of-type(odd) .split.media { grid-template-columns: minmax(0, 13fr) minmax(0, 7fr); }
   .section:nth-of-type(odd) .split.media > .media-col,
   .section:nth-of-type(odd) .split.media > .figure { order: 1; }
 }
@@ -791,32 +780,55 @@ h1 {
 .spec-list dd { font-size: 13.5px; line-height: 1.45; color: var(--ink-2); margin: 0; text-wrap: pretty; }
 .spec-list dd code { font-family: var(--mono); font-size: .88em; color: var(--ink); }
 
-/* hero: layered screen captures */
-.montage { position: relative; aspect-ratio: 1.12; container-type: inline-size; }
-.montage .m { position: absolute; }
-.montage .win, .montage .term { border-radius: 6px; }
-.montage .win-bar { height: 22px; padding: 0 8px; }
-.montage .lights i { width: 7px; height: 7px; }
-.montage .win-title, .montage .win-tag { font-size: 8px; }
-.m1 { left: 0; top: 0; width: 80%; z-index: 1; }
-.m2 { right: 0; top: 24%; width: 62%; z-index: 2; }
-.m3 { left: 4%; bottom: 0; width: 52%; z-index: 3; }
-.m4 { right: 2%; bottom: 3%; width: 46%; z-index: 4; }
-.m4 .term-body { padding: 8px 10px 10px; font-size: clamp(6px, 1.5cqw, 9px); line-height: 1.55; overflow: hidden; }
-.montage .win, .montage .term { box-shadow: 0 2px 4px rgba(20,20,18,.08), 0 18px 40px -14px rgba(20,20,18,.45); }
+/* hero: one stage with every screen capture in the reel below it */
+.showcase { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.stage { display: flex; flex-direction: column; gap: 9px; margin: 0; min-width: 0; }
+.stage-frame {
+  border-radius: 10px; overflow: hidden;
+  box-shadow: 0 2px 4px rgba(20,20,18,.08), 0 24px 48px -18px rgba(20,20,18,.45);
+}
+.stage-frame img {
+  display: block; width: 100%; height: auto; aspect-ratio: 8 / 5;
+  object-fit: cover; object-position: top left; background: var(--term-bg);
+}
+.stage-frame.term { background: var(--term-bg); }
+.stage-frame.term .win-bar { background: var(--term-bar); color: var(--term-dim); border-bottom-color: var(--term-line); }
+.stage .fig-cap { font-size: 10.5px; letter-spacing: .05em; text-transform: uppercase; }
+.reel { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; }
+.reel-item {
+  display: flex; flex-direction: column; gap: 0; min-width: 0; padding: 0;
+  border: 1px solid var(--line); border-radius: 6px; overflow: hidden;
+  background: var(--bg); color: inherit; text-align: left; cursor: pointer;
+  transition: border-color .2s, box-shadow .2s, transform .2s;
+}
+.reel-item img {
+  display: block; width: 100%; height: auto; aspect-ratio: 8 / 5;
+  object-fit: cover; object-position: top left; background: var(--term-bg);
+}
+.reel-item span {
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;
+  min-height: 2.4em; padding: 4px 6px 5px; font-size: 8.8px; line-height: 1.18;
+  letter-spacing: .01em; color: var(--muted); overflow: hidden;
+}
+.reel-item:hover { border-color: var(--ink-2); transform: translateY(-1px); }
+.reel-item[aria-selected="true"] {
+  border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent);
+}
+.reel-item[aria-selected="true"] span { color: var(--ink); }
+.reel-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .hero .preview-note { margin-top: 12px; color: var(--muted); font: 500 10.5px var(--mono); letter-spacing: .05em; text-transform: uppercase; }
 
 @media (max-width: 900px) {
   .split.media { grid-template-columns: 1fr; }
   .split.media > .media-col, .split.media > .figure { order: -1; }
-  .montage { aspect-ratio: 1.25; }
+  .showcase { margin-top: 4px; }
 }
 @media (max-width: 640px) {
   .spec-list > div { grid-template-columns: 1fr; gap: 2px; }
   .term-body { font-size: 11px; padding: 12px; }
   .win-tag { display: none; }
-  .montage .m4 { display: none; }
-  .m1 { width: 88%; } .m2 { width: 66%; top: 30%; } .m3 { width: 58%; }
+  .reel { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .reel-item span { font-size: 8px; }
 }
 @media (max-height: 820px) and (min-width: 901px) {
   .spec-list dd { font-size: 12.8px; line-height: 1.38; }

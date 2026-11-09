@@ -4,3 +4,4 @@
 
 # --- CI release bundle (ci/package.py) ---
 dist/
+.capture-tmp/

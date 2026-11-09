@@ -35,6 +35,7 @@
   </script>
   <link rel="preload" href="assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/shots/validation-gui.webp" as="image" type="image/webp">
   <link rel="stylesheet" href="assets/style.css">
   <noscript><style>.theme-toggle,.scene-bar{display:none}</style></noscript>
   <script type="application/ld+json">
@@ -192,13 +193,30 @@
     </div>
 
 <div class="hero-demo">
-      <div class="montage" role="group" aria-label="Screen captures of the desktop tools and firmware terminals">
-        <div class="m m1"><div class="win"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">HWVAL Studio</span></div><img src="assets/shots/validation-gui.webp" width="1360" height="860" alt="HWVAL Studio test results" loading="lazy" decoding="async"></div></div>
-        <div class="m m2"><div class="win"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">HWVAL Factory</span></div><img src="assets/shots/factory-station.webp" width="1360" height="860" alt="HWVAL Factory end-of-line station" loading="lazy" decoding="async"></div></div>
-        <div class="m m3"><div class="win"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">BOOT Flasher</span></div><img src="assets/shots/bootloader-gui.webp" width="1280" height="900" alt="BOOT Flasher" loading="lazy" decoding="async"></div></div>
-        <div class="m m4"><div class="term"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">C-FRT · USART6</span><span class="win-tag mono">Illustrative</span></div><pre class="term-body"><code><span class="ln"><span class="ts">[      6]</span> <span class="tag app">C-FRT</span> <span class="lv i">I</span> <span class="msg i">start v0.1.0 cc453dc</span></span><span class="ln"><span class="ts">[     13]</span> <span class="tag app">C-FRT</span> <span class="lv i">I</span> <span class="msg i">health: on trial</span></span><span class="ln"><span class="ts">[   5004]</span> <span class="tag app">C-FRT</span> <span class="lv i">I</span> <span class="msg i">health: passed</span></span></code></pre></div></div>
+      <div class="showcase">
+        <figure class="stage" role="tabpanel" id="shot-panel" aria-live="polite" aria-labelledby="shot-tab-9">
+          <div class="stage-frame win" id="shot-frame">
+            <div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono" id="shot-title">HWVAL Studio</span><span class="win-tag mono" id="shot-tag" hidden></span></div>
+            <img id="shot-img" src="assets/shots/validation-gui.webp" width="1360" height="860" alt="HWVAL Studio: the validation test catalogue with PASS, FAIL and SKIP results" decoding="async">
+          </div>
+          <figcaption class="fig-cap mono" id="shot-caption">HWVAL Studio · hardware validation, results live</figcaption>
+        </figure>
+        <div class="reel" role="tablist" aria-label="Twelve screens from the building blocks">
+          <button class="reel-item" type="button" role="tab" aria-selected="false" tabindex="-1" id="shot-tab-1" aria-controls="shot-panel" data-src="assets/shots/bootloader-gui.webp" data-kind="gui" data-title="BOOT Flasher" data-tag="" data-caption="BOOT Flasher · build, sign and flash from one window" data-alt="BOOT Flasher: the C FreeRTOS pipeline with clone, build, sign and flash steps"><img src="assets/shots/bootloader-gui.webp" width="1280" height="900" alt="" loading="lazy" decoding="async"><span class="mono">BOOT Flasher</span></button>
+          <button class="reel-item" type="button" role="tab" aria-selected="false" tabindex="-1" id="shot-tab-2" aria-controls="shot-panel" data-src="assets/shots/term-bootloader.webp" data-kind="term" data-title="BOOT · USART6" data-tag="Illustrative output" data-caption="BOOT console · a trial boot, then a rollback" data-alt="Terminal: BOOT logs a trial boot of slot B and the rollback to slot A"><img src="assets/shots/term-bootloader.webp" width="1800" height="1126" alt="" loading="lazy" decoding="async"><span class="mono">BOOT console</span></button>
+          <button class="reel-item" type="button" role="tab" aria-selected="false" tabindex="-1" id="shot-tab-3" aria-controls="shot-panel" data-src="assets/shots/term-app-c.webp" data-kind="term" data-title="C-FRT · USART6" data-tag="Illustrative output" data-caption="C · FreeRTOS console · the health check confirms the slot" data-alt="Terminal: a C FreeRTOS application starts, feeds its health check and confirms the image"><img src="assets/shots/term-app-c.webp" width="1800" height="1126" alt="" loading="lazy" decoding="async"><span class="mono">C · FreeRTOS</span></button>
+          <button class="reel-item" type="button" role="tab" aria-selected="false" tabindex="-1" id="shot-tab-4" aria-controls="shot-panel" data-src="assets/shots/term-app-zephyr.webp" data-kind="term" data-title="C-ZEP · USART6" data-tag="Illustrative output" data-caption="C · Zephyr console · button events and the health check" data-alt="Terminal: a C Zephyr application logs button presses and confirms the image"><img src="assets/shots/term-app-zephyr.webp" width="1800" height="1126" alt="" loading="lazy" decoding="async"><span class="mono">C · Zephyr</span></button>
+          <button class="reel-item" type="button" role="tab" aria-selected="false" tabindex="-1" id="shot-tab-5" aria-controls="shot-panel" data-src="assets/shots/term-rust-embassy.webp" data-kind="term" data-title="R-EMB · USART6" data-tag="Illustrative output" data-caption="Rust · Embassy console · async tasks and the boot contract" data-alt="Terminal: a Rust Embassy application logs its tasks and confirms the image"><img src="assets/shots/term-rust-embassy.webp" width="1800" height="1126" alt="" loading="lazy" decoding="async"><span class="mono">Rust · Embassy</span></button>
+          <button class="reel-item" type="button" role="tab" aria-selected="false" tabindex="-1" id="shot-tab-6" aria-controls="shot-panel" data-src="assets/shots/term-rust-freertos.webp" data-kind="term" data-title="R-FRT · USART6" data-tag="Illustrative output" data-caption="Rust · FreeRTOS console · Rust tasks on the FreeRTOS kernel" data-alt="Terminal: a Rust application on FreeRTOS logs its tasks and confirms the image"><img src="assets/shots/term-rust-freertos.webp" width="1800" height="1126" alt="" loading="lazy" decoding="async"><span class="mono">Rust · FreeRTOS</span></button>
+          <button class="reel-item" type="button" role="tab" aria-selected="false" tabindex="-1" id="shot-tab-7" aria-controls="shot-panel" data-src="assets/shots/term-rust-zephyr.webp" data-kind="term" data-title="R-ZEP · USART6" data-tag="Illustrative output" data-caption="Rust · Zephyr console · devicetree and Kconfig kept as they are" data-alt="Terminal: a Rust application on Zephyr logs its threads and confirms the image"><img src="assets/shots/term-rust-zephyr.webp" width="1800" height="1126" alt="" loading="lazy" decoding="async"><span class="mono">Rust · Zephyr</span></button>
+          <button class="reel-item" type="button" role="tab" aria-selected="false" tabindex="-1" id="shot-tab-8" aria-controls="shot-panel" data-src="assets/shots/term-validation.webp" data-kind="term" data-title="HWVAL · ttyACM0" data-tag="Illustrative output" data-caption="HWVAL console · the ADC group, then a report" data-alt="Terminal: the HWVAL console runs the ADC group and prints a PASS report"><img src="assets/shots/term-validation.webp" width="1800" height="1126" alt="" loading="lazy" decoding="async"><span class="mono">HWVAL console</span></button>
+          <button class="reel-item" type="button" role="tab" aria-selected="true" tabindex="0" id="shot-tab-9" aria-controls="shot-panel" data-src="assets/shots/validation-gui.webp" data-kind="gui" data-title="HWVAL Studio" data-tag="" data-caption="HWVAL Studio · hardware validation, results live" data-alt="HWVAL Studio: the validation test catalogue with PASS, FAIL and SKIP results"><img src="assets/shots/validation-gui.webp" width="1360" height="860" alt="" decoding="async"><span class="mono">HWVAL Studio</span></button>
+          <button class="reel-item" type="button" role="tab" aria-selected="false" tabindex="-1" id="shot-tab-10" aria-controls="shot-panel" data-src="assets/shots/factory-station.webp" data-kind="gui" data-title="HWVAL Factory" data-tag="" data-caption="HWVAL Factory · four fixtures, one end-of-line plan" data-alt="HWVAL Factory: four fixtures running the end-of-line test plan"><img src="assets/shots/factory-station.webp" width="1360" height="860" alt="" loading="lazy" decoding="async"><span class="mono">HWVAL Factory</span></button>
+          <button class="reel-item" type="button" role="tab" aria-selected="false" tabindex="-1" id="shot-tab-11" aria-controls="shot-panel" data-src="assets/shots/term-factory-firmware.webp" data-kind="term" data-title="HWVAL Factory · F1 · simulator" data-tag="Recorded output" data-caption="Factory firmware · one simulated unit, programmed and checked" data-alt="Terminal: the factory station programs and checks one simulated unit"><img src="assets/shots/term-factory-firmware.webp" width="1800" height="1126" alt="" loading="lazy" decoding="async"><span class="mono">Factory firmware</span></button>
+          <button class="reel-item" type="button" role="tab" aria-selected="false" tabindex="-1" id="shot-tab-12" aria-controls="shot-panel" data-src="assets/shots/factory-data-gui.webp" data-kind="gui" data-title="Factory Data" data-tag="" data-caption="Factory Data · CSV to .sys, .cal and .diag files" data-alt="Factory Data: the System info page with records loaded from a CSV"><img src="assets/shots/factory-data-gui.webp" width="1360" height="860" alt="" loading="lazy" decoding="async"><span class="mono">Factory Data</span></button>
+        </div>
       </div>
-      <p class="preview-note">Real screen captures · GUIs on their built-in simulators · terminals illustrative</p>
+      <p class="preview-note">Twelve building blocks · app screens are real captures · terminal logs illustrative</p>
     </div>
   </div>
 
@@ -413,16 +431,10 @@
     </div>
     <div class="split media">
       <article class="panel spec"><div class="panel-head"><span class="mono">C · FreeRTOS · UART</span><span class="status s-wip">In development · v0.1.0</span></div><h3>What's in the repo</h3><dl class="spec-list"><div><dt>Build environment</dt><dd>Docker toolchain. The station signs the built image with your key.</dd></div><div><dt>What you get</dt><dd>The first application on a fresh board; it stores each unit's identity data.</dd></div><div><dt>Architecture</dt><dd>Runs from slot A; three 4&nbsp;KB blocks hold system info, calibration and diagnostics.</dd></div><div><dt>Design</dt><dd>Writes outside its three blocks are refused, so the identity record stays safe.</dd></div><div><dt>Implementation</dt><dd>FreeRTOS in C. Checks headers, CRCs and the chip UID, then writes and reads back.</dd></div><div><dt>Test &amp; validation</dt><dd>Host tests run the real command handler against a simulated flash.</dd></div><div><dt>Commands</dt><dd><code>INFO</code>, <code>READ</code>, <code>WRITE_BEGIN/DATA/END</code> and <code>DIAG_INIT</code> over UART.</dd></div></dl><p class="repo-links mono"><a href="https://github.com/soccentric-stm32/factory-firmware/blob/HEAD/docs/FACTORY_SPEC.md" target="_blank" rel="noopener">Specification ↗</a><a href="https://github.com/soccentric-stm32/factory-firmware" target="_blank" rel="noopener">factory-firmware on GitHub ↗</a></p></article>
-      <div class="figure">
-        <p class="fig-cap mono">One blank board on the bench</p>
-        <ol class="flow flow-v" role="list">
-          <li><i>1</i><b>Detect</b><span>ST-LINK probe and UART port</span></li>
-          <li><i>2</i><b>Bootloader</b><span>Erase, option bytes, write over SWD</span></li>
-          <li><i>3</i><b>Factory firmware</b><span>Sign and flash into slot A</span></li>
-          <li><i>4</i><b>Read info</b><span>Reset, then name, version and chip UID</span></li>
-          <li><i>5</i><b>Write data</b><span>.sys, .cal and .diag, read back and compared</span></li>
-        </ol>
-      </div>
+      <figure class="media-col">
+        <div class="term"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">HWVAL Factory · F1 · simulator</span><span class="win-tag mono">Recorded output</span></div><pre class="term-body"><code><span class="ln cmd"><span class="pr">$</span> make demo</span><span class="ln"><span class="rs p">PASS</span>: run 1, fixture F1, serial A2A3AB52E7F42E59F2D6B325</span><span class="ln">  01 Scan board: <span class="rs p">PASS</span> 0 ms</span><span class="ln">  02 Identify chip: <span class="rs p">PASS</span> 0 ms</span><span class="ln">  03 Prepare test image: <span class="rs p">PASS</span> 801 ms</span><span class="ln">  04 Run EOL test plan: <span class="rs p">PASS</span> 134 ms</span><span class="ln">  05 Compute calibration: <span class="rs p">PASS</span> 0 ms</span><span class="ln">  06 Program production: <span class="rs p">PASS</span> 804 ms</span><span class="ln">  07 Provision unit: <span class="rs p">PASS</span> 8 ms</span><span class="ln">  08 Boot check: <span class="rs p">PASS</span> 2003 ms</span><span class="ln">  09 Apply protection: <span class="rs p">PASS</span> 800 ms</span><span class="ln">  10 Print label: <span class="rs p">PASS</span> 42 ms</span><span class="ln">  11 Record run: <span class="rs p">PASS</span> 8 ms</span><span class="ln gap"> </span><span class="ln">     ADC.001: <span class="rs p">PASS</span> 1.212 V</span><span class="ln">     CLK.001: <span class="rs p">PASS</span> 216.0 MHz</span><span class="ln">     PWR.001: <span class="rs p">PASS</span> 3265.0 mV</span></code></pre></div>
+        <figcaption class="fig-cap mono">Terminal · one simulated unit through the factory firmware: program, provision, boot check</figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -438,15 +450,10 @@
     </div>
     <div class="split media">
       <article class="panel spec"><div class="panel-head"><span class="mono">Python · PySide6</span><span class="status s-done">Implemented</span></div><h3>What's in the repo</h3><dl class="spec-list"><div><dt>Build environment</dt><dd>Python 3.10+ and PySide6. The file format and CSV loaders need only the standard library.</dd></div><div><dt>What you get</dt><dd>One file per unit for system info, calibration and diagnostics, from a spreadsheet.</dd></div><div><dt>Architecture</dt><dd>A Qt-free core package holds the format and generators; the GUI sits on top.</dd></div><div><dt>Design</dt><dd>Rows of one id make one file; shared rows apply to every unit; an optional chip UID binds a file to one chip.</dd></div><div><dt>Implementation</dt><dd>A 32-byte header with two CRC-32s, then a TLV payload of at most 4096 bytes.</dd></div><div><dt>Test &amp; validation</dt><dd>Python tests cover the format and the CSV loaders.</dd></div><div><dt>App features</dt><dd>Preview records, write one or all, sample CSVs, and an Inspect page that checks CRCs and lists items.</dd></div></dl><p class="repo-links mono"><a href="https://github.com/soccentric-stm32/factory-data-gui" target="_blank" rel="noopener">factory-data-gui on GitHub ↗</a></p></article>
-      <div class="figure">
-        <p class="fig-cap mono">From spreadsheet to unit files</p>
-        <ol class="flow flow-v" role="list">
-          <li><i>1</i><b>Load CSV</b><span>One row per unit, channel or fault</span></li>
-          <li><i>2</i><b>Preview</b><span>Records grouped by id</span></li>
-          <li><i>3</i><b>Generate</b><span>.sys, .cal and .diag per unit</span></li>
-          <li><i>4</i><b>Inspect</b><span>Check both CRCs, list every item</span></li>
-        </ol>
-      </div>
+      <figure class="media-col">
+        <div class="win"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">Factory Data</span></div><img src="assets/shots/factory-data-gui.webp" width="1360" height="860" alt="Factory Data: the System info page with eight records loaded from a CSV and the generated .sys files in the output log" loading="lazy" decoding="async"></div>
+        <figcaption class="fig-cap mono">Screenshot · Factory Data, System info page, eight units from one CSV</figcaption>
+      </figure>
     </div>
   </div>
 </section>
