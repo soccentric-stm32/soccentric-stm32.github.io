@@ -744,7 +744,7 @@ h1 {
 
 /* slide with the capture on a stage and the repo contents beside it; the two
    columns alternate sides from one slide to the next */
-.split.media { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); align-items: stretch; }
+.split.media { grid-template-columns: minmax(0, 7fr) minmax(0, 13fr); align-items: stretch; }
 .media-col {
   display: flex; flex-direction: column; justify-content: center; gap: 12px;
   margin: 0; min-width: 0; padding: 0; border: 0; background: none;
@@ -765,7 +765,7 @@ h1 {
 .split.media > .panel { order: 0; padding: 0; border: 0; }
 /* every other slide swaps: repo panel on the left, capture on the right */
 @media (min-width: 901px) {
-  .section:nth-of-type(odd) .split.media { grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); }
+  .section:nth-of-type(odd) .split.media { grid-template-columns: minmax(0, 13fr) minmax(0, 7fr); }
   .section:nth-of-type(odd) .split.media > .media-col,
   .section:nth-of-type(odd) .split.media > .figure { order: 1; }
 }
