@@ -761,20 +761,26 @@ h1 {
 @keyframes blink { 50% { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .term .cur { animation: none; } }
 
-/* slide with media on the left and the repo contents on the right */
-.split.media { grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr); align-items: start; }
-.media-col { display: flex; flex-direction: column; gap: 10px; margin: 0; min-width: 0; position: sticky; top: calc(var(--header-h) + 16px); }
+/* slide with the capture on a stage at the left and the repo contents at the right */
+.split.media { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); align-items: stretch; }
+.media-col {
+  display: flex; flex-direction: column; gap: 12px; margin: 0; min-width: 0;
+  padding: clamp(14px, 2vh, 22px); border: 1px solid var(--line); background: var(--bg-2);
+}
+.media-col > .win { margin-block: auto; }
+.media-col > .term { flex: 1; display: flex; flex-direction: column; }
+.media-col .term-body { flex: 1; }
 .media-col .fig-cap { font-size: 10.5px; letter-spacing: .05em; text-transform: uppercase; }
-.media-col .term-body { min-height: 0; }
+.split.media > .figure { order: -1; }
 
 .panel.spec { gap: clamp(6px, 1vh, 10px); }
-.spec-list { display: grid; border-top: 1px solid var(--line); }
+.spec-list { display: grid; border-top: 1px solid var(--line); flex: 1; align-content: space-between; }
 .spec-list > div {
-  display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 14px;
-  padding: clamp(5px, .9vh, 9px) 0; border-bottom: 1px solid var(--line); align-items: baseline;
+  display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: 14px;
+  padding: clamp(6px, 1vh, 10px) 0; border-bottom: 1px solid var(--line); align-items: baseline;
 }
-.spec-list dt { font: 600 10.5px/1.35 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
-.spec-list dd { font-size: 13.5px; line-height: 1.45; color: var(--ink-2); margin: 0; }
+.spec-list dt { font: 600 10px/1.4 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
+.spec-list dd { font-size: 13.5px; line-height: 1.45; color: var(--ink-2); margin: 0; text-wrap: pretty; }
 .spec-list dd code { font-family: var(--mono); font-size: .88em; color: var(--ink); }
 
 /* hero: layered screen captures */
@@ -794,7 +800,7 @@ h1 {
 
 @media (max-width: 900px) {
   .split.media { grid-template-columns: 1fr; }
-  .media-col { position: static; }
+  .split.media > .figure { order: 0; }
   .montage { aspect-ratio: 1.25; }
 }
 @media (max-width: 640px) {
