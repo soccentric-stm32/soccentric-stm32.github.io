@@ -1,6 +1,6 @@
 # SoCcentric STM32
 
-The website of SoCcentric STM32, a showcase of the open-source projects that together form a complete STM32 product baseline: an A/B bootloader, the same application in C and Rust on FreeRTOS and Zephyr, plus the Rust Embassy port, the HWVAL validation firmware and desktop GUI, and the HWVAL Factory provisioning station. It is a single static page with one slide per project, no framework and no build step, served by GitHub Pages at https://soccentric-stm32.github.io/.
+The website of SoCcentric STM32 (https://soccentric-stm32.github.io/). We provide firmware development consulting—working with your existing project or helping you create a new one. We use nine open-source building blocks (A/B bootloader, C/C++ and Rust applications, hardware validation firmware and GUI, and a factory provisioning station) to save redundant development time and cost, and we improve these building blocks after each completed project. We also help companies port existing C/C++ projects to Rust or start new Rust projects across three popular frameworks: Embassy, FreeRTOS and Zephyr.
 
 ## Features
 
@@ -41,3 +41,6 @@ to use, modify and ship it in your own products.
 
 Contributions are welcome. Fork the repository, make your change on a branch and
 open a pull request. Bug reports, ideas and improvements are all appreciated.
+
+
+
