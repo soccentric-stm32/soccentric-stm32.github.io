@@ -78,6 +78,86 @@
     });
   }
 
+  /* ---- captures: click a screen to max it out to near full size ------ */
+  var captures = $$('.media-col > .win, .media-col > .term');
+  if (captures.length) {
+    var maxout = document.createElement('div');
+    maxout.className = 'maxout';
+    maxout.hidden = true;
+    maxout.innerHTML =
+      '<div class="maxout-scrim" aria-hidden="true"></div>' +
+      '<figure class="maxout-stage" role="dialog" aria-modal="true" aria-label="Screen capture, full size"></figure>' +
+      '<button class="maxout-close" type="button">Close \u2715</button>';
+    var stage = $('.maxout-stage', maxout);
+    var closeBtn = $('.maxout-close', maxout);
+    var opener = null;
+    document.body.appendChild(maxout);
+
+    var captionOf = function (cap) {
+      var fig = cap.parentNode ? $('.fig-cap', cap.parentNode) : null;
+      return fig ? fig.textContent.trim() : '';
+    };
+
+    var closeMax = function () {
+      if (maxout.hidden) { return; }
+      maxout.hidden = true;
+      document.body.classList.remove('is-maxed');
+      stage.replaceChildren();
+      if (opener) { opener.focus({ preventScroll: true }); }
+    };
+
+    var openMax = function (cap) {
+      var clone = cap.cloneNode(true);
+      clone.removeAttribute('role');
+      clone.removeAttribute('tabindex');
+      clone.removeAttribute('aria-label');
+      clone.removeAttribute('aria-haspopup');
+      clone.removeAttribute('id');
+      $$('[id]', clone).forEach(function (el) { el.removeAttribute('id'); });
+      // a capture that was still lazy on the page must paint in the maxed view
+      $$('img', clone).forEach(function (img) {
+        img.loading = 'eager';
+        img.decoding = 'sync';
+      });
+      stage.replaceChildren(clone);
+      var caption = captionOf(cap);
+      if (caption) {
+        var capEl = document.createElement('figcaption');
+        capEl.className = 'maxout-cap mono';
+        capEl.textContent = caption;
+        stage.appendChild(capEl);
+      }
+      opener = cap;
+      maxout.hidden = false;
+      document.body.classList.add('is-maxed');
+      closeBtn.focus({ preventScroll: true });
+    };
+
+    captures.forEach(function (cap) {
+      var label = captionOf(cap) || 'the screen capture';
+      cap.setAttribute('role', 'button');
+      cap.setAttribute('tabindex', '0');
+      cap.setAttribute('aria-haspopup', 'dialog');
+      cap.setAttribute('aria-label', 'Max out ' + label);
+      cap.addEventListener('click', function () { openMax(cap); });
+      cap.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+          e.preventDefault();
+          openMax(cap);
+        }
+      });
+    });
+
+    $('.maxout-scrim', maxout).addEventListener('click', closeMax);
+    closeBtn.addEventListener('click', closeMax);
+    document.addEventListener('keydown', function (e) {
+      if (maxout.hidden) { return; }
+      if (e.key === 'Escape') { closeMax(); }
+      // only the close button is focusable inside the maxed view
+      else if (e.key === 'Tab') { e.preventDefault(); closeBtn.focus(); }
+    });
+  }
+
   /* ---- mobile menu: close after choosing a link ------------------------ */
   var menu = $('.menu');
   if (menu) {
