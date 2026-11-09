@@ -761,7 +761,8 @@ h1 {
 @keyframes blink { 50% { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .term .cur { animation: none; } }
 
-/* slide with the capture on a stage at the left and the repo contents at the right */
+/* slide with the capture on a stage and the repo contents beside it; the two
+   columns alternate sides from one slide to the next */
 .split.media { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); align-items: stretch; }
 .media-col {
   display: flex; flex-direction: column; gap: 12px; margin: 0; min-width: 0;
@@ -771,7 +772,14 @@ h1 {
 .media-col > .term { flex: 1; display: flex; flex-direction: column; }
 .media-col .term-body { flex: 1; }
 .media-col .fig-cap { font-size: 10.5px; letter-spacing: .05em; text-transform: uppercase; }
-.split.media > .figure { order: -1; }
+.split.media > .media-col, .split.media > .figure { order: -1; }
+.split.media > .panel { order: 0; }
+/* every other slide swaps: repo panel on the left, capture on the right */
+@media (min-width: 901px) {
+  .section:nth-of-type(odd) .split.media { grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); }
+  .section:nth-of-type(odd) .split.media > .media-col,
+  .section:nth-of-type(odd) .split.media > .figure { order: 1; }
+}
 
 .panel.spec { gap: clamp(6px, 1vh, 10px); }
 .spec-list { display: grid; border-top: 1px solid var(--line); flex: 1; align-content: space-between; }
@@ -800,7 +808,7 @@ h1 {
 
 @media (max-width: 900px) {
   .split.media { grid-template-columns: 1fr; }
-  .split.media > .figure { order: 0; }
+  .split.media > .media-col, .split.media > .figure { order: -1; }
   .montage { aspect-ratio: 1.25; }
 }
 @media (max-width: 640px) {
