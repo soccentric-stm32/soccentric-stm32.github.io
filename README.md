@@ -1,6 +1,6 @@
 # SoCcentric STM32
 
-The website of SoCcentric STM32 (https://soccentric-stm32.github.io/). We provide firmware development consulting—working with your existing project or helping you create a new one. We use eleven open-source building blocks (A/B bootloader and its flasher GUI, C/C++ and Rust applications, hardware validation firmware and GUI, a factory provisioning station and the factory firmware) to save redundant development time and cost, and we improve these building blocks after each completed project. We also help companies port existing C/C++ projects to Rust or start new Rust projects across three popular frameworks: Embassy, FreeRTOS and Zephyr.
+The website of SoCcentric STM32 (https://soccentric-stm32.github.io/). We provide firmware development consulting—working with your existing project or helping you create a new one. We use twelve open-source building blocks (A/B bootloader and its flasher GUI, C/C++ and Rust applications, hardware validation firmware and GUI, a factory provisioning station and the factory firmware) to save redundant development time and cost, and we improve these building blocks after each completed project. We also help companies port existing C/C++ projects to Rust or start new Rust projects across three popular frameworks: Embassy, FreeRTOS and Zephyr.
 
 ## Features
 
