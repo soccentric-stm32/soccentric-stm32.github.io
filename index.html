@@ -96,10 +96,10 @@
 
     <nav class="site-nav" aria-label="Primary">
       <div class="dd">
-        <a href="#bootloader" data-flash="bootloader" class="dd-top">Bootloader</a>
+        <a href="#bootloader-gui" data-flash="bootloader-gui" class="dd-top">Bootloader</a>
         <div class="dd-menu">
-          <a href="#bootloader" data-flash="bootloader">Firmware</a>
           <a href="#bootloader-gui" data-flash="bootloader-gui">GUI</a>
+          <a href="#bootloader" data-flash="bootloader">Firmware</a>
         </div>
       </div>
       <div class="dd">
@@ -146,8 +146,8 @@
         <nav aria-label="Mobile menu">
           <a href="#top" data-flash="top">Home</a>
           <span class="grp">Bootloader</span>
-          <a class="sub" href="#bootloader" data-flash="bootloader">Firmware</a>
           <a class="sub" href="#bootloader-gui" data-flash="bootloader-gui">GUI</a>
+          <a class="sub" href="#bootloader" data-flash="bootloader">Firmware</a>
           <span class="grp">RTOS</span>
           <a class="sub" href="#app-c" data-flash="app-c">FreeRTOS</a>
           <a class="sub" href="#app-zephyr" data-flash="app-zephyr">Zephyr</a>
@@ -189,175 +189,66 @@
       </dl>
     </div>
 
-    <div class="hero-demo">
-      <div class="screen" id="app" aria-hidden="true">
-        <div class="tb">
-          <div class="lights" aria-hidden="true"><i></i><i></i><i></i></div>
-          <span class="port">ttyACM0 · 921600</span>
-          <span class="activity" id="activity"><b>HWVAL 0.2</b> · Ready</span>
-        </div>
-        <div class="app">
-          <nav class="side" aria-hidden="true">
-            <p class="side-h">Device</p><a data-nav="0">Overview</a>
-            <p class="side-h">Test &amp; validation</p>
-            <a>All Tests <em>201</em></a><a>CPU &amp; System <em>✓31</em></a><a data-nav="tests">Analog <em id="badge">–</em></a><a>Communication <em>✓18</em></a><a>Memory <em>✓22</em></a>
-            <p class="side-h">Firmware</p><a data-nav="fw">Update (UART)</a><a data-nav="swd">Flash (SWD)</a>
-            <p class="side-h">Data</p><a data-nav="hist">History</a>
-          </nav>
-          <div class="main">
-            <!-- scene 1+2: test run and operator prompt -->
-            <div class="scene on" data-scene="tests">
-              <div class="scene-head"><b>Analog · ADC</b><span class="btn-mini">Run Group</span></div>
-              <table class="tbl" id="ttbl">
-                <tr><td><span class="st">QUEUED</span></td><td>ADC.001</td><td>Internal channels VREFINT / TEMP</td></tr>
-                <tr><td><span class="st">QUEUED</span></td><td>ADC.002</td><td>Calibration and offset</td></tr>
-                <tr><td><span class="st">QUEUED</span></td><td>ADC.003</td><td>Resolution 12/10/8/6-bit</td></tr>
-                <tr><td><span class="st">QUEUED</span></td><td>ADC.004</td><td>DAC1 → ADC1 loopback</td></tr>
-                <tr><td><span class="st">QUEUED</span></td><td>ADC.005</td><td>DMA circular conversion</td></tr>
-                <tr><td><span class="st">QUEUED</span></td><td>ADC.006</td><td>Watchdog threshold IRQ</td></tr>
-                <tr><td><span class="st">QUEUED</span></td><td>BTN.001</td><td>User button B1 (operator)</td></tr>
-              </table>
-              <div class="bar"><i id="tbar"></i></div>
-              <div class="scrim" id="scrim"></div>
-              <div class="prompt" id="prompt">
-                <p class="prompt-title">BTN.001 · Operator</p>
-                <p>Press the blue user button <b>B1</b> on the board.</p>
-                <div class="prompt-row"><span class="cd" id="cd">60 s</span><span class="btn-mini" id="pbtn">Waiting for B1…</span></div>
-              </div>
-            </div>
-            <!-- scene 3: firmware update -->
-            <div class="scene" data-scene="fw">
-              <div class="scene-head"><b>Firmware update</b><span class="btn-mini" id="fwbtn">Upload</span></div>
-              <div class="slots">
-                <div class="slot"><small>Slot A · Bank 1</small><b>demo-app 0.1.0</b><span class="pill ok" id="slotA">ACTIVE · CONFIRMED</span></div>
-                <div class="slot"><small>Slot B · Bank 2</small><b id="slotBn">empty</b><span class="pill" id="slotB">EMPTY</span></div>
-              </div>
-              <div class="steps-mini" id="fwsteps"><span>Upload</span><span>Verify</span><span>Activate</span><span>Trial boot</span><span>Confirmed</span></div>
-              <div class="bar"><i id="fwbar"></i></div>
-              <p class="fw-note" id="fwtxt">demo-app-0.2.0.img · 412 KB · CRC32 9f3a51c2</p>
-            </div>
-            <!-- scene 4: SWD flash -->
-            <div class="scene" data-scene="swd">
-              <div class="scene-head"><b>Flash (SWD)</b><span class="btn-mini">Flash HWVAL</span></div>
-              <div class="log" id="log"></div>
-            </div>
-            <!-- scene 5: history -->
-            <div class="scene runs" data-scene="hist">
-              <div class="scene-head"><b>Run history</b><span class="btn-mini">Export report</span></div>
-              <table class="tbl" id="htbl">
-                <tr><td><span class="st pass">PASS</span></td><td>2026-11-03 14:22</td><td>All · level S · 3F2A…C91E</td></tr>
-                <tr><td><span class="st fail">FAIL</span></td><td>2026-11-03 11:08</td><td>Analog · ADC.004 limits</td></tr>
-                <tr><td><span class="st pass">PASS</span></td><td>2026-11-02 18:40</td><td>Communication · loopback</td></tr>
-                <tr><td><span class="st pass">PASS</span></td><td>2026-11-02 16:15</td><td>Operator run · 42 tests</td></tr>
-                <tr><td><span class="st skip">SKIP</span></td><td>2026-11-02 09:03</td><td>Ethernet · no network</td></tr>
-              </table>
-            </div>
-          </div>
-        </div>
+<div class="hero-demo">
+      <div class="montage" role="group" aria-label="Screen captures of the desktop tools and firmware terminals">
+        <div class="m m1"><div class="win"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">HWVAL Studio</span></div><img src="assets/shots/validation-gui.webp" width="1360" height="860" alt="HWVAL Studio test results" loading="lazy" decoding="async"></div></div>
+        <div class="m m2"><div class="win"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">HWVAL Factory</span></div><img src="assets/shots/factory-station.webp" width="1360" height="860" alt="HWVAL Factory end-of-line station" loading="lazy" decoding="async"></div></div>
+        <div class="m m3"><div class="win"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">BOOT Flasher</span></div><img src="assets/shots/bootloader-gui.webp" width="1280" height="900" alt="BOOT Flasher" loading="lazy" decoding="async"></div></div>
+        <div class="m m4"><div class="term"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">C-FRT · USART6</span><span class="win-tag mono">Illustrative</span></div><pre class="term-body"><code><span class="ln"><span class="ts">[      6]</span> <span class="tag app">C-FRT</span> <span class="lv i">I</span> <span class="msg i">start v0.1.0 cc453dc</span></span><span class="ln"><span class="ts">[     13]</span> <span class="tag app">C-FRT</span> <span class="lv i">I</span> <span class="msg i">health: on trial</span></span><span class="ln"><span class="ts">[   5004]</span> <span class="tag app">C-FRT</span> <span class="lv i">I</span> <span class="msg i">health: passed</span></span></code></pre></div></div>
       </div>
-      <div class="scene-bar" id="scenebar" role="group" aria-label="HWVAL Studio preview scenes">
-        <button type="button" data-go="0" aria-controls="app"><i aria-hidden="true">01</i>Tests</button>
-        <button type="button" data-go="1" aria-controls="app"><i aria-hidden="true">02</i>Operator</button>
-        <button type="button" data-go="2" aria-controls="app"><i aria-hidden="true">03</i>Update</button>
-        <button type="button" data-go="3" aria-controls="app"><i aria-hidden="true">04</i>Flash</button>
-        <button type="button" data-go="4" aria-controls="app"><i aria-hidden="true">05</i>History</button>
-      </div>
-      <p class="sr-only" id="scene-status" aria-live="polite">Preview scene 1 of 5: Tests</p>
-      <p class="sr-only">Preview of HWVAL Studio: a test run, an operator prompt, an A/B firmware update, an SWD flash and the run history.</p>
-      <p class="preview-note">Illustrative preview of HWVAL Studio</p>
+      <p class="preview-note">Real screen captures · GUIs on their built-in simulators · terminals illustrative</p>
     </div>
   </div>
 
   <div class="wrap">
     <ul class="stat-strip" role="list">
-      <li><b>9</b><span>reusable building blocks</span></li>
+      <li><b>11</b><span>reusable building blocks</span></li>
       <li><b>3</b><span>Rust frameworks</span></li>
-      <li><b>201</b><span>hardware test cases</span></li>
+      <li><b>196</b><span>hardware test cases</span></li>
       <li><b>MIT</b><span>open-source baseline</span></li>
     </ul>
   </div>
 </section>
 
-<!-- ------------------------------------------------------ bootloader firmware -->
-<section class="section" id="bootloader" data-slide="Bootloader · Firmware">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow"><span class="num">01</span>Bootloader · Firmware</p>
-      <a class="icon-btn sec-repo" href="https://github.com/soccentric-stm32/bootloader" target="_blank" rel="noopener" aria-label="bootloader on GitHub" title="bootloader on GitHub"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg></a>
-      <h2>A/B bootloader, <span class="dim">updates that can't brick</span></h2>
-      <p class="sec-lead">A bare-metal bootloader with two application slots, one in each flash bank. A new image is written to the inactive slot, verified, trial-booted and kept only when the application confirms it is healthy. Otherwise the bootloader rolls back to the last good image.</p>
-    </div>
-    <div class="split">
-      <article class="panel">
-        <div class="panel-head"><span class="mono">Bare metal · C</span><span class="status s-done">Feature-complete · v0.1</span></div>
-        <h3>Features</h3>
-        <ul class="ticks" role="list">
-          <li>Dual-bank A/B slots; the same binary runs from either slot through a bank swap</li>
-          <li>Firmware update over UART (HWLINK) at 115200 or 921600 baud</li>
-          <li>256-byte image header; CRC32 of the header and of the slot read back from flash</li>
-          <li>Trial boot with a boot counter, 4 s IWDG and automatic rollback after three failed starts</li>
-          <li>Append-only metadata records with CRC, safe against power loss</li>
-          <li>Host tools: <code>mkimage.py</code> to build images, <code>bootctl.py</code> to inspect, update and activate</li>
-          <li>About 28 KB of flash; no RTOS, no dynamic memory</li>
-        </ul>
-        <p class="repo-links mono"><a href="#bootloader-gui" data-flash="bootloader-gui">Flash it from the desktop GUI ↓</a></p>
-      </article>
-      <div class="figure">
-        <p class="fig-cap mono">Flash layout · STM32F767 · dual bank</p>
-        <div class="flashmap" role="img" aria-label="Bank 1 holds the 32 KB bootloader and slot A; bank 2 holds slot B">
-          <div class="bank"><small>Bank 1</small><span class="fm boot">Bootloader · 32 KB</span><span class="fm on">Slot A · 976 KB</span></div>
-          <div class="bank"><small>Bank 2</small><span class="fm">Slot B · 976 KB</span></div>
-        </div>
-        <ol class="flow" role="list">
-          <li><i>1</i>Upload</li>
-          <li><i>2</i>Verify CRC</li>
-          <li><i>3</i>Activate</li>
-          <li><i>4</i>Trial boot</li>
-          <li><i>5</i>Confirm or roll back</li>
-        </ol>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ------------------------------------------------------- bootloader GUI -->
+<!-- -------------------- bootloader · gui -->
 <section class="section" id="bootloader-gui" data-slide="Bootloader · GUI">
   <div class="wrap">
     <div class="sec-head">
-      <p class="eyebrow"><span class="num">02</span>Bootloader · GUI</p>
+      <p class="eyebrow"><span class="num">01</span>Bootloader · GUI</p>
       <a class="icon-btn sec-repo" href="https://github.com/soccentric-stm32/bootloader-gui" target="_blank" rel="noopener" aria-label="bootloader-gui on GitHub" title="bootloader-gui on GitHub"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg></a>
       <h2>BOOT Flasher, <span class="dim">one app from build to board</span></h2>
       <p class="sec-lead">A desktop app that builds the bootloader and programs it over SWD, then clones, builds, signs and uploads each firmware project through it. The board's slots, trusted key and security floor are checked before anything is written.</p>
     </div>
-    <div class="split">
-      <article class="panel">
-        <div class="panel-head"><span class="mono">Python · PySide6</span><span class="status s-done">Implemented</span></div>
-        <h3>Features</h3>
-        <ul class="ticks" role="list">
-          <li>Builds BOOT and flashes it over SWD, in the Docker toolchain or with host OpenOCD</li>
-          <li>Provision, probe, reset and erase a board from the same window</li>
-          <li>Five firmware projects: clone if missing, build, sign with <code>mkimage.py</code>, upload with <code>bootctl.py</code></li>
-          <li>Board panel with BOOT's version, active slot, trusted key and security floor</li>
-          <li>Warns before an upload BOOT would refuse, such as a wrong key or a counter below the floor</li>
-          <li>Recovers a board whose application does not answer, by catching BOOT's listen window</li>
-          <li>Follows the system light and dark theme; every command and path is remembered</li>
-        </ul>
-        <p class="repo-links mono"><a href="#bootloader" data-flash="bootloader">See the firmware ↑</a></p>
-      </article>
-      <div class="figure">
-        <p class="fig-cap mono">App pages</p>
-        <ol class="stack" role="list">
-          <li><b>Board</b><span>port · version · slots · key · floor</span></li>
-          <li class="hi"><b>Bootloader</b><span>build · SWD flash · provision</span></li>
-          <li><b>Applications</b><span>clone · build · sign · upload</span></li>
-          <li class="base"><b>Recovery</b><span>catch BOOT · end a trial</span></li>
-        </ol>
-      </div>
+    <div class="split media">
+      <figure class="media-col">
+        <div class="win"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">BOOT Flasher</span></div><img src="assets/shots/bootloader-gui.webp" width="1280" height="900" alt="BOOT Flasher: the Applications page for C FreeRTOS with its clone, build, sign and flash steps and the Board panel" loading="lazy" decoding="async"></div>
+        <figcaption class="fig-cap mono">Screenshot · BOOT Flasher, Applications page, no board attached</figcaption>
+      </figure>
+      <article class="panel spec"><div class="panel-head"><span class="mono">Python · PySide6</span><span class="status s-done">Implemented</span></div><h3>What's in the repo</h3><dl class="spec-list"><div><dt>Build environment</dt><dd>Python with PySide6; <code>make deps</code> then <code>make gui</code>. It drives the bootloader repo's own Docker toolchain, or the host's OpenOCD.</dd></div><div><dt>What you get</dt><dd>One window from source to board: build, sign and install without typing commands. It warns before an upload the board would refuse.</dd></div><div><dt>Architecture</dt><dd>A thin desktop front-end over the bootloader's own tools (<code>bootctl</code>, <code>mkimage</code>, <code>provision</code>), so the GUI never re-implements the protocol.</dd></div><div><dt>Design</dt><dd>Sidebar with the bootloader and six firmware projects, plus a Board panel. One pipeline per project: clone, build, sign and flash, each step runnable alone.</dd></div><div><dt>Implementation</dt><dd>Python and PySide6: a job runner for the command-line tools, a QSS theme with light and dark modes and a project model in one module.</dd></div><div><dt>Test &amp; validation</dt><dd>Python tests for the project model and the board-info parsing, and a byte-compile check on every build.</dd></div><div><dt>App features</dt><dd>Board panel with version, slots, trusted key and security floor; <em>Match board</em> signing; wrong-key warning; recover a board whose application does not answer.</dd></div></dl><p class="repo-links mono"><a href="https://github.com/soccentric-stm32/bootloader-gui" target="_blank" rel="noopener">bootloader-gui on GitHub ↗</a><a href="#bootloader" data-flash="bootloader">See the firmware ↓</a></p></article>
     </div>
   </div>
 </section>
 
-<!-- ----------------------------------------- application · C/C++ FreeRTOS -->
+<!-- -------------------- bootloader · firmware -->
+<section class="section" id="bootloader" data-slide="Bootloader · Firmware">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow"><span class="num">02</span>Bootloader · Firmware</p>
+      <a class="icon-btn sec-repo" href="https://github.com/soccentric-stm32/bootloader" target="_blank" rel="noopener" aria-label="bootloader on GitHub" title="bootloader on GitHub"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg></a>
+      <h2>A/B bootloader, <span class="dim">updates that can't brick</span></h2>
+      <p class="sec-lead">A bare-metal bootloader with two application slots, one in each flash bank. A new image is written to the inactive slot, verified, trial-booted and kept only when the application confirms it is healthy. Otherwise the bootloader rolls back to the last good image.</p>
+    </div>
+    <div class="split media">
+      <figure class="media-col">
+        <div class="term"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">BOOT · ttyACM0 · USART6 115200 8N1</span><span class="win-tag mono">Illustrative output</span></div><pre class="term-body"><code><span class="ln"><span class="ts">[      3]</span> <span class="tag boot">BOOT</span> <span class="lv i">I</span> <span class="msg i">start v0.1.0 259c3ee, reset 0x0C000000</span></span><span class="ln"><span class="ts">[     18]</span> <span class="tag boot">BOOT</span> <span class="lv i">I</span> <span class="msg i">slot A: ok, confirmed</span></span><span class="ln"><span class="ts">[     19]</span> <span class="tag boot">BOOT</span> <span class="lv i">I</span> <span class="msg i">slot B: ok, pending</span></span><span class="ln"><span class="ts">[     21]</span> <span class="tag boot">BOOT</span> <span class="lv i">I</span> <span class="msg i">sel: slot B on trial, count 1</span></span><span class="ln gap"> </span><span class="ln"><span class="ts">[      3]</span> <span class="tag boot">BOOT</span> <span class="lv i">I</span> <span class="msg i">start v0.1.0 259c3ee, reset 0x24000000</span></span><span class="ln"><span class="ts">[     14]</span> <span class="tag boot">BOOT</span> <span class="lv w">W</span> <span class="msg w">trial limit reached: slot rejected</span></span><span class="ln"><span class="ts">[     18]</span> <span class="tag boot">BOOT</span> <span class="lv i">I</span> <span class="msg i">slot A: ok, confirmed</span></span><span class="ln"><span class="ts">[     19]</span> <span class="tag boot">BOOT</span> <span class="lv i">I</span> <span class="msg i">slot B: ok, rejected</span></span><span class="ln"><span class="ts">[     21]</span> <span class="tag boot">BOOT</span> <span class="lv i">I</span> <span class="msg i">sel: slot A confirmed, count 0</span></span></code></pre></div>
+        <figcaption class="fig-cap mono">Terminal · BOOT's debug lines on USART6: a trial boot, then a rollback</figcaption>
+      </figure>
+      <article class="panel spec"><div class="panel-head"><span class="mono">Bare metal · C</span><span class="status s-done">Feature-complete · v0.1</span></div><h3>What's in the repo</h3><dl class="spec-list"><div><dt>Build environment</dt><dd>Docker <code>stm32-dev</code> image with arm-none-eabi-gcc, CMake and Ninja; <code>make build</code>, <code>make test</code>. The build fails if BOOT outgrows its 32&nbsp;KB.</dd></div><div><dt>What you get</dt><dd>Software updates that cannot brick the board. A new version installs beside the old one, is tried first and is rolled back automatically if it misbehaves. Only signed images are accepted.</dd></div><div><dt>Architecture</dt><dd>Dual-bank flash: 32&nbsp;KB bootloader, 16&nbsp;KB metadata and a 976&nbsp;KB slot per bank. A bank swap lets one binary run from either slot.</dd></div><div><dt>Design</dt><dd>Append-only, power-loss-safe metadata records. Trial boot under a watchdog, rollback after three failed starts, ECDSA P-256 signatures and an anti-rollback counter.</dd></div><div><dt>Implementation</dt><dd>Bare-metal C, about 28&nbsp;KB of flash, no RTOS and no dynamic memory. HWLINK over UART (COBS, CRC-32, FlatBuffers) at 115200 or 921600 baud.</dd></div><div><dt>Test &amp; validation</dt><dd>Host C tests against a simulated 2&nbsp;MB flash, Python tests with a simulated bootloader on a pseudo-terminal, layout and protocol contract checks and an optional hardware-in-the-loop rollback test.</dd></div><div><dt>Host tools</dt><dd><code>bootctl.py</code> to inspect, update and activate; <code>mkimage.py</code> to build, sign and inspect images; <code>provision.sh</code> for option bytes and the first flash.</dd></div></dl><p class="repo-links mono"><a href="#bootloader-gui" data-flash="bootloader-gui">Flash it from the desktop GUI ↑</a><a href="https://github.com/soccentric-stm32/bootloader/blob/HEAD/docs/IMAGE_SIGNING.md" target="_blank" rel="noopener">Image signing guide ↗</a></p></article>
+    </div>
+  </div>
+</section>
+
+<!-- -------------------- c · freertos -->
 <section class="section" id="app-c" data-slide="C · FreeRTOS">
   <div class="wrap">
     <div class="sec-head">
@@ -366,35 +257,17 @@
       <h2>FreeRTOS application <span class="dim">in C/C++</span></h2>
       <p class="sec-lead">The reference application and the template for new products. It runs under the A/B bootloader, talks to the host over HWLINK, supervises its own tasks and confirms a new image only after a health check.</p>
     </div>
-    <div class="split">
-      <article class="panel">
-        <div class="panel-head"><span class="mono">C · FreeRTOS · STM32CubeF7</span><span class="status s-done">Feature-complete</span></div>
-        <h3>Features</h3>
-        <ul class="ticks" role="list">
-          <li>Four tasks: Health, Comms, Button and LED, all created before the scheduler starts</li>
-          <li>HWLINK over UART: COBS framing, CRC-32, verified FlatBuffers, replay of the last reply</li>
-          <li>Health task owns the watchdog; every task must check in, or the board resets</li>
-          <li>Writes the bootloader's <code>CONFIRMED</code> record, its only flash write</li>
-          <li>Fault capture: reset cause, CFSR/HFSR/PC/LR, stack high-water marks and heap stats</li>
-          <li>LED patterns and debounced button events, controlled from the host</li>
-          <li>Footprint gate in the build: fails above 128 KB flash or 64 KB RAM</li>
-        </ul>
-      </article>
-      <div class="figure">
-        <p class="fig-cap mono">Firmware layers</p>
-        <ol class="stack" role="list">
-          <li class="hi"><b>Tasks</b><span>health · comms · button · LED</span></li>
-          <li><b>Services</b><span>HWLINK · watchdog · fault record</span></li>
-          <li><b>FreeRTOS kernel</b><span>queues · notifications · static allocation</span></li>
-          <li><b>HAL / LL · CMSIS</b><span>startup · clocks · drivers</span></li>
-          <li class="base"><b>Bootloader contract</b><span>slot · image header · confirm</span></li>
-        </ol>
-      </div>
+    <div class="split media">
+      <figure class="media-col">
+        <div class="term"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">C FreeRTOS · ttyACM0 · USART6 115200 8N1</span><span class="win-tag mono">Illustrative output</span></div><pre class="term-body"><code><span class="ln"><span class="ts">[      3]</span> <span class="tag boot">BOOT</span> <span class="lv i">I</span> <span class="msg i">start v0.1.0 259c3ee, reset 0x0C000000</span></span><span class="ln"><span class="ts">[     18]</span> <span class="tag boot">BOOT</span> <span class="lv i">I</span> <span class="msg i">slot A: ok, confirmed</span></span><span class="ln"><span class="ts">[     19]</span> <span class="tag boot">BOOT</span> <span class="lv i">I</span> <span class="msg i">slot B: ok, pending</span></span><span class="ln"><span class="ts">[     21]</span> <span class="tag boot">BOOT</span> <span class="lv i">I</span> <span class="msg i">sel: slot B on trial, count 1</span></span><span class="ln"><span class="ts">[      6]</span> <span class="tag app">C-FRT</span> <span class="lv i">I</span> <span class="msg i">start v0.1.0 cc453dc, slot B on trial, reset power-on</span></span><span class="ln"><span class="ts">[     13]</span> <span class="tag app">C-FRT</span> <span class="lv i">I</span> <span class="msg i">health: on trial, check in 5000 ms</span></span><span class="ln"><span class="ts">[   1862]</span> <span class="tag app">C-FRT</span> <span class="lv i">I</span> <span class="msg i">button: short press, next LED pattern</span></span><span class="ln"><span class="ts">[   3540]</span> <span class="tag app">C-FRT</span> <span class="lv i">I</span> <span class="msg i">button: short press, next LED pattern</span></span><span class="ln"><span class="ts">[   5004]</span> <span class="tag app">C-FRT</span> <span class="lv i">I</span> <span class="msg i">health: passed, CONFIRMED written</span></span><span class="ln"><span class="ts">[   8210]</span> <span class="tag app">C-FRT</span> <span class="lv i">I</span> <span class="msg i">button: long press, default LED patterns</span></span><span class="ln"><span class="ts">[  12007]</span> <span class="tag app">C-FRT</span> <span class="lv i">I</span> <span class="msg i">HWLINK: EnterBootloader, resetting into BOOT</span></span></code></pre></div>
+        <figcaption class="fig-cap mono">Terminal · four tasks running after BOOT hands over on trial</figcaption>
+      </figure>
+      <article class="panel spec"><div class="panel-head"><span class="mono">C · FreeRTOS · STM32CubeF7</span><span class="status s-done">Feature-complete</span></div><h3>What's in the repo</h3><dl class="spec-list"><div><dt>Build environment</dt><dd>Docker <code>stm32-dev</code> image; <code>scripts/build.sh</code>. The build fails if the image exceeds 128&nbsp;KB of flash or 64&nbsp;KB of RAM, and produces a ready-to-flash <code>demo.img</code>.</dd></div><div><dt>What you get</dt><dd>The reference application and the template for new products: it runs under the bootloader, watches its own health and confirms an update only when it is working.</dd></div><div><dt>Architecture</dt><dd>Four FreeRTOS tasks (Health, Comms, Button, LED) linked at <code>0x0800C000</code> so the same image runs from either bootloader slot.</dd></div><div><dt>Design</dt><dd>The Health task is the only watchdog feeder; the others check in with it. It writes the CONFIRMED record after the trial health check. Faults land in a no-init record.</dd></div><div><dt>Implementation</dt><dd>C with static allocation only, so nothing is allocated after the scheduler starts. HWLINK over USART3, debug lines on USART6.</dd></div><div><dt>Test &amp; validation</dt><dd>Jenkins runs build, static analysis, boot-contract and image checks. A fail-health build option exercises the bootloader's rollback. Written to an SRS.</dd></div><div><dt>App features</dt><dd>Seven LED patterns, a debounced button with short and long press, nine HWLINK commands and a status reply with stack and heap high-water marks.</dd></div></dl><p class="repo-links mono"><a href="https://github.com/soccentric-stm32/app-c-freertos" target="_blank" rel="noopener">app-c-freertos on GitHub ↗</a></p></article>
     </div>
   </div>
 </section>
 
-<!-- ----------------------------------------------------- application · Zephyr -->
+<!-- -------------------- c · zephyr -->
 <section class="section" id="app-zephyr" data-slide="C · Zephyr">
   <div class="wrap">
     <div class="sec-head">
@@ -403,34 +276,17 @@
       <h2>Zephyr application <span class="dim">on Zephyr 4.4</span></h2>
       <p class="sec-lead">The same application built the Zephyr way, with devicetree, Kconfig and threads, for products that need a full OS with drivers and networking. It uses the same slot, protocol and health contract as the others.</p>
     </div>
-    <div class="split">
-      <article class="panel">
-        <div class="panel-head"><span class="mono">C · Zephyr 4.4.2</span><span class="status s-done">Implemented</span></div>
-        <h3>Features</h3>
-        <ul class="ticks" role="list">
-          <li>Devicetree overlay whose flash partitions match the bootloader layout</li>
-          <li>Clock and caches set up from devicetree and Kconfig</li>
-          <li>Interrupt-driven HWLINK on UART; malformed or unknown frames get a clear NAK</li>
-          <li>Health thread as the only watchdog feeder; other threads check in through a <code>k_event</code></li>
-          <li>Fatal-error record for faults, assertions and stack overflows</li>
-          <li>Freestanding CMake build without a west workspace, in a Docker image</li>
-        </ul>
-      </article>
-      <div class="figure">
-        <p class="fig-cap mono">Firmware layers</p>
-        <ol class="stack" role="list">
-          <li class="hi"><b>Threads</b><span>health · comms · button · LED</span></li>
-          <li><b>Subsystems</b><span>HWLINK · watchdog · fault record</span></li>
-          <li><b>Device drivers</b><span>described in devicetree</span></li>
-          <li><b>Zephyr kernel</b><span>configured with Kconfig</span></li>
-          <li class="base"><b>Partitions</b><span>bootloader · metadata · slot</span></li>
-        </ol>
-      </div>
+    <div class="split media">
+      <figure class="media-col">
+        <div class="term"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">C Zephyr · ttyACM0 · USART6 115200 8N1</span><span class="win-tag mono">Illustrative output</span></div><pre class="term-body"><code><span class="ln"><span class="ts">[      3]</span> <span class="tag boot">BOOT</span> <span class="lv i">I</span> <span class="msg i">start v0.1.0 259c3ee, reset 0x0C000000</span></span><span class="ln"><span class="ts">[     18]</span> <span class="tag boot">BOOT</span> <span class="lv i">I</span> <span class="msg i">slot A: ok, confirmed</span></span><span class="ln"><span class="ts">[     19]</span> <span class="tag boot">BOOT</span> <span class="lv i">I</span> <span class="msg i">slot B: ok, pending</span></span><span class="ln"><span class="ts">[     21]</span> <span class="tag boot">BOOT</span> <span class="lv i">I</span> <span class="msg i">sel: slot B on trial, count 1</span></span><span class="ln"><span class="ts">[      6]</span> <span class="tag app">C-ZEP</span> <span class="lv i">I</span> <span class="msg i">start v0.1.0 ab25ad8, slot B on trial, reset power-on</span></span><span class="ln"><span class="ts">[     13]</span> <span class="tag app">C-ZEP</span> <span class="lv i">I</span> <span class="msg i">health: on trial, check in 5000 ms</span></span><span class="ln"><span class="ts">[   1862]</span> <span class="tag app">C-ZEP</span> <span class="lv i">I</span> <span class="msg i">button: short press, LED pattern 2</span></span><span class="ln"><span class="ts">[   3540]</span> <span class="tag app">C-ZEP</span> <span class="lv i">I</span> <span class="msg i">button: short press, LED pattern 3</span></span><span class="ln"><span class="ts">[   5004]</span> <span class="tag app">C-ZEP</span> <span class="lv i">I</span> <span class="msg i">health: passed, CONFIRMED written</span></span><span class="ln"><span class="ts">[   8210]</span> <span class="tag app">C-ZEP</span> <span class="lv i">I</span> <span class="msg i">button: long press, default LED patterns</span></span><span class="ln"><span class="ts">[  12007]</span> <span class="tag app">C-ZEP</span> <span class="lv i">I</span> <span class="msg i">HWLINK: EnterBootloader, resetting into BOOT</span></span></code></pre></div>
+        <figcaption class="fig-cap mono">Terminal · four threads running after BOOT hands over on trial</figcaption>
+      </figure>
+      <article class="panel spec"><div class="panel-head"><span class="mono">C · Zephyr 4.4.2</span><span class="status s-done">Implemented</span></div><h3>What's in the repo</h3><dl class="spec-list"><div><dt>Build environment</dt><dd>Docker image with Zephyr and its SDK pinned; <code>scripts/build.sh</code>. The build enforces a 128&nbsp;KB flash and 64&nbsp;KB RAM budget and produces <code>zephyr-app.img</code>.</dd></div><div><dt>What you get</dt><dd>The same product behaviour as the FreeRTOS version on Zephyr, so you can compare the two kernels on the same job before you choose.</dd></div><div><dt>Architecture</dt><dd>A devicetree overlay that matches the bootloader's flash layout. Source grouped by responsibility: main, board, comms, boot and system.</dd></div><div><dt>Design</dt><dd>The health thread is the only watchdog feeder; other threads check in through a <code>k_event</code>. Malformed requests get a NAK and repeated sequence numbers are replayed.</dd></div><div><dt>Implementation</dt><dd>C on Zephyr with an interrupt-driven HWLINK receive ring and deferred logging to USART6. Fault, assert and stack-overflow capture into no-init RAM.</dd></div><div><dt>Test &amp; validation</dt><dd>Jenkins runs build, boot-contract and image checks. A fail-health Kconfig option exercises rollback.</dd></div><div><dt>App features</dt><dd>Seven LED patterns, button on a GPIO interrupt, <code>SetBaud</code> to 921600 with fallback to 115200, and a status reply with slot state and stack marks.</dd></div></dl><p class="repo-links mono"><a href="https://github.com/soccentric-stm32/app-c-zephyr" target="_blank" rel="noopener">app-c-zephyr on GitHub ↗</a></p></article>
     </div>
   </div>
 </section>
 
-<!-- ------------------------------------------------ application · Rust Embassy -->
+<!-- -------------------- rust · embassy -->
 <section class="section" id="rust-embassy" data-slide="Rust · Embassy">
   <div class="wrap">
     <div class="sec-head">
@@ -439,34 +295,17 @@
       <h2>Rust application <span class="dim">on Embassy</span></h2>
       <p class="sec-lead">Many companies are moving from C/C++ to Rust for memory safety and modern tooling—we help port existing projects or start new ones across three popular Rust frameworks: Embassy, FreeRTOS and Zephyr. This build runs in <code>no_std</code> Rust on the Embassy async executor under the A/B bootloader, with four async tasks, HWLINK, watchdog supervision and health confirmation.</p>
     </div>
-    <div class="split">
-      <article class="panel">
-        <div class="panel-head"><span class="mono">Rust · Embassy · no_std</span><span class="status s-done">Feature-complete</span></div>
-        <h3>Features</h3>
-        <ul class="ticks" role="list">
-          <li>Pure Rust <code>no_std</code> on the Embassy async executor</li>
-          <li>Four async tasks: Health, Comms, Button and LED</li>
-          <li>Seven LED patterns and a debounced B1 button</li>
-          <li>HWLINK over USART3: COBS framing, CRC-32 and FlatBuffers</li>
-          <li>Health task is the only watchdog feeder and writes the <code>CONFIRMED</code> record</li>
-          <li>Fault record in no-init RAM, with a footprint gate and reproducible builds</li>
-        </ul>
-      </article>
-      <div class="figure">
-        <p class="fig-cap mono">Firmware layers</p>
-        <ol class="stack" role="list">
-          <li class="hi"><b>Rust async tasks</b><span>health · comms · button · LED</span></li>
-          <li><b>Services</b><span>HWLINK · watchdog · fault record</span></li>
-          <li><b>Embassy executor</b><span>async tasks · timers · channels</span></li>
-          <li><b>cortex-m-rt · memory.x</b><span>startup · linker layout</span></li>
-          <li class="base"><b>Bootloader contract</b><span>slot · image header · confirm</span></li>
-        </ol>
-      </div>
+    <div class="split media">
+      <figure class="media-col">
+        <div class="term"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">Rust Embassy · ttyACM0 · USART6 115200 8N1</span><span class="win-tag mono">Illustrative output</span></div><pre class="term-body"><code><span class="ln"><span class="ts">[      3]</span> <span class="tag boot">BOOT</span> <span class="lv i">I</span> <span class="msg i">start v0.1.0 259c3ee, reset 0x0C000000</span></span><span class="ln"><span class="ts">[     18]</span> <span class="tag boot">BOOT</span> <span class="lv i">I</span> <span class="msg i">slot A: ok, confirmed</span></span><span class="ln"><span class="ts">[     19]</span> <span class="tag boot">BOOT</span> <span class="lv i">I</span> <span class="msg i">slot B: ok, pending</span></span><span class="ln"><span class="ts">[     21]</span> <span class="tag boot">BOOT</span> <span class="lv i">I</span> <span class="msg i">sel: slot B on trial, count 1</span></span><span class="ln"><span class="ts">[      6]</span> <span class="tag app">R-EMB</span> <span class="lv i">I</span> <span class="msg i">start v0.1.0 10850c2, slot B on trial, reset power-on</span></span><span class="ln"><span class="ts">[     13]</span> <span class="tag app">R-EMB</span> <span class="lv i">I</span> <span class="msg i">health: on trial, check in 5000 ms</span></span><span class="ln"><span class="ts">[   1862]</span> <span class="tag app">R-EMB</span> <span class="lv i">I</span> <span class="msg i">button: short press, next LED pattern</span></span><span class="ln"><span class="ts">[   3540]</span> <span class="tag app">R-EMB</span> <span class="lv i">I</span> <span class="msg i">button: short press, next LED pattern</span></span><span class="ln"><span class="ts">[   5004]</span> <span class="tag app">R-EMB</span> <span class="lv i">I</span> <span class="msg i">health: passed, CONFIRMED written</span></span><span class="ln"><span class="ts">[   8210]</span> <span class="tag app">R-EMB</span> <span class="lv i">I</span> <span class="msg i">button: long press, default LED patterns</span></span><span class="ln"><span class="ts">[  12007]</span> <span class="tag app">R-EMB</span> <span class="lv i">I</span> <span class="msg i">HWLINK: EnterBootloader, resetting into BOOT</span></span></code></pre></div>
+        <figcaption class="fig-cap mono">Terminal · four async tasks running after BOOT hands over on trial</figcaption>
+      </figure>
+      <article class="panel spec"><div class="panel-head"><span class="mono">Rust · Embassy · no_std</span><span class="status s-done">Feature-complete</span></div><h3>What's in the repo</h3><dl class="spec-list"><div><dt>Build environment</dt><dd>Docker image with the pinned Rust toolchain and <code>Cargo.lock</code>; <code>scripts/build.sh</code> produces <code>embassy-app.img</code>.</dd></div><div><dt>What you get</dt><dd>The same product in pure Rust, for teams moving off C: memory safety and async tasks without a heap or an RTOS kernel.</dd></div><div><dt>Architecture</dt><dd><code>no_std</code> Rust on the Embassy executor with four async tasks (health, comms, button, LED), linked for either bootloader slot.</dd></div><div><dt>Design</dt><dd>The same boot contract as the C versions: one watchdog feeder, CONFIRMED written after the trial check, and a fault record in a reserved no-init window.</dd></div><div><dt>Implementation</dt><dd>Pure Rust with no allocator. COBS framing and CRC-32 shared with the C code; a fixed-buffer FlatBuffers codec.</dd></div><div><dt>Test &amp; validation</dt><dd>The codec is verified against the reference encoder. Jenkins runs build, clippy and format checks.</dd></div><div><dt>App features</dt><dd>Seven LED patterns, EXTI button with 30&nbsp;ms debounce, HWLINK at 115200 or 921600 baud, unsolicited button events.</dd></div></dl><p class="repo-links mono"><a href="https://github.com/soccentric-stm32/app-rust-embassy" target="_blank" rel="noopener">app-rust-embassy on GitHub ↗</a></p></article>
     </div>
   </div>
 </section>
 
-<!-- ------------------------------------------------ application · Rust FreeRTOS -->
+<!-- -------------------- rust · freertos -->
 <section class="section" id="rust-freertos" data-slide="Rust · FreeRTOS">
   <div class="wrap">
     <div class="sec-head">
@@ -475,34 +314,17 @@
       <h2>Rust application <span class="dim">on FreeRTOS</span></h2>
       <p class="sec-lead">The same application written in <code>no_std</code> Rust, with its tasks running on the FreeRTOS kernel and driven from Rust through a thin C platform layer. It uses the same slot, HWLINK protocol and health contract as the C FreeRTOS version.</p>
     </div>
-    <div class="split">
-      <article class="panel">
-        <div class="panel-head"><span class="mono">Rust · FreeRTOS · no_std</span><span class="status s-wip">Implemented · bench test pending</span></div>
-        <h3>Features</h3>
-        <ul class="ticks" role="list">
-          <li>Four Rust tasks on the FreeRTOS kernel, with statically sized stacks and queues</li>
-          <li>HWLINK over USART3 with COBS, CRC-32 and a fixed-buffer FlatBuffers codec verified against <code>flatc</code></li>
-          <li>Health task owns the watchdog and writes the <code>CONFIRMED</code> record</li>
-          <li><code>SetBaud</code> at 921600 with automatic fallback to 115200</li>
-          <li>Fault record, reset cause and status reporting matching the C version</li>
-          <li>CMake and cargo build in a pinned Rust Docker image; clippy, rustfmt and crates locked in <code>Cargo.lock</code></li>
-        </ul>
-      </article>
-      <div class="figure">
-        <p class="fig-cap mono">Firmware layers</p>
-        <ol class="stack" role="list">
-          <li class="hi"><b>Rust tasks</b><span>health · comms · button · LED</span></li>
-          <li><b>Services</b><span>HWLINK · watchdog · fault record</span></li>
-          <li><b>C platform layer · FreeRTOS bindings</b><span>tasks · queues · notifications</span></li>
-          <li><b>FreeRTOS kernel · STM32 HAL</b><span>startup · clocks · drivers</span></li>
-          <li class="base"><b>Bootloader contract</b><span>slot · image header · confirm</span></li>
-        </ol>
-      </div>
+    <div class="split media">
+      <figure class="media-col">
+        <div class="term"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">Rust FreeRTOS · ttyACM0 · USART6 115200 8N1</span><span class="win-tag mono">Illustrative output</span></div><pre class="term-body"><code><span class="ln"><span class="ts">[      3]</span> <span class="tag boot">BOOT</span> <span class="lv i">I</span> <span class="msg i">start v0.1.0 259c3ee, reset 0x0C000000</span></span><span class="ln"><span class="ts">[     18]</span> <span class="tag boot">BOOT</span> <span class="lv i">I</span> <span class="msg i">slot A: ok, confirmed</span></span><span class="ln"><span class="ts">[     19]</span> <span class="tag boot">BOOT</span> <span class="lv i">I</span> <span class="msg i">slot B: ok, pending</span></span><span class="ln"><span class="ts">[     21]</span> <span class="tag boot">BOOT</span> <span class="lv i">I</span> <span class="msg i">sel: slot B on trial, count 1</span></span><span class="ln"><span class="ts">[      6]</span> <span class="tag app">R-FRT</span> <span class="lv i">I</span> <span class="msg i">start v0.1.0 4cc93cc, slot B on trial, reset power-on</span></span><span class="ln"><span class="ts">[     13]</span> <span class="tag app">R-FRT</span> <span class="lv i">I</span> <span class="msg i">health: on trial, check in 5000 ms</span></span><span class="ln"><span class="ts">[   1862]</span> <span class="tag app">R-FRT</span> <span class="lv i">I</span> <span class="msg i">button: short press, next LED pattern</span></span><span class="ln"><span class="ts">[   3540]</span> <span class="tag app">R-FRT</span> <span class="lv i">I</span> <span class="msg i">button: short press, next LED pattern</span></span><span class="ln"><span class="ts">[   5004]</span> <span class="tag app">R-FRT</span> <span class="lv i">I</span> <span class="msg i">health: passed, CONFIRMED written</span></span><span class="ln"><span class="ts">[   8210]</span> <span class="tag app">R-FRT</span> <span class="lv i">I</span> <span class="msg i">button: long press, default LED patterns</span></span><span class="ln"><span class="ts">[  12007]</span> <span class="tag app">R-FRT</span> <span class="lv i">I</span> <span class="msg i">HWLINK: EnterBootloader, resetting into BOOT</span></span></code></pre></div>
+        <figcaption class="fig-cap mono">Terminal · four tasks running after BOOT hands over on trial</figcaption>
+      </figure>
+      <article class="panel spec"><div class="panel-head"><span class="mono">Rust · FreeRTOS · no_std</span><span class="status s-wip">Implemented · bench test pending</span></div><h3>What's in the repo</h3><dl class="spec-list"><div><dt>Build environment</dt><dd>Docker image with the pinned Rust toolchain; one CMake build compiles the C and Rust parts and links them into <code>rust-freertos-app.img</code>.</dd></div><div><dt>What you get</dt><dd>Keep the FreeRTOS kernel and drivers you already trust and write the application logic in Rust, one module at a time.</dd></div><div><dt>Architecture</dt><dd>A C platform layer (start-up, HAL drivers, task creation, boot contract) under Rust application logic, joined as a Rust static library.</dd></div><div><dt>Design</dt><dd>Four FreeRTOS tasks created before the scheduler starts. Rust panics, FreeRTOS asserts and stack overflows all take the same fault path.</dd></div><div><dt>Implementation</dt><dd>Rust <code>no_std</code> with no allocator on the FreeRTOS kernel; the C layer covers GPIO, USART3, the watchdog and the CONFIRMED flash write.</dd></div><div><dt>Test &amp; validation</dt><dd>Jenkins runs build, static analysis, format, boot-contract and image checks. Bench validation of this port is still pending.</dd></div><div><dt>App features</dt><dd>Same demo as the C version: LED patterns, button, HWLINK commands, <code>SetBaud</code> with fallback and stack marks in the status reply.</dd></div></dl><p class="repo-links mono"><a href="https://github.com/soccentric-stm32/app-rust-freertos" target="_blank" rel="noopener">app-rust-freertos on GitHub ↗</a></p></article>
     </div>
   </div>
 </section>
 
-<!-- -------------------------------------------------- application · Rust Zephyr -->
+<!-- -------------------- rust · zephyr -->
 <section class="section" id="rust-zephyr" data-slide="Rust · Zephyr">
   <div class="wrap">
     <div class="sec-head">
@@ -511,34 +333,17 @@
       <h2>Rust application <span class="dim">on Zephyr</span></h2>
       <p class="sec-lead">The same application written in <code>no_std</code> Rust on Zephyr 4.4, with Zephyr's own Rust support for threads, GPIO and flash. A small C layer covers the drivers the Rust bindings do not reach yet. It uses the same slot, protocol and health contract as the others.</p>
     </div>
-    <div class="split">
-      <article class="panel">
-        <div class="panel-head"><span class="mono">Rust · Zephyr 4.4.2 · no_std</span><span class="status s-wip">Implemented · bench test pending</span></div>
-        <h3>Features</h3>
-        <ul class="ticks" role="list">
-          <li>Four Rust threads with the C Zephyr version's priorities; no allocator</li>
-          <li>Same HWLINK protocol and fixed-buffer FlatBuffers codec as the Embassy build</li>
-          <li>Health thread as the only watchdog feeder, with the <code>CONFIRMED</code> record</li>
-          <li>Fault record for CPU faults, stack overflows and Rust panics, shown on LD3</li>
-          <li>Thin C layer for UART, watchdog and the fatal handler, mirroring the C Zephyr version</li>
-          <li>Docker build on the Zephyr image; rustfmt and clippy in CI</li>
-        </ul>
-      </article>
-      <div class="figure">
-        <p class="fig-cap mono">Firmware layers</p>
-        <ol class="stack" role="list">
-          <li class="hi"><b>Rust threads</b><span>health · comms · button · LED</span></li>
-          <li><b>Services</b><span>HWLINK · watchdog · fault record</span></li>
-          <li><b>zephyr crate · C platform layer</b><span>threads · GPIO · flash · UART</span></li>
-          <li><b>Zephyr kernel</b><span>devicetree · Kconfig</span></li>
-          <li class="base"><b>Partitions</b><span>bootloader · metadata · slot</span></li>
-        </ol>
-      </div>
+    <div class="split media">
+      <figure class="media-col">
+        <div class="term"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">Rust Zephyr · ttyACM0 · USART6 115200 8N1</span><span class="win-tag mono">Illustrative output</span></div><pre class="term-body"><code><span class="ln"><span class="ts">[      3]</span> <span class="tag boot">BOOT</span> <span class="lv i">I</span> <span class="msg i">start v0.1.0 259c3ee, reset 0x0C000000</span></span><span class="ln"><span class="ts">[     18]</span> <span class="tag boot">BOOT</span> <span class="lv i">I</span> <span class="msg i">slot A: ok, confirmed</span></span><span class="ln"><span class="ts">[     19]</span> <span class="tag boot">BOOT</span> <span class="lv i">I</span> <span class="msg i">slot B: ok, pending</span></span><span class="ln"><span class="ts">[     21]</span> <span class="tag boot">BOOT</span> <span class="lv i">I</span> <span class="msg i">sel: slot B on trial, count 1</span></span><span class="ln"><span class="ts">[      6]</span> <span class="tag app">R-ZEP</span> <span class="lv i">I</span> <span class="msg i">start v0.1.0 df1ffcd, slot B on trial, reset power-on</span></span><span class="ln"><span class="ts">[     13]</span> <span class="tag app">R-ZEP</span> <span class="lv i">I</span> <span class="msg i">health: on trial, check in 5000 ms</span></span><span class="ln"><span class="ts">[   1862]</span> <span class="tag app">R-ZEP</span> <span class="lv i">I</span> <span class="msg i">button: short press, next LED pattern</span></span><span class="ln"><span class="ts">[   3540]</span> <span class="tag app">R-ZEP</span> <span class="lv i">I</span> <span class="msg i">button: short press, next LED pattern</span></span><span class="ln"><span class="ts">[   5004]</span> <span class="tag app">R-ZEP</span> <span class="lv i">I</span> <span class="msg i">health: passed, CONFIRMED written</span></span><span class="ln"><span class="ts">[   8210]</span> <span class="tag app">R-ZEP</span> <span class="lv i">I</span> <span class="msg i">button: long press, default LED patterns</span></span><span class="ln"><span class="ts">[  12007]</span> <span class="tag app">R-ZEP</span> <span class="lv i">I</span> <span class="msg i">HWLINK: EnterBootloader, resetting into BOOT</span></span></code></pre></div>
+        <figcaption class="fig-cap mono">Terminal · four threads running after BOOT hands over on trial</figcaption>
+      </figure>
+      <article class="panel spec"><div class="panel-head"><span class="mono">Rust · Zephyr 4.4.2 · no_std</span><span class="status s-wip">Implemented · bench test pending</span></div><h3>What's in the repo</h3><dl class="spec-list"><div><dt>Build environment</dt><dd>Docker image for Zephyr 4.4 with the Rust toolchain; <code>scripts/build.sh</code> produces <code>rust-zephyr-app.img</code> within a 128&nbsp;KB / 64&nbsp;KB budget.</dd></div><div><dt>What you get</dt><dd>Zephyr's own Rust support for threads, GPIO and flash: the route to Rust on a mainstream RTOS with devicetree and Kconfig.</dd></div><div><dt>Architecture</dt><dd>Zephyr's official Rust module with four threads defined as <code>#[zephyr::thread]</code>; a small C layer covers what the bindings do not reach yet.</dd></div><div><dt>Design</dt><dd>The same watchdog and trial contract as the other demos. The fail-health Kconfig option is exported to Rust as a <code>cfg</code> flag.</dd></div><div><dt>Implementation</dt><dd>Rust <code>no_std</code> with no allocator, about 45&nbsp;KB of flash and 35&nbsp;KB of RAM. CPU faults, stack overflows and panics are captured into no-init RAM.</dd></div><div><dt>Test &amp; validation</dt><dd>rustfmt and clippy run with warnings as errors in Jenkins, alongside the build, boot-contract and image checks.</dd></div><div><dt>App features</dt><dd>Same demo as the other versions; the HWLINK codec is shared with the Embassy build.</dd></div></dl><p class="repo-links mono"><a href="https://github.com/soccentric-stm32/app-rust-zephyr" target="_blank" rel="noopener">app-rust-zephyr on GitHub ↗</a></p></article>
     </div>
   </div>
 </section>
 
-<!-- ------------------------------------------------ validation · firmware -->
+<!-- -------------------- validation · firmware -->
 <section class="section" id="validation" data-slide="Validation · Firmware">
   <div class="wrap">
     <div class="sec-head">
@@ -547,36 +352,17 @@
       <h2>HWVAL, <span class="dim">the validation firmware</span></h2>
       <p class="sec-lead">FreeRTOS firmware that tests every usable hardware block of the STM32F767ZI and the NUCLEO board, both at bring-up and before each board ships. It runs from a terminal or under the desktop and factory apps.</p>
     </div>
-    <div class="split">
-      <article class="panel">
-        <div class="panel-head"><span class="mono">C · FreeRTOS · LwIP</span><span class="status s-done">Feature-complete</span></div>
-        <h3>Features</h3>
-        <ul class="ticks" role="list">
-          <li>201 test cases in 49 groups: CPU, clocks, memory, ADC/DAC, timers, UART, SPI, I2C, CAN, USB, Ethernet and more</li>
-          <li>Three levels: standalone, harness-wired and full bench with test equipment</li>
-          <li>Operator prompts for buttons, LEDs and anything a person must confirm</li>
-          <li>Text CLI for people, a script mode with JSON, and HWLINK link mode for the apps</li>
-          <li>Host script that writes JSON and Markdown reports per board</li>
-          <li>Build gates for footprint, requirement coverage and cppcheck; warnings are errors</li>
-          <li>Written to an SRS; every requirement maps to a test</li>
-        </ul>
-        <p class="repo-links mono"><a href="https://github.com/soccentric-stm32/validation-firmware/blob/HEAD/docs/TEST_CATALOGUE.md" target="_blank" rel="noopener">Test catalogue ↗</a></p>
-      </article>
-      <div class="figure">
-        <p class="fig-cap mono">One validation run</p>
-        <ol class="flow flow-v" role="list">
-          <li><i>1</i><b>Detect</b><span>Board, harness and equipment present</span></li>
-          <li><i>2</i><b>Select</b><span>Groups and level for this run</span></li>
-          <li><i>3</i><b>Run</b><span>Each test against its limits</span></li>
-          <li><i>4</i><b>Ask</b><span>Operator confirms what only a person can</span></li>
-          <li><i>5</i><b>Report</b><span>Pass, fail, skip in text or JSON</span></li>
-        </ol>
-      </div>
+    <div class="split media">
+      <figure class="media-col">
+        <div class="term"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">HWVAL console · ttyACM0 · 115200 8N1</span><span class="win-tag mono">Illustrative output</span></div><pre class="term-body"><code><span class="ln cmd"><span class="pr">hwval&gt;</span> version</span><span class="ln ">HWVAL v0.1.0 (git c1136a4) built 2026-11-06 [SRS-HWVAL-F767]</span><span class="ln cmd"><span class="pr">hwval&gt;</span> run ADC --level S</span><span class="ln"><span class="c-key">RESULT</span> ADC.001 <span class="rs p">PASS</span> 163</span><span class="ln"><span class="c-key">RESULT</span> ADC.002 <span class="rs p">PASS</span> 107</span><span class="ln"><span class="c-key">RESULT</span> ADC.003 <span class="rs p">PASS</span> 253</span><span class="ln"><span class="c-key">RESULT</span> ADC.005 <span class="rs p">PASS</span> 153</span><span class="ln"><span class="c-key">RESULT</span> ADC.006 <span class="rs p">PASS</span> 152</span><span class="ln"><span class="c-key">RESULT</span> ADC.007 <span class="rs s">SKIP</span> 116 HARNESS_MISSING</span><span class="ln"><span class="c-key">RESULT</span> ADC.008 <span class="rs p">PASS</span> 261</span><span class="ln"><span class="c-key">RESULT</span> ADC.012 <span class="rs p">PASS</span> 159</span><span class="ln cmd"><span class="pr">hwval&gt;</span> report</span><span class="ln ">REPORT 7 PASS, 0 FAIL, 1 SKIP, 0 N/A</span><span class="ln cmd"><span class="pr">hwval&gt;</span> <span class="cur"> </span></span></code></pre></div>
+        <figcaption class="fig-cap mono">Terminal · the HWVAL console over the ST-LINK virtual COM port</figcaption>
+      </figure>
+      <article class="panel spec"><div class="panel-head"><span class="mono">C · FreeRTOS · LwIP</span><span class="status s-done">Feature-complete</span></div><h3>What's in the repo</h3><dl class="spec-list"><div><dt>Build environment</dt><dd>Docker <code>stm32-dev</code> image; <code>scripts/build.sh</code>. A footprint gate checks image size and free RAM; strict cppcheck and <code>-Wall -Wextra -Werror</code>.</dd></div><div><dt>What you get</dt><dd>Know a new board is good before firmware work starts: every usable peripheral is tested and the result is a pass/fail report per board.</dd></div><div><dt>Architecture</dt><dd>FreeRTOS firmware with 196 test cases grouped by hardware block, reachable from a console, a script mode with JSON output, or the binary HWLINK link mode.</dd></div><div><dt>Design</dt><dd>Three test levels (standalone, harness-wired, external equipment), operator prompts for human actions, and destructive flash tests confined to a reserved sector.</dd></div><div><dt>Implementation</dt><dd>C on FreeRTOS with LwIP for the Ethernet tests, USB CDC and SWO checks. Results print as <code>RESULT &lt;ID&gt; &lt;PASS|FAIL|SKIP|N/A&gt;</code>.</dd></div><div><dt>Test &amp; validation</dt><dd>Written to an SRS: Jenkins gates on the test catalogue, requirement coverage (every requirement has a test) and the flash layout.</dd></div><div><dt>Console</dt><dd>Console commands (<code>run</code>, <code>list</code>, <code>report</code>, <code>tasks</code>), <code>hwtest.py</code> JSON and Markdown reports, a generated test catalogue and a user guide.</dd></div></dl><p class="repo-links mono"><a href="https://github.com/soccentric-stm32/validation-firmware/blob/HEAD/docs/TEST_CATALOGUE.md" target="_blank" rel="noopener">Test catalogue ↗</a><a href="https://github.com/soccentric-stm32/validation-firmware" target="_blank" rel="noopener">validation-firmware on GitHub ↗</a></p></article>
     </div>
   </div>
 </section>
 
-<!-- ---------------------------------------------- validation · desktop app -->
+<!-- -------------------- validation · gui -->
 <section class="section" id="validation-app" data-slide="Validation · GUI">
   <div class="wrap">
     <div class="sec-head">
@@ -585,36 +371,17 @@
       <h2>HWVAL Studio, <span class="dim">the bench app</span></h2>
       <p class="sec-lead">A cross-platform desktop app for macOS, Windows and Linux. It runs the HWVAL tests, shows operator prompts, keeps the run history, updates firmware through the bootloader and flashes over SWD, all without typing commands.</p>
     </div>
-    <div class="split">
-      <article class="panel">
-        <div class="panel-head"><span class="mono">Python · PySide6 · SQLite</span><span class="status s-done">Implemented · v0.1.0</span></div>
-        <h3>Features</h3>
-        <ul class="ticks" role="list">
-          <li>Test catalogue read from the board, with search, levels, repeat-until-fail and live results</li>
-          <li>Operator prompt sheets and a simplified operator mode with an optional PIN</li>
-          <li>UART update: A/B slot view, image and CRC checks, progress, activation and confirmation watch</li>
-          <li>SWD flashing and option-byte display through OpenOCD and ST-LINK</li>
-          <li>Run history in SQLite with compare and CSV/JSON export; reports in JSON, Markdown and PDF</li>
-          <li>Built-in device simulator, so it works without hardware</li>
-          <li>Headless CLI with pass/fail exit codes for CI</li>
-        </ul>
-        <p class="repo-links mono"><a href="#top" data-flash="top">See the preview ↑</a></p>
-      </article>
-      <div class="figure">
-        <p class="fig-cap mono">App sections</p>
-        <ol class="stack" role="list">
-          <li><b>Device</b><span>board, firmware role, unique ID</span></li>
-          <li class="hi"><b>Test &amp; validation</b><span>groups · levels · live results</span></li>
-          <li><b>Firmware update</b><span>UART · A/B slots · rollback</span></li>
-          <li><b>Flash (SWD)</b><span>OpenOCD · ST-LINK</span></li>
-          <li class="base"><b>History</b><span>every run · exported reports</span></li>
-        </ol>
-      </div>
+    <div class="split media">
+      <figure class="media-col">
+        <div class="win"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">HWVAL Studio</span></div><img src="assets/shots/validation-gui.webp" width="1360" height="860" alt="HWVAL Studio: the test catalogue with live PASS, FAIL and SKIP results for the ADC group" loading="lazy" decoding="async"></div>
+        <figcaption class="fig-cap mono">Screenshot · HWVAL Studio on its built-in device simulator</figcaption>
+      </figure>
+      <article class="panel spec"><div class="panel-head"><span class="mono">Python · PySide6 · SQLite</span><span class="status s-done">Implemented · v0.1.0</span></div><h3>What's in the repo</h3><dl class="spec-list"><div><dt>Build environment</dt><dd>Python with PySide6 and SQLite; <code>pip install -e .</code> then <code>hwval-studio</code>. Packaged for macOS, Windows and Linux.</dd></div><div><dt>What you get</dt><dd>Run the hardware tests, see the results live, keep every run and export reports, without typing commands. It works without hardware too.</dd></div><div><dt>Architecture</dt><dd>A desktop app with a built-in simulator for the HWVAL, BOOT and DEMO roles, a TCP simulator server and a headless CLI for CI.</dd></div><div><dt>Design</dt><dd>Sidebar by test group with levels and repeat-until-fail, operator prompt sheets, and a simplified operator mode with an optional PIN.</dd></div><div><dt>Implementation</dt><dd>Python, PySide6 and SQLite history with compare and CSV/JSON export; reports in JSON, Markdown and PDF; OpenOCD for SWD flashing.</dd></div><div><dt>Test &amp; validation</dt><dd>Written to an SRS. Jenkins runs lint, type checks, the protocol schema check, a CLI smoke test and the test suite.</dd></div><div><dt>App features</dt><dd>UART firmware update with an A/B slot view, SWD flashing and option bytes, demo-app control, run history and reports.</dd></div></dl><p class="repo-links mono"><a href="https://github.com/soccentric-stm32/validation-gui" target="_blank" rel="noopener">validation-gui on GitHub ↗</a></p></article>
     </div>
   </div>
 </section>
 
-<!-- -------------------------------------------------- end-of-line / factory -->
+<!-- -------------------- factory · station -->
 <section class="section" id="eol" data-slide="Factory · Station">
   <div class="wrap">
     <div class="sec-head">
@@ -623,34 +390,12 @@
       <h2>HWVAL Factory, <span class="dim">test and provisioning</span></h2>
       <p class="sec-lead">The end-of-line station for the factory floor. In one operator action per board it is designed to flash and test the board, give it its identity, program the product, apply flash protection, print the label and keep the record. It runs up to eight fixtures per PC; the hardware integration is still in development. Bench pages take a blank board from the box to a unit with its system info, calibration and diagnostic map.</p>
     </div>
-    <div class="split">
-      <article class="panel">
-        <div class="panel-head"><span class="mono">Python · PySide6 · OpenOCD</span><span class="status s-wip">In development · v0.1.0</span></div>
-        <h3>Features</h3>
-        <ul class="ticks" role="list">
-          <li>Product profiles with SHA-256-pinned images and Ed25519 signatures; no code changes per product</li>
-          <li>One worker, OpenOCD process and state machine per fixture, with independent start and abort</li>
-          <li>Serial number and MAC allocation, and a provisioning record read back byte for byte</li>
-          <li>Option bytes, write and readout protection, with RDP level 2 always refused</li>
-          <li>ZPL labels, a per-unit PDF certificate and an optional queued MES uplink</li>
-          <li>Operator, supervisor, engineer and admin roles; yield dashboard with Pareto</li>
-          <li>Bench pages for a blank board: detect the ST-LINK and UART, flash the bootloader and the signed factory firmware, then write <code>.sys</code>, <code>.cal</code> and <code>.diag</code> files, each read back and compared</li>
-          <li>CSV factory database searched by id and compacted into the <code>.sys</code> file</li>
-          <li>macOS-style light window with a sidebar, full menus and SVG icons; a simulated board for every page</li>
-          <li>Fixture simulator and packaging for Windows (MSI) and Linux (.deb, AppImage)</li>
-        </ul>
-      </article>
-      <div class="figure">
-        <p class="fig-cap mono">One board on the station</p>
-        <ol class="flow flow-v" role="list">
-          <li><i>1</i><b>Identify</b><span>Scan the board, read chip ID over SWD</span></li>
-          <li><i>2</i><b>Test</b><span>HWVAL end-of-line plan with fixture limits</span></li>
-          <li><i>3</i><b>Program</b><span>Bootloader, application and metadata</span></li>
-          <li><i>4</i><b>Provision</b><span>Serial number, MAC, calibration</span></li>
-          <li><i>5</i><b>Verify &amp; lock</b><span>Boot check, then readout protection</span></li>
-          <li><i>6</i><b>Label &amp; record</b><span>Printed label, stored record</span></li>
-        </ol>
-      </div>
+    <div class="split media">
+      <figure class="media-col">
+        <div class="win"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">HWVAL Factory</span></div><img src="assets/shots/factory-station.webp" width="1360" height="860" alt="HWVAL Factory: four fixtures running the end-of-line test plan with serial numbers and live progress" loading="lazy" decoding="async"></div>
+        <figcaption class="fig-cap mono">Screenshot · HWVAL Factory running four simulated fixtures</figcaption>
+      </figure>
+      <article class="panel spec"><div class="panel-head"><span class="mono">Python · PySide6 · OpenOCD</span><span class="status s-wip">In development · v0.1.0</span></div><h3>What's in the repo</h3><dl class="spec-list"><div><dt>Build environment</dt><dd>Python with PySide6; <code>pip install -e .</code> then <code>hwval-factory-ui</code>. A full simulator lets you try every step without hardware.</dd></div><div><dt>What you get</dt><dd>One operator action per board: identify, test, program, write the unit identity, check it boots, protect it, print the label and keep the record.</dd></div><div><dt>Architecture</dt><dd>A one-module-per-step pipeline with typed ports and recipe validation; up to eight fixtures run in parallel on one PC.</dd></div><div><dt>Design</dt><dd>Product profiles and recipes, roles with PIN login, work orders, serial numbers and a traceable record for every unit.</dd></div><div><dt>Implementation</dt><dd>Python and PySide6 with a SQLite database, an SWD flasher on OpenOCD and the HWLINK stack shared with HWVAL Studio.</dd></div><div><dt>Test &amp; validation</dt><dd>Jenkins runs lint, type checks, a configuration check, a CLI smoke test, the station self-test and the test suite, plus an optional hardware-in-the-loop stage.</dd></div><div><dt>App features</dt><dd>Bench pages for a blank board: detect, bootloader, factory firmware, device info, system info, calibration and diagnostics.</dd></div></dl><p class="repo-links mono"><a href="https://github.com/soccentric-stm32/factory-station" target="_blank" rel="noopener">factory-station on GitHub ↗</a></p></article>
     </div>
   </div>
 </section>
@@ -664,20 +409,8 @@
       <h2>Factory firmware, <span class="dim">the first app on a fresh board</span></h2>
       <p class="sec-lead">A FreeRTOS application in C that the factory station flashes into slot A right after the bootloader. It reports its name and version, then stores the unit's system info, calibration and diagnostic map in the board when the station sends them over UART.</p>
     </div>
-    <div class="split">
-      <article class="panel">
-        <div class="panel-head"><span class="mono">C · FreeRTOS · UART</span><span class="status s-wip">In development · v0.1.0</span></div>
-        <h3>Features</h3>
-        <ul class="ticks" role="list">
-          <li>Runs from slot A under the A/B bootloader, signed with your key like any other application</li>
-          <li>Factory commands over UART with the HWLINK framing: info, read, write and diagnostic init</li>
-          <li><code>.sys</code> system info, <code>.cal</code> calibration and <code>.diag</code> fault and diagnostic map, one 4&nbsp;KB block each</li>
-          <li>Checks the file header, both CRC-32 values and the chip UID binding before it touches flash</li>
-          <li>Refuses writes outside its three blocks, so the identity record is never overwritten</li>
-          <li>Host tests run the real command handler against a simulated flash</li>
-        </ul>
-        <p class="repo-links mono"><a href="https://github.com/soccentric-stm32/factory-firmware/blob/HEAD/docs/FACTORY_SPEC.md" target="_blank" rel="noopener">Specification ↗</a></p>
-      </article>
+    <div class="split media">
+      <article class="panel spec"><div class="panel-head"><span class="mono">C · FreeRTOS · UART</span><span class="status s-wip">In development · v0.1.0</span></div><h3>What's in the repo</h3><dl class="spec-list"><div><dt>Build environment</dt><dd>Docker <code>stm32-dev</code> image; <code>scripts/build.sh</code> produces <code>factory.img</code>, which the station signs with your key.</dd></div><div><dt>What you get</dt><dd>The first application on a fresh board: it reports its name and version, then stores the unit's identity data in the board when the station sends it.</dd></div><div><dt>Architecture</dt><dd>Runs from slot A under the A/B bootloader. A fixed memory map holds three 4&nbsp;KB blocks: <code>.sys</code>, <code>.cal</code> and <code>.diag</code>.</dd></div><div><dt>Design</dt><dd>Commands over UART with HWLINK framing: info, read, write and diagnostic init. Writes outside its three blocks are refused, so the identity record is never overwritten.</dd></div><div><dt>Implementation</dt><dd>FreeRTOS in C. It checks the file header, both CRC-32 values and the chip UID binding, then programs and reads back each block.</dd></div><div><dt>Test &amp; validation</dt><dd>Host tests run the real command handler against a simulated flash. Jenkins runs build, static analysis, boot-contract and image checks.</dd></div><div><dt>Commands</dt><dd>Factory commands <code>INFO</code>, <code>READ</code>, <code>WRITE_BEGIN</code>, <code>WRITE_DATA</code>, <code>WRITE_END</code> and <code>DIAG_INIT</code>.</dd></div></dl><p class="repo-links mono"><a href="https://github.com/soccentric-stm32/factory-firmware/blob/HEAD/docs/FACTORY_SPEC.md" target="_blank" rel="noopener">Specification ↗</a><a href="https://github.com/soccentric-stm32/factory-firmware" target="_blank" rel="noopener">factory-firmware on GitHub ↗</a></p></article>
       <div class="figure">
         <p class="fig-cap mono">One blank board on the bench</p>
         <ol class="flow flow-v" role="list">
