@@ -1,6 +1,6 @@
 # SoCcentric STM32
 
-The website of SoCcentric STM32 (https://soccentric-stm32.github.io/). We provide firmware development consulting—working with your existing project or helping you create a new one. We use nine open-source building blocks (A/B bootloader, C/C++ and Rust applications, hardware validation firmware and GUI, and a factory provisioning station) to save redundant development time and cost, and we improve these building blocks after each completed project. We also help companies port existing C/C++ projects to Rust or start new Rust projects across three popular frameworks: Embassy, FreeRTOS and Zephyr.
+The website of SoCcentric STM32 (https://soccentric-stm32.github.io/). We provide firmware development consulting—working with your existing project or helping you create a new one. We use ten open-source building blocks (A/B bootloader, C/C++ and Rust applications, hardware validation firmware and GUI, a factory provisioning station and the factory firmware) to save redundant development time and cost, and we improve these building blocks after each completed project. We also help companies port existing C/C++ projects to Rust or start new Rust projects across three popular frameworks: Embassy, FreeRTOS and Zephyr.
 
 ## Features
 
@@ -33,6 +33,7 @@ Pushing to `main` deploys the site with GitHub Pages.
 - [validation-firmware](https://github.com/soccentric-stm32/validation-firmware) — HWVAL hardware validation firmware
 - [validation-gui](https://github.com/soccentric-stm32/validation-gui) — HWVAL Studio: desktop GUI for tests, updates and flashing
 - [factory-station](https://github.com/soccentric-stm32/factory-station) — HWVAL Factory: end-of-line test and provisioning station
+- [factory-firmware](https://github.com/soccentric-stm32/factory-firmware) — First application on a fresh board: writes .sys, .cal and .diag over UART
 
 ## License
 
