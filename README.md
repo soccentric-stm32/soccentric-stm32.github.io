@@ -1,6 +1,6 @@
 # SoCcentric STM32
 
-The website of SoCcentric STM32 (https://soccentric-stm32.github.io/). We provide firmware development consulting—working with your existing project or helping you create a new one. We use ten open-source building blocks (A/B bootloader, C/C++ and Rust applications, hardware validation firmware and GUI, a factory provisioning station and the factory firmware) to save redundant development time and cost, and we improve these building blocks after each completed project. We also help companies port existing C/C++ projects to Rust or start new Rust projects across three popular frameworks: Embassy, FreeRTOS and Zephyr.
+The website of SoCcentric STM32 (https://soccentric-stm32.github.io/). We provide firmware development consulting—working with your existing project or helping you create a new one. We use eleven open-source building blocks (A/B bootloader and its flasher GUI, C/C++ and Rust applications, hardware validation firmware and GUI, a factory provisioning station and the factory firmware) to save redundant development time and cost, and we improve these building blocks after each completed project. We also help companies port existing C/C++ projects to Rust or start new Rust projects across three popular frameworks: Embassy, FreeRTOS and Zephyr.
 
 ## Features
 
@@ -25,6 +25,7 @@ Pushing to `main` deploys the site with GitHub Pages.
 ## Related projects
 
 - [bootloader](https://github.com/soccentric-stm32/bootloader) — A/B bootloader with UART update, CRC32 checks, trial boot and rollback
+- [bootloader-gui](https://github.com/soccentric-stm32/bootloader-gui) — BOOT Flasher: desktop GUI to flash the bootloader and the firmware projects
 - [app-c-freertos](https://github.com/soccentric-stm32/app-c-freertos) — Demo application in C on FreeRTOS
 - [app-c-zephyr](https://github.com/soccentric-stm32/app-c-zephyr) — Demo application in C on Zephyr RTOS
 - [app-rust-embassy](https://github.com/soccentric-stm32/app-rust-embassy) — Demo application in Rust on Embassy
