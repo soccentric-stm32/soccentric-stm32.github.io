@@ -20,6 +20,7 @@
 #   python3 ci/capture_screens.py all
 #   python3 ci/capture_screens.py terminals
 #   python3 ci/capture_screens.py factory-data
+#   python3 ci/capture_screens.py og
 #
 
 from __future__ import annotations
@@ -89,6 +90,28 @@ def shoot(page: Path, out: Path, width: int, height: int) -> Path:
     if image.size != (width * SCALE, height * SCALE):
         image = image.crop((0, 0, width * SCALE, height * SCALE))
     return image
+
+
+def capture_og() -> None:
+    """The social preview: the live hero at 1600x900, scaled to 1200x630."""
+    SCRATCH.mkdir(exist_ok=True)
+    png = SCRATCH / "og.png"
+    subprocess.run(
+        [
+            chromium(), "--headless=new", "--no-sandbox", "--disable-gpu",
+            "--hide-scrollbars", "--allow-file-access-from-files",
+            "--force-prefers-reduced-motion",
+            "--window-size=1600,900", "--virtual-time-budget=5000",
+            f"--screenshot={png}", (ROOT / "index.html").as_uri(),
+        ],
+        check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+    )
+    from PIL import Image
+
+    image = Image.open(png).convert("RGB").resize((1200, 675), Image.LANCZOS)
+    image.crop((0, 0, 1200, 630)).save(
+        ROOT / "assets" / "og.png", "PNG", optimize=True)
+    print(f"  {'og.png':20s} 1200x630")
 
 
 def terminal_block(page: str, sid: str) -> str:
@@ -212,7 +235,7 @@ def capture_factory_data() -> None:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("what", nargs="?", default="all",
-                        choices=["all", "terminals", "factory-data"])
+                        choices=["all", "terminals", "factory-data", "og"])
     args = parser.parse_args()
 
     print("capturing screens")
@@ -220,6 +243,8 @@ def main() -> int:
         capture_factory_data()
     if args.what in ("all", "terminals"):
         capture_terminals()
+    if args.what in ("all", "og"):
+        capture_og()
     for path in sorted(SHOTS.glob("*.webp")):
         print(f"  {path.stat().st_size / 1024:6.0f} KB  {path.name}")
     return 0
