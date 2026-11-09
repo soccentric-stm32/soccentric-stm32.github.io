@@ -716,7 +716,7 @@ h1 {
 .help-list span { display: block; color: var(--ink-2); font-size: 14px; line-height: 1.5; }
 .repo-index { margin-top: clamp(18px, 3vh, 32px); }
 .repo-index ul {
-  display: grid; grid-template-columns: repeat(4, 1fr);
+  display: grid; grid-template-columns: repeat(3, 1fr);
   border-top: 1px solid var(--line-2); border-left: 1px solid var(--line-2);
 }
 .repo-index li { border-right: 1px solid var(--line-2); border-bottom: 1px solid var(--line-2); }
