@@ -878,3 +878,13 @@ body.is-maxed { overflow: hidden; }
   .spec-list dd { font-size: 12.8px; line-height: 1.38; }
   .spec-list > div { padding: 4px 0; }
 }
+
+/* recorded board runs: the flasher beside the live UART log */
+.runs { display: grid; gap: 40px; }
+.run h3 { margin: 0 0 12px; }
+.run-pair { display: grid; grid-template-columns: minmax(0, 1.775fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+.run-col { margin: 0; }
+.run-col > .win, .run-col > .term { margin-block: 0; }
+.run video { display: block; width: 100%; height: auto; background: #000; }
+.run > .fig-cap { margin-top: 10px; }
+@media (max-width: 820px) { .run-pair { grid-template-columns: 1fr; } }

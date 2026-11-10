@@ -1,0 +1,20 @@
+[      0] BOOT I start v0.1.0 4ad6a4db8fb6, reset 0x04000000
+[    333] BOOT I slot A: ok, confirmed
+[    336] BOOT I slot B: ok, confirmed
+[    340] BOOT I sel: slot B confirmed, count 0
+[    440] BOOT I update mode (HWLINK on USART3)
+[      0] BOOT I start v0.1.0 4ad6a4db8fb6, reset 0x14000000
+[    538] BOOT I slot A: ok, pending
+[    541] BOOT I slot B: ok, confirmed
+[    545] BOOT I sel: slot A on trial, count 0
+[   1049] BOOT I boot slot A, trial 1
+[      1] HWVAL I start v0.1.0 c1136a4c68db, slot A on trial, reset software+pin
+[   5003] HWVAL I health: passed, CONFIRMED written
+[   5102] HWVAL I run: 182 test(s)
+[      0] BOOT I start v0.1.0 4ad6a4db8fb6, reset 0x24000000
+[    538] BOOT I slot A: ok, confirmed
+[    542] BOOT I slot B: ok, confirmed
+[    545] BOOT I sel: slot A confirmed, count 0
+[   1049] BOOT I boot slot A
+[      1] HWVAL I start v0.1.0 c1136a4c68db, slot A confirmed, reset ind-wdg+pin
+[      3] HWVAL I run: 182 test(s)

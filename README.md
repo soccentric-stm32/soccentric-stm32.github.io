@@ -45,6 +45,15 @@ The pictures in `assets/shots/` are real captures, not mock-ups:
   `factory-data-gui` checkout. The terminal content stays illustrative until a
   bench session is captured; the tag in the window bar says so.
 
+- `assets/video/bootloader/` holds the real board recordings shown in the
+  "Recorded on the board" section: for BOOT and each of the six apps a
+  `<name>.webm` (BOOT Flasher), `term-<name>.webm` (the UART log read live
+  from USART6), `<name>.log` (the same log as text) and two `.webp` posters.
+  `python3 ci/record_session.py all` makes them. It **flashes the connected
+  board** (BOOT over SWD, then each app through BOOT), so it is not part of
+  `make`. It needs Xvfb, ffmpeg with libvpx-vp9, openocd, PySide6, pyserial,
+  a NUCLEO-F767ZI on its ST-LINK port and a USB serial adapter on PG14.
+
 The slides themselves keep the terminals as live HTML, so text stays crisp
 and theme-aware; the captures are used in the hero showcase.
 

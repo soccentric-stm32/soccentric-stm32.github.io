@@ -1,0 +1,30 @@
+[      0] BOOT I start v0.1.0 4ad6a4db8fb6, reset 0x04000000
+[    356] BOOT I slot A: ok, confirmed
+[    359] BOOT I slot B: ok, confirmed
+[    363] BOOT I sel: slot A confirmed, count 0
+[    867] BOOT I boot slot A
+[      0] C-ZEP I start v0.1.0 ab25ad8edf2a, slot A confirmed, reset reset pin
+[      0] BOOT I start v0.1.0 4ad6a4db8fb6, reset 0x04000000
+[    356] BOOT I slot A: ok, confirmed
+[    359] BOOT I slot B: ok, confirmed
+[    363] BOOT I sel: slot A confirmed, count 0
+[    867] BOOT I boot slot A
+[      0] C-ZEP I start v0.1.0 ab25ad8edf2a, slot A confirmed, reset reset pin
+[      0] BOOT I start v0.1.0 4ad6a4db8fb6, reset 0x04000000
+[    356] BOOT I slot A: ok, confirmed
+[    359] BOOT I slot B: ok, confirmed
+[    363] BOOT I sel: slot A confirmed, count 0
+[    867] BOOT I boot slot A
+[      0] C-ZEP I start v0.1.0 ab25ad8edf2a, slot A confirmed, reset reset pin
+[      0] BOOT I start v0.1.0 4ad6a4db8fb6, reset 0x04000000
+[    356] BOOT I slot A: ok, confirmed
+[    359] BOOT I slot B: ok, confirmed
+[    363] BOOT I sel: slot A confirmed, count 0
+[    463] BOOT I update mode (HWLINK on USART3)
+[      0] BOOT I start v0.1.0 4ad6a4db8fb6, reset 0x14000000
+[    342] BOOT I slot A: ok, confirmed
+[    346] BOOT I slot B: ok, pending
+[    349] BOOT I sel: slot B on trial, count 0
+[    853] BOOT I boot slot B, trial 1
+[      0] R-EMB I start v0.1.0 10850c229339, slot B on trial, reset software
+[   5000] R-EMB I health: passed, CONFIRMED written
