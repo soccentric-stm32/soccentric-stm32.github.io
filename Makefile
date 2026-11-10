@@ -36,5 +36,7 @@ shots:
 clean:
 	rm -rf .capture-tmp
 
+.DEFAULT_GOAL := help
+
 help:
 	@sed -n '/^#   make/p' Makefile | sed 's/^#//'
