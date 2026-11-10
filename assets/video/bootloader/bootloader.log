@@ -1,0 +1,6 @@
+[      0] BOOT I start v0.1.0 4ad6a4db8fb6, reset 0x04000000
+[    330] BOOT I slot A: ok, confirmed
+[    334] BOOT I slot B: ok, confirmed
+[    337] BOOT I sel: slot B confirmed, count 0
+[    841] BOOT I boot slot B
+[      1] C-FRT I start v0.1.0 cefdbd8b0bd1, slot B confirmed, reset reset pin
