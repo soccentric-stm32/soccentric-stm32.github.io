@@ -165,12 +165,12 @@
       if (focus) { tab.focus(); }
     };
 
-    /* auto-rotate: every capture gets five seconds on the stage, shown as a
+    /* auto-rotate: every capture gets twenty seconds on the stage, shown as a
        bar filling along the selected thumbnail. It pauses (bar frozen, time
        kept) while the pointer is over the showcase or a key has focus there,
        while the tab is hidden or the hero is off screen, and it stays off for
        visitors who prefer reduced motion. Choosing a capture restarts it. */
-    var AUTO_MS = 5000;
+    var AUTO_MS = 20000;
     var timer = null;
     var started = 0;
     var remaining = AUTO_MS;
@@ -203,7 +203,7 @@
         fresh();
       }, remaining);
     };
-    /* five new seconds; flipping between two identical keyframes restarts the bar */
+    /* twenty new seconds; flipping between two identical keyframes restarts the bar */
     var fresh = function () {
       if (timer) { clearTimeout(timer); timer = null; }
       remaining = AUTO_MS;

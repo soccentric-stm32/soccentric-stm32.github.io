@@ -1,11 +1,11 @@
 # SoCcentric STM32
 
-The website of SoCcentric STM32 (https://soccentric-stm32.github.io/). Open-source building blocks for STM32 projects: an A/B bootloader and its flasher GUI, C and Rust applications on FreeRTOS, Zephyr and Embassy, hardware validation firmware and GUI, a factory provisioning station, the factory firmware and a factory data GUI. All MIT licensed. Consulting contact details are on the Contact section only.
+The website of SoCcentric STM32 (https://soccentric-stm32.github.io/). Open-source firmware infrastructure for STM32: an A/B bootloader and its flasher GUI, C and Rust applications on FreeRTOS, Zephyr and Embassy, hardware validation firmware and GUI, a factory provisioning station, the factory firmware and a factory data GUI. All MIT licensed. Consulting contact details are on the Contact section only.
 
 ## Features
 
 - One-page site with full-height slides and scroll snapping
-- Hero showcase with a capture of all twelve building blocks: pick one from
+- Hero showcase with a capture of all twelve projects: pick one from
   the reel, or use the arrow keys
 - One slide per project with what is in the repository (build environment,
   architecture, design, implementation, tests and app features)
