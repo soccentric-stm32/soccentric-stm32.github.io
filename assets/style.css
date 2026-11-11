@@ -177,6 +177,8 @@ li { list-style: none; }
 }
 .accent { color: var(--accent); }
 .dim { color: var(--faint); }
+/* keep brand casing (FreeRTOS, Zephyr, ...) even inside uppercased labels */
+.brand { text-transform: none; letter-spacing: .01em; }
 
 .skip-link {
   position: absolute; left: 16px; top: -60px; z-index: 100;
@@ -401,7 +403,7 @@ h1 {
 .sec-repo:hover { color: var(--accent); border-color: var(--accent); }
 .sec-repo svg { width: 17px; height: 17px; fill: currentColor; }
 .sec-head .eyebrow::before { content: ""; width: 28px; height: 1px; background: var(--line-2); order: 1; margin-left: 2px; }
-.sec-head h2 { font-size: clamp(27px, min(3vw, 4.4vh), 42px); text-transform: uppercase; }
+.sec-head h2 { font-size: clamp(27px, min(3vw, 4.4vh), 42px); letter-spacing: -.01em; }
 .sec-head h2 .dim { display: inline; }
 .sec-lead { color: var(--ink-2); font-size: 15.5px; }
 
@@ -547,7 +549,7 @@ h1 {
   display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(24px, 4vw, 56px); align-items: stretch;
 }
 .contact-main { display: flex; flex-direction: column; }
-.contact h2 { font-size: clamp(32px, min(4.4vw, 6.6vh), 60px); line-height: .96; text-transform: uppercase; max-width: 16ch; }
+.contact h2 { font-size: clamp(32px, min(4.4vw, 6.6vh), 60px); line-height: .96; letter-spacing: -.01em; max-width: 16ch; }
 .contact h2 .accent { display: block; }
 .contact-note {
   margin-top: clamp(14px, 2.4vh, 24px); max-width: 60ch; color: var(--ink-2);
@@ -883,3 +885,34 @@ body.is-maxed { overflow: hidden; }
   .spec-list > div { padding: 4px 0; }
 }
 
+
+/* ------------------------------------------- replayed terminals (recorded logs) */
+/* a fixed screen that follows the newest line, like a terminal window */
+.term[data-replay] .term-body { height: clamp(250px, 44vh, 440px); overflow: hidden; scroll-behavior: auto; }
+.term[data-replay] .term-body code { min-width: 0; }
+.term-body .ln.is-hidden { display: none; }
+.term[data-replay] .term-body .ln { white-space: pre-wrap; overflow-wrap: anywhere; padding-left: 4ch; text-indent: -4ch; }
+.media-col .term[data-replay] .term-body { flex: 0 0 auto; font-size: clamp(8.5px, 1.95cqw, 11px); line-height: 1.55; }
+.term-body .ln.cursor::after {
+  content: ""; display: inline-block; width: .55em; height: 1.05em; margin-left: .45em;
+  background: var(--term-ink); vertical-align: text-bottom; animation: blink 1.1s steps(1) infinite;
+}
+@media (prefers-reduced-motion: reduce) { .term-body .ln.cursor::after { animation: none; } }
+.term-body .ts { color: var(--term-dim); }
+.maxout-stage .term[data-replay] .term-body { height: auto; max-height: calc(88vh - 110px); overflow: auto; }
+
+/* the hero stage shows a recorded log in the same frame as a screenshot */
+.stage-frame .term-body { aspect-ratio: 8 / 5; overflow: hidden; padding: 12px 14px; font-size: clamp(8.5px, .78vw, 11.5px); line-height: 1.55; }
+.stage-frame .term-body[hidden] { display: none; }
+.stage-frame .term-body code { min-width: 0; }
+.stage-frame .term-body .ln { white-space: pre-wrap; overflow-wrap: anywhere; padding-left: 4ch; text-indent: -4ch; }
+
+/* a few static lines of the log as the reel thumbnail */
+.reel-item .mini-term {
+  display: block; aspect-ratio: 8 / 5; padding: 6px 6px; overflow: hidden; text-align: left;
+  background: var(--term-bg); color: var(--term-ink); font: 400 4.8px/1.5 var(--mono); white-space: pre;
+}
+.mini-term .tg { font-weight: 600; }
+.mini-term .tg.b { color: var(--term-boot); }
+.mini-term .tg.a { color: var(--term-app); }
+.stage-frame img[hidden] { display: none; }

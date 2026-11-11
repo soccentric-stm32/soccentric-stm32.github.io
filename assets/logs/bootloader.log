@@ -1,6 +1,15 @@
-[      0] BOOT I start v0.1.0 4ad6a4db8fb6, reset 0x04000000
-[    330] BOOT I slot A: ok, confirmed
-[    334] BOOT I slot B: ok, confirmed
-[    337] BOOT I sel: slot B confirmed, count 0
-[    841] BOOT I boot slot B
-[      1] C-FRT I start v0.1.0 cefdbd8b0bd1, slot B confirmed, reset reset pin
+[      0] BOOT I start v0.1.0 d389f50d03e7, reset 0x04000000
+[      5] BOOT I init: clock 216 MHz, PLL locked
+[      9] BOOT I init: HWLINK on USART3, 115200 8N1
+[     14] BOOT I scan: searching for an application
+[    335] BOOT I init: flash dual bank, writes enabled
+[    339] BOOT I slot A: ok, confirmed
+[    343] BOOT I slot B: ok, confirmed
+[    346] BOOT I sel: slot A confirmed, count 0
+[    351] BOOT I listen: 500 ms for a host
+[    854] BOOT I boot slot A
+[      1] C-FRT I start v0.1.0 d501c03a148d, slot A confirmed, reset reset pin
+[      1] C-FRT I task 3 Health: watches task check-ins, kicks the watchdog, confirms the slot
+[      1] C-FRT I task 4 Comms: answers the factory station: reads and writes the factory data window
+[      1] C-FRT I task 2 Button: debounces B1, short press cycles the LED pattern, long press resets it
+[      1] C-FRT I task 1 LED: drives LD1-LD3 patterns, LD3 shows health and fault state

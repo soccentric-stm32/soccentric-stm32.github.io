@@ -1,17 +1,61 @@
-$ make demo
-PASS: run 1, fixture F1, serial A2A3AB52E7F42E59F2D6B325
-  01 Scan board: PASS 0 ms
-  02 Identify chip: PASS 0 ms
-  03 Prepare test image: PASS 801 ms
-  04 Run EOL test plan: PASS 134 ms
-  05 Compute calibration: PASS 0 ms
-  06 Program production: PASS 804 ms
-  07 Provision unit: PASS 8 ms
-  08 Boot check: PASS 2003 ms
-  09 Apply protection: PASS 800 ms
-  10 Print label: PASS 42 ms
-  11 Record run: PASS 8 ms
- 
-     ADC.001: PASS 1.212 V
-     CLK.001: PASS 216.0 MHz
-     PWR.001: PASS 3265.0 mV
+[      0] BOOT I start v0.1.0 d389f50d03e7, reset 0x14000000
+[      5] BOOT I init: clock 216 MHz, PLL locked
+[      9] BOOT I init: HWLINK on USART3, 115200 8N1
+[     14] BOOT I scan: searching for an application
+[    335] BOOT I init: flash dual bank, writes enabled
+[    339] BOOT I slot A: ok, pending
+[    343] BOOT I slot B: ok, confirmed
+[    346] BOOT I sel: slot A on trial, count 0
+[    350] BOOT I listen: 500 ms for a host
+[    854] BOOT I boot slot A, trial 1
+[      1] C-FRT I start v0.1.0 d501c03a148d, slot A on trial, reset software
+[      1] C-FRT I health: on trial, check in 5000 ms
+[      1] C-FRT I task 3 Health: watches task check-ins, kicks the watchdog, confirms the slot
+[      1] C-FRT I task 4 Comms: answers the factory station: reads and writes the factory data window
+[      1] C-FRT I task 2 Button: debounces B1, short press cycles the LED pattern, long press resets it
+[      1] C-FRT I task 1 LED: drives LD1-LD3 patterns, LD3 shows health and fault state
+[   1001] C-FRT I task 3 Health: watches task check-ins, kicks the watchdog, confirms the slot
+[   1001] C-FRT I task 4 Comms: answers the factory station: reads and writes the factory data window
+[   1001] C-FRT I task 2 Button: debounces B1, short press cycles the LED pattern, long press resets it
+[   1001] C-FRT I task 1 LED: drives LD1-LD3 patterns, LD3 shows health and fault state
+[   2001] C-FRT I task 3 Health: watches task check-ins, kicks the watchdog, confirms the slot
+[   2001] C-FRT I task 4 Comms: answers the factory station: reads and writes the factory data window
+[   2001] C-FRT I task 2 Button: debounces B1, short press cycles the LED pattern, long press resets it
+[   2001] C-FRT I task 1 LED: drives LD1-LD3 patterns, LD3 shows health and fault state
+[   3001] C-FRT I task 3 Health: watches task check-ins, kicks the watchdog, confirms the slot
+[   3001] C-FRT I task 4 Comms: answers the factory station: reads and writes the factory data window
+[   3001] C-FRT I task 2 Button: debounces B1, short press cycles the LED pattern, long press resets it
+[   3001] C-FRT I task 1 LED: drives LD1-LD3 patterns, LD3 shows health and fault state
+[   4001] C-FRT I task 3 Health: watches task check-ins, kicks the watchdog, confirms the slot
+[   4001] C-FRT I task 4 Comms: answers the factory station: reads and writes the factory data window
+[   4001] C-FRT I task 2 Button: debounces B1, short press cycles the LED pattern, long press resets it
+[   4001] C-FRT I task 1 LED: drives LD1-LD3 patterns, LD3 shows health and fault state
+[   5001] C-FRT I health: passed, CONFIRMED written
+[   5001] C-FRT I task 3 Health: watches task check-ins, kicks the watchdog, confirms the slot
+[   5001] C-FRT I task 4 Comms: answers the factory station: reads and writes the factory data window
+[   5001] C-FRT I task 2 Button: debounces B1, short press cycles the LED pattern, long press resets it
+[   5001] C-FRT I task 1 LED: drives LD1-LD3 patterns, LD3 shows health and fault state
+[   6001] C-FRT I task 3 Health: watches task check-ins, kicks the watchdog, confirms the slot
+[   6001] C-FRT I task 4 Comms: answers the factory station: reads and writes the factory data window
+[   6001] C-FRT I task 2 Button: debounces B1, short press cycles the LED pattern, long press resets it
+[   6001] C-FRT I task 1 LED: drives LD1-LD3 patterns, LD3 shows health and fault state
+[   7001] C-FRT I task 3 Health: watches task check-ins, kicks the watchdog, confirms the slot
+[   7001] C-FRT I task 4 Comms: answers the factory station: reads and writes the factory data window
+[   7001] C-FRT I task 2 Button: debounces B1, short press cycles the LED pattern, long press resets it
+[   7001] C-FRT I task 1 LED: drives LD1-LD3 patterns, LD3 shows health and fault state
+[   8001] C-FRT I task 3 Health: watches task check-ins, kicks the watchdog, confirms the slot
+[   8001] C-FRT I task 4 Comms: answers the factory station: reads and writes the factory data window
+[   8001] C-FRT I task 2 Button: debounces B1, short press cycles the LED pattern, long press resets it
+[   8001] C-FRT I task 1 LED: drives LD1-LD3 patterns, LD3 shows health and fault state
+[   9001] C-FRT I task 3 Health: watches task check-ins, kicks the watchdog, confirms the slot
+[   9001] C-FRT I task 4 Comms: answers the factory station: reads and writes the factory data window
+[   9001] C-FRT I task 2 Button: debounces B1, short press cycles the LED pattern, long press resets it
+[   9001] C-FRT I task 1 LED: drives LD1-LD3 patterns, LD3 shows health and fault state
+[  10001] C-FRT I task 3 Health: watches task check-ins, kicks the watchdog, confirms the slot
+[  10001] C-FRT I task 4 Comms: answers the factory station: reads and writes the factory data window
+[  10001] C-FRT I task 2 Button: debounces B1, short press cycles the LED pattern, long press resets it
+[  10001] C-FRT I task 1 LED: drives LD1-LD3 patterns, LD3 shows health and fault state
+[  11001] C-FRT I task 3 Health: watches task check-ins, kicks the watchdog, confirms the slot
+[  11001] C-FRT I task 4 Comms: answers the factory station: reads and writes the factory data window
+[  11001] C-FRT I task 2 Button: debounces B1, short press cycles the LED pattern, long press resets it
+[  11001] C-FRT I task 1 LED: drives LD1-LD3 patterns, LD3 shows health and fault state
