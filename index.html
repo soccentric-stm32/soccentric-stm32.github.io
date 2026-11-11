@@ -102,10 +102,10 @@
 
     <nav class="site-nav" aria-label="Primary">
       <div class="dd">
-        <a href="#bootloader-gui" data-flash="bootloader-gui" class="dd-top">Bootloader</a>
+        <a href="#bootloader" data-flash="bootloader" class="dd-top">Bootloader</a>
         <div class="dd-menu">
-          <a href="#bootloader-gui" data-flash="bootloader-gui">GUI</a>
           <a href="#bootloader" data-flash="bootloader">Firmware</a>
+          <a href="#bootloader-gui" data-flash="bootloader-gui">GUI</a>
         </div>
       </div>
       <div class="dd">
@@ -131,10 +131,10 @@
         </div>
       </div>
       <div class="dd">
-        <a href="#eol" data-flash="eol" class="dd-top">Factory</a>
+        <a href="#factory-firmware" data-flash="factory-firmware" class="dd-top">Factory</a>
         <div class="dd-menu">
-          <a href="#eol" data-flash="eol">Station</a>
           <a href="#factory-firmware" data-flash="factory-firmware">Firmware</a>
+          <a href="#eol" data-flash="eol">Station</a>
           <a href="#factory-data" data-flash="factory-data">Data GUI</a>
         </div>
       </div>
@@ -153,8 +153,8 @@
         <nav aria-label="Mobile menu">
           <a href="#top" data-flash="top">Home</a>
           <span class="grp">Bootloader</span>
-          <a class="sub" href="#bootloader-gui" data-flash="bootloader-gui">GUI</a>
           <a class="sub" href="#bootloader" data-flash="bootloader">Firmware</a>
+          <a class="sub" href="#bootloader-gui" data-flash="bootloader-gui">GUI</a>
           <span class="grp">RTOS</span>
           <a class="sub" href="#app-c" data-flash="app-c">FreeRTOS</a>
           <a class="sub" href="#app-zephyr" data-flash="app-zephyr">Zephyr</a>
@@ -166,8 +166,8 @@
           <a class="sub" href="#validation" data-flash="validation">Firmware</a>
           <a class="sub" href="#validation-app" data-flash="validation-app">GUI</a>
           <span class="grp">Factory</span>
-          <a class="sub" href="#eol" data-flash="eol">Station</a>
           <a class="sub" href="#factory-firmware" data-flash="factory-firmware">Firmware</a>
+          <a class="sub" href="#eol" data-flash="eol">Station</a>
           <a class="sub" href="#factory-data" data-flash="factory-data">Data GUI</a>
           <a href="#contact" data-flash="contact">Contact</a>
         </nav>
@@ -206,8 +206,8 @@
           <figcaption class="fig-cap mono" id="shot-caption">HWVAL Studio · hardware validation, results live</figcaption>
         </figure>
         <div class="reel" role="tablist" aria-label="Twelve screens from the building blocks">
-          <button class="reel-item" type="button" role="tab" aria-selected="false" tabindex="-1" id="shot-tab-1" aria-controls="shot-panel" data-src="assets/shots/bootloader-gui.webp" data-kind="gui" data-title="BOOT Flasher" data-tag="" data-caption="BOOT Flasher · build, sign and flash from one window" data-alt="BOOT Flasher: the C FreeRTOS page with its clone, build, sign and flash steps and the debug terminal"><img src="assets/shots/bootloader-gui.webp" width="1360" height="860" alt="" loading="lazy" decoding="async"><span class="mono">BOOT Flasher</span></button>
-          <button class="reel-item" type="button" role="tab" aria-selected="false" tabindex="-1" id="shot-tab-2" aria-controls="shot-panel" data-src="assets/shots/term-bootloader.webp" data-kind="term" data-title="BOOT · USART6" data-tag="Recorded from the board" data-caption="BOOT console · start-up and hand-over to the application" data-alt="Terminal: BOOT starts, checks both slots and boots slot B"><img src="assets/shots/term-bootloader.webp" width="1800" height="1126" alt="" loading="lazy" decoding="async"><span class="mono">BOOT console</span></button>
+          <button class="reel-item" type="button" role="tab" aria-selected="false" tabindex="-1" id="shot-tab-1" aria-controls="shot-panel" data-src="assets/shots/term-bootloader.webp" data-kind="term" data-title="BOOT · USART6" data-tag="Recorded from the board" data-caption="BOOT console · start-up and hand-over to the application" data-alt="Terminal: BOOT starts, checks both slots and boots slot B"><img src="assets/shots/term-bootloader.webp" width="1800" height="1126" alt="" loading="lazy" decoding="async"><span class="mono">BOOT console</span></button>
+          <button class="reel-item" type="button" role="tab" aria-selected="false" tabindex="-1" id="shot-tab-2" aria-controls="shot-panel" data-src="assets/shots/bootloader-gui.webp" data-kind="gui" data-title="BOOT Flasher" data-tag="" data-caption="BOOT Flasher · build, sign and flash from one window" data-alt="BOOT Flasher: the C FreeRTOS page with its clone, build, sign and flash steps and the debug terminal"><img src="assets/shots/bootloader-gui.webp" width="1360" height="860" alt="" loading="lazy" decoding="async"><span class="mono">BOOT Flasher</span></button>
           <button class="reel-item" type="button" role="tab" aria-selected="false" tabindex="-1" id="shot-tab-3" aria-controls="shot-panel" data-src="assets/shots/term-app-c.webp" data-kind="term" data-title="C-FRT · USART6" data-tag="Recorded from the board" data-caption="C · FreeRTOS console · trial boot, then confirmed" data-alt="Terminal: BOOT trial-boots slot B, the C FreeRTOS app starts and its health check confirms the image"><img src="assets/shots/term-app-c.webp" width="1800" height="1126" alt="" loading="lazy" decoding="async"><span class="mono">C · FreeRTOS</span></button>
           <button class="reel-item" type="button" role="tab" aria-selected="false" tabindex="-1" id="shot-tab-4" aria-controls="shot-panel" data-src="assets/shots/term-app-zephyr.webp" data-kind="term" data-title="C-ZEP · USART6" data-tag="Recorded from the board" data-caption="C · Zephyr console · trial boot, then confirmed" data-alt="Terminal: BOOT trial-boots slot A, the C Zephyr app starts and its health check confirms the image"><img src="assets/shots/term-app-zephyr.webp" width="1800" height="1126" alt="" loading="lazy" decoding="async"><span class="mono">C · Zephyr</span></button>
           <button class="reel-item" type="button" role="tab" aria-selected="false" tabindex="-1" id="shot-tab-5" aria-controls="shot-panel" data-src="assets/shots/term-rust-embassy.webp" data-kind="term" data-title="R-EMB · USART6" data-tag="Recorded from the board" data-caption="Rust · Embassy console · trial boot, then confirmed" data-alt="Terminal: BOOT trial-boots slot B, the Rust Embassy app starts and its health check confirms the image"><img src="assets/shots/term-rust-embassy.webp" width="1800" height="1126" alt="" loading="lazy" decoding="async"><span class="mono">Rust · Embassy</span></button>
@@ -215,8 +215,8 @@
           <button class="reel-item" type="button" role="tab" aria-selected="false" tabindex="-1" id="shot-tab-7" aria-controls="shot-panel" data-src="assets/shots/term-rust-zephyr.webp" data-kind="term" data-title="R-ZEP · USART6" data-tag="Recorded from the board" data-caption="Rust · Zephyr console · trial boot, then confirmed" data-alt="Terminal: BOOT trial-boots slot A, the Rust Zephyr app starts and its health check confirms the image"><img src="assets/shots/term-rust-zephyr.webp" width="1800" height="1126" alt="" loading="lazy" decoding="async"><span class="mono">Rust · Zephyr</span></button>
           <button class="reel-item" type="button" role="tab" aria-selected="false" tabindex="-1" id="shot-tab-8" aria-controls="shot-panel" data-src="assets/shots/term-validation.webp" data-kind="term" data-title="HWVAL · ttyACM0" data-tag="Recorded from the board" data-caption="HWVAL console · trial boot, confirm, then the test run" data-alt="Terminal: the HWVAL firmware starts on trial, is confirmed, then reports 182 tests to run"><img src="assets/shots/term-validation.webp" width="1800" height="1126" alt="" loading="lazy" decoding="async"><span class="mono">HWVAL console</span></button>
           <button class="reel-item" type="button" role="tab" aria-selected="true" tabindex="0" id="shot-tab-9" aria-controls="shot-panel" data-src="assets/shots/validation-gui.webp" data-kind="gui" data-title="HWVAL Studio" data-tag="" data-caption="HWVAL Studio · hardware validation, results live" data-alt="HWVAL Studio: the validation test catalogue with PASS, FAIL and SKIP results"><img src="assets/shots/validation-gui.webp" width="1360" height="860" alt="" decoding="async"><span class="mono">HWVAL Studio</span></button>
-          <button class="reel-item" type="button" role="tab" aria-selected="false" tabindex="-1" id="shot-tab-10" aria-controls="shot-panel" data-src="assets/shots/factory-station.webp" data-kind="gui" data-title="HWVAL Factory" data-tag="" data-caption="HWVAL Factory · validation page on the simulator" data-alt="HWVAL Factory: the validation page with the checks of a simulated board"><img src="assets/shots/factory-station.webp" width="1360" height="860" alt="" loading="lazy" decoding="async"><span class="mono">HWVAL Factory</span></button>
-          <button class="reel-item" type="button" role="tab" aria-selected="false" tabindex="-1" id="shot-tab-11" aria-controls="shot-panel" data-src="assets/shots/term-factory-firmware.webp" data-kind="term" data-title="HWVAL Factory · F1 · simulator" data-tag="Recorded output" data-caption="Factory firmware · one simulated unit, programmed and checked" data-alt="Terminal: the factory station programs and checks one simulated unit"><img src="assets/shots/term-factory-firmware.webp" width="1800" height="1126" alt="" loading="lazy" decoding="async"><span class="mono">Factory firmware</span></button>
+          <button class="reel-item" type="button" role="tab" aria-selected="false" tabindex="-1" id="shot-tab-10" aria-controls="shot-panel" data-src="assets/shots/term-factory-firmware.webp" data-kind="term" data-title="HWVAL Factory · F1 · simulator" data-tag="Recorded output" data-caption="Factory firmware · one simulated unit, programmed and checked" data-alt="Terminal: the factory station programs and checks one simulated unit"><img src="assets/shots/term-factory-firmware.webp" width="1800" height="1126" alt="" loading="lazy" decoding="async"><span class="mono">Factory firmware</span></button>
+          <button class="reel-item" type="button" role="tab" aria-selected="false" tabindex="-1" id="shot-tab-11" aria-controls="shot-panel" data-src="assets/shots/factory-station.webp" data-kind="gui" data-title="HWVAL Factory" data-tag="" data-caption="HWVAL Factory · validation page on the simulator" data-alt="HWVAL Factory: the validation page with the checks of a simulated board"><img src="assets/shots/factory-station.webp" width="1360" height="860" alt="" loading="lazy" decoding="async"><span class="mono">HWVAL Factory</span></button>
           <button class="reel-item" type="button" role="tab" aria-selected="false" tabindex="-1" id="shot-tab-12" aria-controls="shot-panel" data-src="assets/shots/factory-data-gui.webp" data-kind="gui" data-title="Factory Data" data-tag="" data-caption="Factory Data · CSV to .sys, .cal and .diag files" data-alt="Factory Data: the System info page with records loaded from a CSV"><img src="assets/shots/factory-data-gui.webp" width="1360" height="860" alt="" loading="lazy" decoding="async"><span class="mono">Factory Data</span></button>
         </div>
       </div>
@@ -234,30 +234,11 @@
   </div>
 </section>
 
-<!-- -------------------- bootloader · gui -->
-<section class="section" id="bootloader-gui" data-slide="Bootloader · GUI">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow"><span class="num">01</span>Bootloader · GUI</p>
-      <a class="icon-btn sec-repo" href="https://github.com/soccentric-stm32/bootloader-gui" target="_blank" rel="noopener" aria-label="bootloader-gui on GitHub" title="bootloader-gui on GitHub"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg></a>
-      <h2>Bootloader GUI</h2>
-      <p class="sec-lead">A desktop app for the bootloader. It builds and flashes the bootloader, then builds, signs and uploads your firmware, so nobody has to remember command lines. A starting point for your own flashing and release tooling.</p>
-    </div>
-    <div class="split media">
-      <figure class="media-col">
-        <div class="win"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">BOOT Flasher</span></div><img src="assets/shots/bootloader-gui.webp" width="1360" height="860" alt="BOOT Flasher: the C FreeRTOS page with its clone, build, sign and flash steps and the debug terminal" loading="lazy" decoding="async"></div>
-        <figcaption class="fig-cap mono">Screenshot · BOOT Flasher on the C FreeRTOS page, with the debug terminal showing a recorded board log</figcaption>
-      </figure>
-      <article class="panel spec"><div class="panel-head"><span class="mono">Python · PySide6</span><span class="status s-done">Implemented</span></div><h3>Features</h3><ul class="feature-list"><li>One window: build, sign and flash without command lines</li><li>A full pipeline: clone, build, sign and upload each firmware project</li><li>Docker or host builds: falls back to Docker when the vendor SDK is missing</li><li>Offline signing: choose the signing key; no network needed</li><li>A board panel: version, both slots, trusted key and security floor</li><li>SWD buttons: program, provision, reset and erase the board</li><li>A live debug terminal: stays open while the board is being flashed</li><li>A recovery path: gets a board back into the bootloader when the app is silent</li><li>Light and dark themes: follow the system; keyboard shortcuts for the pipeline</li><li>Python and PySide6: a thin front-end over the bootloader's own tools, with tests</li></ul><p class="repo-links mono"><a href="#bootloader" data-flash="bootloader">See the firmware ↓</a></p></article>
-    </div>
-  </div>
-</section>
-
 <!-- -------------------- bootloader · firmware -->
 <section class="section" id="bootloader" data-slide="Bootloader · Firmware">
   <div class="wrap">
     <div class="sec-head">
-      <p class="eyebrow"><span class="num">02</span>Bootloader · Firmware</p>
+      <p class="eyebrow"><span class="num">01</span>Bootloader · Firmware</p>
       <a class="icon-btn sec-repo" href="https://github.com/soccentric-stm32/bootloader" target="_blank" rel="noopener" aria-label="bootloader on GitHub" title="bootloader on GitHub"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg></a>
       <h2>Bootloader</h2>
       <p class="sec-lead">A bare-metal bootloader with two application slots. A new image is checked, tried on trial and kept only when the application confirms it is healthy; otherwise it rolls back to the last good image. A starting point for a secure update path, built in Docker.</p>
@@ -267,7 +248,26 @@
         <div class="win"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">Terminal · USART6 115200 8N1</span><span class="win-tag mono">Recorded from the board</span></div><img src="assets/shots/term-bootloader.webp" width="1800" height="1126" alt="Terminal: BOOT starts, checks both slots and boots slot B" loading="lazy" decoding="async"></div>
         <figcaption class="fig-cap mono">Terminal · BOOT on USART6: start-up, slot check and hand-over to the application</figcaption>
       </figure>
-      <article class="panel spec"><div class="panel-head"><span class="mono">Bare metal · C</span><span class="status s-done">Feature-complete · v0.1</span></div><h3>Features</h3><ul class="feature-list"><li>Dual-bank A/B slots: two application images; the last good one is always kept</li><li>Signed images: ECDSA P-256, checked before any erase and on every boot</li><li>Anti-rollback: a security counter in the signed header; no OTP or option bytes</li><li>Trial boot: watchdog-supervised; three failed starts roll back</li><li>Power-loss-safe records: append-only metadata survives an interrupted update</li><li>Lazy sector erase: only the sectors an update touches are erased</li><li>Updates over UART: a framed, checksummed protocol with a status reply</li><li>Python host tools: <code>mkimage.py</code> signs and inspects images, <code>bootctl.py</code> updates devices, and boards can be provisioned over SWD</li><li>Tests without hardware: host C tests on a simulated flash; Python protocol tests</li><li>Docker build: portable and reproducible; optional hardware-in-the-loop CI test</li></ul><p class="repo-links mono"><a href="#bootloader-gui" data-flash="bootloader-gui">Flash it from the desktop GUI ↑</a><a href="https://github.com/soccentric-stm32/bootloader/blob/HEAD/docs/IMAGE_SIGNING.md" target="_blank" rel="noopener">Image signing guide ↗</a></p></article>
+      <article class="panel spec"><div class="panel-head"><span class="mono">Bare metal · C</span><span class="status s-done">Feature-complete · v0.1</span></div><h3>Features</h3><ul class="feature-list"><li>Dual-bank A/B slots: two application images; the last good one is always kept</li><li>Signed images: ECDSA P-256, checked before any erase and on every boot</li><li>Anti-rollback: a security counter in the signed header; no OTP or option bytes</li><li>Trial boot: watchdog-supervised; three failed starts roll back</li><li>Power-loss-safe records: append-only metadata survives an interrupted update</li><li>Lazy sector erase: only the sectors an update touches are erased</li><li>Updates over UART: a framed, checksummed protocol with a status reply</li><li>Python host tools: <code>mkimage.py</code> signs and inspects images, <code>bootctl.py</code> updates devices, and boards can be provisioned over SWD</li><li>Tests without hardware: host C tests on a simulated flash; Python protocol tests</li><li>Docker build: portable and reproducible; optional hardware-in-the-loop CI test</li></ul><p class="repo-links mono"><a href="#bootloader-gui" data-flash="bootloader-gui">Flash it from the desktop GUI ↓</a><a href="https://github.com/soccentric-stm32/bootloader/blob/HEAD/docs/IMAGE_SIGNING.md" target="_blank" rel="noopener">Image signing guide ↗</a></p></article>
+    </div>
+  </div>
+</section>
+
+<!-- -------------------- bootloader · gui -->
+<section class="section" id="bootloader-gui" data-slide="Bootloader · GUI">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow"><span class="num">02</span>Bootloader · GUI</p>
+      <a class="icon-btn sec-repo" href="https://github.com/soccentric-stm32/bootloader-gui" target="_blank" rel="noopener" aria-label="bootloader-gui on GitHub" title="bootloader-gui on GitHub"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg></a>
+      <h2>Bootloader GUI</h2>
+      <p class="sec-lead">A desktop app for the bootloader. It builds and flashes the bootloader, then builds, signs and uploads your firmware, so nobody has to remember command lines. A starting point for your own flashing and release tooling.</p>
+    </div>
+    <div class="split media">
+      <figure class="media-col">
+        <div class="win"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">BOOT Flasher</span></div><img src="assets/shots/bootloader-gui.webp" width="1360" height="860" alt="BOOT Flasher: the C FreeRTOS page with its clone, build, sign and flash steps and the debug terminal" loading="lazy" decoding="async"></div>
+        <figcaption class="fig-cap mono">Screenshot · BOOT Flasher on the C FreeRTOS page, with the debug terminal showing a recorded board log</figcaption>
+      </figure>
+      <article class="panel spec"><div class="panel-head"><span class="mono">Python · PySide6</span><span class="status s-done">Implemented</span></div><h3>Features</h3><ul class="feature-list"><li>One window: build, sign and flash without command lines</li><li>A full pipeline: clone, build, sign and upload each firmware project</li><li>Docker or host builds: falls back to Docker when the vendor SDK is missing</li><li>Offline signing: choose the signing key; no network needed</li><li>A board panel: version, both slots, trusted key and security floor</li><li>SWD buttons: program, provision, reset and erase the board</li><li>A live debug terminal: stays open while the board is being flashed</li><li>A recovery path: gets a board back into the bootloader when the app is silent</li><li>Light and dark themes: follow the system; keyboard shortcuts for the pipeline</li><li>Python and PySide6: a thin front-end over the bootloader's own tools, with tests</li></ul><p class="repo-links mono"><a href="#bootloader" data-flash="bootloader">See the firmware ↑</a></p></article>
     </div>
   </div>
 </section>
@@ -405,30 +405,11 @@
   </div>
 </section>
 
-<!-- -------------------- factory · station -->
-<section class="section" id="eol" data-slide="Factory · Station">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow"><span class="num">10</span>Factory · Station</p>
-      <a class="icon-btn sec-repo" href="https://github.com/soccentric-stm32/factory-station" target="_blank" rel="noopener" aria-label="factory-station on GitHub" title="factory-station on GitHub"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg></a>
-      <h2>Factory station</h2>
-      <p class="sec-lead">A starting point for your production station. It takes a blank board to a finished unit in one guided flow: it programs the board, writes the unit's data, runs a self-test and records the result. A simulator runs every step without hardware; the hardware side is still in development.</p>
-    </div>
-    <div class="split media">
-      <figure class="media-col">
-        <div class="win"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">HWVAL Factory</span></div><img src="assets/shots/factory-station.webp" width="1360" height="860" alt="HWVAL Factory: the validation page with the pass and incomplete checks of a simulated board" loading="lazy" decoding="async"></div>
-        <figcaption class="fig-cap mono">Screenshot · HWVAL Factory running its validation page on the simulator</figcaption>
-      </figure>
-      <article class="panel spec"><div class="panel-head"><span class="mono">Python · PySide6 · OpenOCD</span><span class="status s-wip">In development · v0.1.0</span></div><h3>Features</h3><ul class="feature-list"><li>A guided flow: from a blank board to a provisioned unit</li><li>Probe and port detection: finds ST-LINK probes and UART ports</li><li>Bootloader over SWD: programmed after the dual-bank option bytes are set</li><li>Signed factory firmware: installed through the bootloader with your key</li><li>Per-unit data: system info from a CSV database; calibration and diagnostics over UART</li><li>Read-back checks: every write is read back and compared</li><li>Identity protection: an address check guards the device identity record</li><li>A validation page: self-test of chip, flash, clock and RAM, with a saved report</li><li>Up to eight fixtures: in parallel on one PC; a full simulator runs every step</li><li>PIN login by role: SQLite database; automated tests and lint for the station</li></ul><p class="repo-links mono"><a href="https://github.com/soccentric-stm32/factory-station" target="_blank" rel="noopener">factory-station on GitHub ↗</a></p></article>
-    </div>
-  </div>
-</section>
-
 <!-- ------------------------------------------------------ factory firmware -->
 <section class="section" id="factory-firmware" data-slide="Factory · Firmware">
   <div class="wrap">
     <div class="sec-head">
-      <p class="eyebrow"><span class="num">11</span>Factory · Firmware</p>
+      <p class="eyebrow"><span class="num">10</span>Factory · Firmware</p>
       <a class="icon-btn sec-repo" href="https://github.com/soccentric-stm32/factory-firmware" target="_blank" rel="noopener" aria-label="factory-firmware on GitHub" title="factory-firmware on GitHub"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg></a>
       <h2>Factory firmware</h2>
       <p class="sec-lead">A starting point for the first firmware on a fresh board. A small FreeRTOS app, built in Docker, that the factory station flashes in. It writes each unit's identity, calibration and diagnostic data into a protected area of flash.</p>
@@ -439,6 +420,25 @@
         <div class="win"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">Terminal · make demo</span><span class="win-tag mono">Simulator run</span></div><img src="assets/shots/term-factory-firmware.webp" width="1800" height="1126" alt="Terminal: the factory station programs and checks one simulated unit" loading="lazy" decoding="async"></div>
         <figcaption class="fig-cap mono">Terminal · one simulated unit through <code>make demo</code>: program, provision, boot check</figcaption>
       </figure>
+    </div>
+  </div>
+</section>
+
+<!-- -------------------- factory · station -->
+<section class="section" id="eol" data-slide="Factory · Station">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow"><span class="num">11</span>Factory · Station</p>
+      <a class="icon-btn sec-repo" href="https://github.com/soccentric-stm32/factory-station" target="_blank" rel="noopener" aria-label="factory-station on GitHub" title="factory-station on GitHub"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg></a>
+      <h2>Factory station</h2>
+      <p class="sec-lead">A starting point for your production station. It takes a blank board to a finished unit in one guided flow: it programs the board, writes the unit's data, runs a self-test and records the result. A simulator runs every step without hardware; the hardware side is still in development.</p>
+    </div>
+    <div class="split media">
+      <figure class="media-col">
+        <div class="win"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">HWVAL Factory</span></div><img src="assets/shots/factory-station.webp" width="1360" height="860" alt="HWVAL Factory: the validation page with the pass and incomplete checks of a simulated board" loading="lazy" decoding="async"></div>
+        <figcaption class="fig-cap mono">Screenshot · HWVAL Factory running its validation page on the simulator</figcaption>
+      </figure>
+      <article class="panel spec"><div class="panel-head"><span class="mono">Python · PySide6 · OpenOCD</span><span class="status s-wip">In development · v0.1.0</span></div><h3>Features</h3><ul class="feature-list"><li>A guided flow: from a blank board to a provisioned unit</li><li>Probe and port detection: finds ST-LINK probes and UART ports</li><li>Bootloader over SWD: programmed after the dual-bank option bytes are set</li><li>Signed factory firmware: installed through the bootloader with your key</li><li>Per-unit data: system info from a CSV database; calibration and diagnostics over UART</li><li>Read-back checks: every write is read back and compared</li><li>Identity protection: an address check guards the device identity record</li><li>A validation page: self-test of chip, flash, clock and RAM, with a saved report</li><li>Up to eight fixtures: in parallel on one PC; a full simulator runs every step</li><li>PIN login by role: SQLite database; automated tests and lint for the station</li></ul><p class="repo-links mono"><a href="https://github.com/soccentric-stm32/factory-station" target="_blank" rel="noopener">factory-station on GitHub ↗</a></p></article>
     </div>
   </div>
 </section>
@@ -506,8 +506,8 @@
         <li><a class="gh-link" href="https://github.com/soccentric-stm32/app-rust-zephyr" target="_blank" rel="noopener" title="app-rust-zephyr"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span><small class="mono">07</small>Rust · Zephyr</span><span aria-hidden="true">↗</span></a></li>
         <li><a class="gh-link" href="https://github.com/soccentric-stm32/validation-firmware" target="_blank" rel="noopener" title="validation-firmware"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span><small class="mono">08</small>Validation · Firmware</span><span aria-hidden="true">↗</span></a></li>
         <li><a class="gh-link" href="https://github.com/soccentric-stm32/validation-gui" target="_blank" rel="noopener" title="validation-gui"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span><small class="mono">09</small>Validation · GUI</span><span aria-hidden="true">↗</span></a></li>
-        <li><a class="gh-link" href="https://github.com/soccentric-stm32/factory-station" target="_blank" rel="noopener" title="factory-station"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span><small class="mono">10</small>Factory · Station</span><span aria-hidden="true">↗</span></a></li>
-        <li><a class="gh-link" href="https://github.com/soccentric-stm32/factory-firmware" target="_blank" rel="noopener" title="factory-firmware"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span><small class="mono">11</small>Factory · Firmware</span><span aria-hidden="true">↗</span></a></li>
+        <li><a class="gh-link" href="https://github.com/soccentric-stm32/factory-firmware" target="_blank" rel="noopener" title="factory-firmware"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span><small class="mono">10</small>Factory · Firmware</span><span aria-hidden="true">↗</span></a></li>
+        <li><a class="gh-link" href="https://github.com/soccentric-stm32/factory-station" target="_blank" rel="noopener" title="factory-station"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span><small class="mono">11</small>Factory · Station</span><span aria-hidden="true">↗</span></a></li>
         <li><a class="gh-link" href="https://github.com/soccentric-stm32/factory-data-gui" target="_blank" rel="noopener" title="factory-data-gui"><svg aria-hidden="true" focusable="false"><use href="#gh-icon"></use></svg><span><small class="mono">12</small>Factory · Data GUI</span><span aria-hidden="true">↗</span></a></li>
       </ul>
     </div>
