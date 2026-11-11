@@ -42,13 +42,14 @@
     var shotTitle = $('#shot-title');
     var shotTag = $('#shot-tag');
     var shotCaption = $('#shot-caption');
+    var showcase = $('.showcase') || reel;
+    var hero = $('.hero');
+    var host = panel || frame;
 
-    var select = function (tab, focus) {
-      tabs.forEach(function (t) {
-        var on = t === tab;
-        t.setAttribute('aria-selected', on ? 'true' : 'false');
-        t.tabIndex = on ? 0 : -1;
-      });
+    var current = tabs.filter(function (t) { return t.getAttribute('aria-selected') === 'true'; })[0] || tabs[0];
+
+    /* the stage content for one capture, swapped in one go */
+    var applyStage = function (tab) {
       stageImg.src = tab.dataset.src;
       stageImg.alt = tab.dataset.alt || '';
       shotTitle.textContent = tab.dataset.title || '';
@@ -56,13 +57,123 @@
       shotTag.textContent = tagText;
       shotTag.hidden = !tagText;
       shotCaption.textContent = tab.dataset.caption || '';
-      frame.className = 'stage-frame ' + (tab.dataset.kind === 'term' ? 'term' : 'win');
+      var term = tab.dataset.kind === 'term';
+      frame.classList.toggle('term', term);
+      frame.classList.toggle('win', !term);
+    };
+
+    /* swap with a transition: the old capture slides out, the new one sweeps
+       in under a band of light (motion.css). The last choice always wins, and
+       visitors who prefer reduced motion get the plain swap. */
+    var swapToken = 0;
+    var swapStage = function (tab) {
+      if (!root.classList.contains('motion') || !host) { applyStage(tab); return; }
+      var token = ++swapToken;
+      host.classList.remove('is-in');
+      host.classList.add('is-out');
+      setTimeout(function () {
+        if (token !== swapToken) { return; }
+        applyStage(tab);
+        var show = function () {
+          if (token !== swapToken) { return; }
+          host.classList.remove('is-out');
+          host.classList.add('is-in');
+        };
+        if (stageImg.decode) { stageImg.decode().then(show, show); } else { show(); }
+      }, 230);
+    };
+
+    var select = function (tab, focus) {
+      current = tab;
+      tabs.forEach(function (t) {
+        var on = t === tab;
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.tabIndex = on ? 0 : -1;
+      });
+      swapStage(tab);
       if (panel) { panel.setAttribute('aria-labelledby', tab.id); }
       if (focus) { tab.focus(); }
     };
 
+    /* auto-rotate: every capture gets five seconds on the stage, shown as a
+       bar filling along the selected thumbnail. It pauses (bar frozen, time
+       kept) while the pointer is over the showcase or a key has focus there,
+       while the tab is hidden or the hero is off screen, and it stays off for
+       visitors who prefer reduced motion. Choosing a capture restarts it. */
+    var AUTO_MS = 5000;
+    var timer = null;
+    var started = 0;
+    var remaining = AUTO_MS;
+    var tickA = false;
+    var hovering = false;
+    var focusing = false;
+    var onScreen = true;
+
+    var paused = function () { return hovering || focusing || !onScreen || document.hidden; };
+    var pause = function () {
+      if (timer) {
+        remaining = Math.max(0, remaining - (Date.now() - started));
+        clearTimeout(timer);
+        timer = null;
+      }
+      showcase.classList.add('is-paused');
+    };
+    var run = function () {
+      if (reduce) { return; }
+      if (paused()) { pause(); return; }
+      showcase.classList.remove('is-paused');
+      var nextTab = tabs[(tabs.indexOf(current) + 1) % tabs.length];
+      new Image().src = nextTab.dataset.src; /* have it ready before the swap */
+      started = Date.now();
+      timer = setTimeout(function () {
+        timer = null;
+        /* a rotation is not announced to screen readers; a choice is */
+        if (panel) { panel.setAttribute('aria-live', 'off'); }
+        select(nextTab, false);
+        fresh();
+      }, remaining);
+    };
+    /* five new seconds; flipping between two identical keyframes restarts the bar */
+    var fresh = function () {
+      if (timer) { clearTimeout(timer); timer = null; }
+      remaining = AUTO_MS;
+      tickA = !tickA;
+      showcase.classList.toggle('tick-a', tickA);
+      showcase.classList.toggle('tick-b', !tickA);
+      run();
+    };
+    var update = function () {
+      if (reduce) { return; }
+      if (paused()) { pause(); } else if (!timer) { run(); }
+    };
+    var choose = function (tab, focus) {
+      if (panel) { panel.setAttribute('aria-live', 'polite'); }
+      select(tab, focus);
+      fresh();
+    };
+
+    showcase.addEventListener('pointerenter', function (e) {
+      if (e.pointerType === 'mouse') { hovering = true; update(); }
+    });
+    showcase.addEventListener('pointerleave', function (e) {
+      if (e.pointerType === 'mouse') { hovering = false; update(); }
+    });
+    showcase.addEventListener('focusin', function (e) {
+      /* only keyboard focus pauses; a mouse click leaves focus on the button */
+      focusing = !!(e.target.matches && e.target.matches(':focus-visible'));
+      update();
+    });
+    showcase.addEventListener('focusout', function () { focusing = false; update(); });
+    document.addEventListener('visibilitychange', update);
+    if (hero && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        onScreen = entries[0].isIntersecting;
+        update();
+      }, { threshold: 0.25 }).observe(hero);
+    }
+
     tabs.forEach(function (tab) {
-      tab.addEventListener('click', function () { select(tab, false); });
+      tab.addEventListener('click', function () { choose(tab, false); });
     });
     reel.addEventListener('keydown', function (e) {
       var i = tabs.indexOf(document.activeElement);
@@ -74,8 +185,10 @@
       else if (e.key === 'End') { next = tabs.length - 1; }
       if (next < 0) { return; }
       e.preventDefault();
-      select(tabs[next], true);
+      choose(tabs[next], true);
     });
+
+    fresh();
   }
 
   /* ---- captures: click a screen to max it out to near full size ------ */
