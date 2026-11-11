@@ -13,10 +13,10 @@
 
   /* ---- theme: follow the OS until the visitor chooses ------------------ */
   var toggle = $('.theme-toggle');
-  function current() { return root.dataset.theme || (darkMq.matches ? 'dark' : 'light'); }
+  function currentTheme() { return root.dataset.theme || (darkMq.matches ? 'dark' : 'light'); }
   if (toggle) {
     var sync = function () {
-      var dark = current() === 'dark';
+      var dark = currentTheme() === 'dark';
       var label = dark ? 'Switch to light theme' : 'Switch to dark theme';
       toggle.dataset.mode = dark ? 'dark' : 'light';
       toggle.setAttribute('aria-label', label);
@@ -24,7 +24,7 @@
     };
     sync();
     toggle.addEventListener('click', function () {
-      var next = current() === 'dark' ? 'light' : 'dark';
+      var next = currentTheme() === 'dark' ? 'light' : 'dark';
       root.dataset.theme = next;
       try { localStorage.setItem('theme', next); } catch (e) { /* private mode */ }
       sync();
