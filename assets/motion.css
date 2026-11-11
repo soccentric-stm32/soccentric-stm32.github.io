@@ -181,7 +181,7 @@ html.motion .stage.is-in .fig-cap { animation: stage-text-in .5s ease .24s both;
 @keyframes stage-text-in { from { opacity: 0; translate: 0 6px; } to { opacity: 1; translate: 0 0; } }
 
 /* thumbnails: the selected one lifts and brightens while the others rest, and a
-   bar along its foot counts down the five seconds (frozen while paused) */
+   bar along its foot counts down the twenty seconds (frozen while paused) */
 html.motion .reel-item { position: relative; }
 html.motion .reel-item img { transition: opacity .4s ease, filter .4s ease; }
 html.motion .hero.mo-in .reel-item:not([aria-selected="true"]) img { opacity: .7; filter: saturate(.8); }
@@ -191,8 +191,8 @@ html.motion .reel-item::after {
   content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; z-index: 1;
   background: var(--accent); transform: scaleX(0); transform-origin: left; pointer-events: none;
 }
-html.motion .showcase.tick-a .reel-item[aria-selected="true"]::after { animation: reel-count-a 5s linear forwards; }
-html.motion .showcase.tick-b .reel-item[aria-selected="true"]::after { animation: reel-count-b 5s linear forwards; }
+html.motion .showcase.tick-a .reel-item[aria-selected="true"]::after { animation: reel-count-a 20s linear forwards; }
+html.motion .showcase.tick-b .reel-item[aria-selected="true"]::after { animation: reel-count-b 20s linear forwards; }
 html.motion .showcase.is-paused .reel-item[aria-selected="true"]::after { animation-play-state: paused; }
 @keyframes reel-count-a { to { transform: scaleX(1); } }
 @keyframes reel-count-b { to { transform: scaleX(1); } }
