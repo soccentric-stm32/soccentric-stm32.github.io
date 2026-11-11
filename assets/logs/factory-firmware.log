@@ -1,0 +1,17 @@
+$ make demo
+PASS: run 1, fixture F1, serial A2A3AB52E7F42E59F2D6B325
+  01 Scan board: PASS 0 ms
+  02 Identify chip: PASS 0 ms
+  03 Prepare test image: PASS 801 ms
+  04 Run EOL test plan: PASS 134 ms
+  05 Compute calibration: PASS 0 ms
+  06 Program production: PASS 804 ms
+  07 Provision unit: PASS 8 ms
+  08 Boot check: PASS 2003 ms
+  09 Apply protection: PASS 800 ms
+  10 Print label: PASS 42 ms
+  11 Record run: PASS 8 ms
+ 
+     ADC.001: PASS 1.212 V
+     CLK.001: PASS 216.0 MHz
+     PWR.001: PASS 3265.0 mV
