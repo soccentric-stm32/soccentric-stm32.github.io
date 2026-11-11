@@ -464,109 +464,12 @@
   </div>
 </section>
 
-<!-- ---------------------------------------------------------- recorded on the board -->
-<section class="section" id="board-runs" data-slide="Recorded on the board">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="eyebrow"><span class="num">13</span>Recorded on the board</p>
-      <h2>BOOT, then six apps, <span class="dim">flashed from the GUI</span></h2>
-      <p class="sec-lead">Real recordings from a NUCLEO-F767ZI. BOOT Flasher programs BOOT over SWD, then signs each firmware project and uploads it through BOOT. Each recording has the flasher window beside the board's own UART log, read live from USART6.</p>
-    </div>
-    <div class="runs">
-      <article class="run">
-        <h3>BOOT</h3>
-        <div class="run-pair">
-          <figure class="run-col">
-            <div class="win"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">BOOT Flasher · BOOT</span><span class="win-tag mono">Recorded</span></div><video controls muted playsinline preload="none" poster="assets/video/bootloader/bootloader.webp" width="880" height="720" aria-label="BOOT Flasher flashing BOOT to the board"><source src="assets/video/bootloader/bootloader.webm" type="video/webm"></video></div>
-          </figure>
-          <figure class="run-col">
-            <div class="term"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">BOOT · ttyUSB0 · USART6 115200 8N1</span><span class="win-tag mono">Recorded</span></div><video controls muted playsinline preload="none" poster="assets/video/bootloader/term-bootloader.webp" width="496" height="720" aria-label="UART log of the board while BOOT is flashed"><source src="assets/video/bootloader/term-bootloader.webm" type="video/webm"></video></div>
-          </figure>
-        </div>
-        <p class="fig-cap mono">BOOT flashed over SWD and verified, then it starts and boots slot B.</p>
-      </article>
-      <article class="run">
-        <h3>C · FreeRTOS</h3>
-        <div class="run-pair">
-          <figure class="run-col">
-            <div class="win"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">BOOT Flasher · C · FreeRTOS</span><span class="win-tag mono">Recorded</span></div><video controls muted playsinline preload="none" poster="assets/video/bootloader/app-c-freertos.webp" width="880" height="720" aria-label="BOOT Flasher flashing C · FreeRTOS to the board"><source src="assets/video/bootloader/app-c-freertos.webm" type="video/webm"></video></div>
-          </figure>
-          <figure class="run-col">
-            <div class="term"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">C · FreeRTOS · ttyUSB0 · USART6 115200 8N1</span><span class="win-tag mono">Recorded</span></div><video controls muted playsinline preload="none" poster="assets/video/bootloader/term-app-c-freertos.webp" width="496" height="720" aria-label="UART log of the board while C · FreeRTOS is flashed"><source src="assets/video/bootloader/term-app-c-freertos.webm" type="video/webm"></video></div>
-          </figure>
-        </div>
-        <p class="fig-cap mono">Recovered into BOOT, signed, uploaded, trial boot, then the health check confirms the slot.</p>
-      </article>
-      <article class="run">
-        <h3>C · Zephyr</h3>
-        <div class="run-pair">
-          <figure class="run-col">
-            <div class="win"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">BOOT Flasher · C · Zephyr</span><span class="win-tag mono">Recorded</span></div><video controls muted playsinline preload="none" poster="assets/video/bootloader/app-c-zephyr.webp" width="880" height="720" aria-label="BOOT Flasher flashing C · Zephyr to the board"><source src="assets/video/bootloader/app-c-zephyr.webm" type="video/webm"></video></div>
-          </figure>
-          <figure class="run-col">
-            <div class="term"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">C · Zephyr · ttyUSB0 · USART6 115200 8N1</span><span class="win-tag mono">Recorded</span></div><video controls muted playsinline preload="none" poster="assets/video/bootloader/term-app-c-zephyr.webp" width="496" height="720" aria-label="UART log of the board while C · Zephyr is flashed"><source src="assets/video/bootloader/term-app-c-zephyr.webm" type="video/webm"></video></div>
-          </figure>
-        </div>
-        <p class="fig-cap mono">Recovered into BOOT, signed, uploaded, trial boot, then the health check confirms the slot.</p>
-      </article>
-      <article class="run">
-        <h3>Rust · Embassy</h3>
-        <div class="run-pair">
-          <figure class="run-col">
-            <div class="win"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">BOOT Flasher · Rust · Embassy</span><span class="win-tag mono">Recorded</span></div><video controls muted playsinline preload="none" poster="assets/video/bootloader/app-rust-embassy.webp" width="880" height="720" aria-label="BOOT Flasher flashing Rust · Embassy to the board"><source src="assets/video/bootloader/app-rust-embassy.webm" type="video/webm"></video></div>
-          </figure>
-          <figure class="run-col">
-            <div class="term"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">Rust · Embassy · ttyUSB0 · USART6 115200 8N1</span><span class="win-tag mono">Recorded</span></div><video controls muted playsinline preload="none" poster="assets/video/bootloader/term-app-rust-embassy.webp" width="496" height="720" aria-label="UART log of the board while Rust · Embassy is flashed"><source src="assets/video/bootloader/term-app-rust-embassy.webm" type="video/webm"></video></div>
-          </figure>
-        </div>
-        <p class="fig-cap mono">Recovered into BOOT, signed, uploaded, trial boot, then the health check confirms the slot.</p>
-      </article>
-      <article class="run">
-        <h3>Rust · FreeRTOS</h3>
-        <div class="run-pair">
-          <figure class="run-col">
-            <div class="win"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">BOOT Flasher · Rust · FreeRTOS</span><span class="win-tag mono">Recorded</span></div><video controls muted playsinline preload="none" poster="assets/video/bootloader/app-rust-freertos.webp" width="880" height="720" aria-label="BOOT Flasher flashing Rust · FreeRTOS to the board"><source src="assets/video/bootloader/app-rust-freertos.webm" type="video/webm"></video></div>
-          </figure>
-          <figure class="run-col">
-            <div class="term"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">Rust · FreeRTOS · ttyUSB0 · USART6 115200 8N1</span><span class="win-tag mono">Recorded</span></div><video controls muted playsinline preload="none" poster="assets/video/bootloader/term-app-rust-freertos.webp" width="496" height="720" aria-label="UART log of the board while Rust · FreeRTOS is flashed"><source src="assets/video/bootloader/term-app-rust-freertos.webm" type="video/webm"></video></div>
-          </figure>
-        </div>
-        <p class="fig-cap mono">Recovered into BOOT, signed, uploaded, trial boot, then the health check confirms the slot.</p>
-      </article>
-      <article class="run">
-        <h3>Rust · Zephyr</h3>
-        <div class="run-pair">
-          <figure class="run-col">
-            <div class="win"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">BOOT Flasher · Rust · Zephyr</span><span class="win-tag mono">Recorded</span></div><video controls muted playsinline preload="none" poster="assets/video/bootloader/app-rust-zephyr.webp" width="880" height="720" aria-label="BOOT Flasher flashing Rust · Zephyr to the board"><source src="assets/video/bootloader/app-rust-zephyr.webm" type="video/webm"></video></div>
-          </figure>
-          <figure class="run-col">
-            <div class="term"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">Rust · Zephyr · ttyUSB0 · USART6 115200 8N1</span><span class="win-tag mono">Recorded</span></div><video controls muted playsinline preload="none" poster="assets/video/bootloader/term-app-rust-zephyr.webp" width="496" height="720" aria-label="UART log of the board while Rust · Zephyr is flashed"><source src="assets/video/bootloader/term-app-rust-zephyr.webm" type="video/webm"></video></div>
-          </figure>
-        </div>
-        <p class="fig-cap mono">Recovered into BOOT, signed, uploaded, trial boot, then the health check confirms the slot.</p>
-      </article>
-      <article class="run">
-        <h3>HWVAL · validation firmware</h3>
-        <div class="run-pair">
-          <figure class="run-col">
-            <div class="win"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">BOOT Flasher · HWVAL · validation firmware</span><span class="win-tag mono">Recorded</span></div><video controls muted playsinline preload="none" poster="assets/video/bootloader/validation-firmware.webp" width="880" height="720" aria-label="BOOT Flasher flashing HWVAL · validation firmware to the board"><source src="assets/video/bootloader/validation-firmware.webm" type="video/webm"></video></div>
-          </figure>
-          <figure class="run-col">
-            <div class="term"><div class="win-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win-title mono">HWVAL · validation firmware · ttyUSB0 · USART6 115200 8N1</span><span class="win-tag mono">Recorded</span></div><video controls muted playsinline preload="none" poster="assets/video/bootloader/term-validation-firmware.webp" width="496" height="720" aria-label="UART log of the board while HWVAL · validation firmware is flashed"><source src="assets/video/bootloader/term-validation-firmware.webm" type="video/webm"></video></div>
-          </figure>
-        </div>
-        <p class="fig-cap mono">Uploaded and activated; the UART shows the health check confirming the slot. The flasher then reports a timeout because HWVAL starts its 182-test run and stops answering HWLINK.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
 <!-- ---------------------------------------------------------- contact -->
 <section class="section contact" id="contact" data-slide="Contact">
   <div class="wrap">
     <div class="contact-grid">
       <div class="contact-main">
-        <p class="eyebrow"><span class="num">14</span>Contact</p>
+        <p class="eyebrow"><span class="num">13</span>Contact</p>
         <h2>Let's work on your <span class="accent">firmware project.</span></h2>
         <p class="contact-note">We provide firmware consulting for both existing projects and new products. Starting from these twelve open-source building blocks saves redundant development time and cost, and every completed project feeds improvements back into the blocks. Whether your project is in C/C++ or you are moving to Rust on Embassy, FreeRTOS or Zephyr, get in touch—all code here is MIT-licensed.</p>
         <div class="contact-cta">
