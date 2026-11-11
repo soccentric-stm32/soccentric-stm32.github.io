@@ -1,8 +1,56 @@
-[    438] BOOT I update mode (HWLINK on USART3)
-[      0] BOOT I start v0.1.0 4ad6a4db8fb6, reset 0x14000000
-[    356] BOOT I slot A: ok, pending
-[    359] BOOT I slot B: ok, confirmed
-[    362] BOOT I sel: slot A on trial, count 0
-[    867] BOOT I boot slot A, trial 1
-[      0] C-ZEP I start v0.1.0 ab25ad8edf2a, slot A on trial, reset software
+[      0] BOOT I start v0.1.0 d389f50d03e7, reset 0x14000000
+[      5] BOOT I init: clock 216 MHz, PLL locked
+[      9] BOOT I init: HWLINK on USART3, 115200 8N1
+[     14] BOOT I scan: searching for an application
+[    352] BOOT I init: flash dual bank, writes enabled
+[    357] BOOT I slot A: ok, confirmed
+[    361] BOOT I slot B: ok, pending
+[    364] BOOT I sel: slot B on trial, count 0
+[    368] BOOT I listen: 500 ms for a host
+[    872] BOOT I boot slot B, trial 1
+[      0] C-ZEP I start v0.1.0 0b248e954e01, slot B on trial, reset software
+[      5] C-ZEP I task 3 Health: watches thread check-ins, kicks the watchdog, confirms the slot
+[      5] C-ZEP I task 4 Comms: serves HWLINK on USART3: info, identity, button and LED commands
+[      5] C-ZEP I task 2 Button: debounces B1, short press cycles the LED pattern, long press resets it
+[      5] C-ZEP I task 1 LED: drives LD1-LD3 patterns, LD3 shows health and fault state
+[   1006] C-ZEP I task 4 Comms: serves HWLINK on USART3: info, identity, button and LED commands
+[   1006] C-ZEP I task 2 Button: debounces B1, short press cycles the LED pattern, long press resets it
+[   1006] C-ZEP I task 1 LED: drives LD1-LD3 patterns, LD3 shows health and fault state
+[   1006] C-ZEP I task 3 Health: watches thread check-ins, kicks the watchdog, confirms the slot
+[   2006] C-ZEP I task 3 Health: watches thread check-ins, kicks the watchdog, confirms the slot
+[   2006] C-ZEP I task 1 LED: drives LD1-LD3 patterns, LD3 shows health and fault state
+[   2007] C-ZEP I task 4 Comms: serves HWLINK on USART3: info, identity, button and LED commands
+[   2007] C-ZEP I task 2 Button: debounces B1, short press cycles the LED pattern, long press resets it
+[   3006] C-ZEP I task 1 LED: drives LD1-LD3 patterns, LD3 shows health and fault state
+[   3008] C-ZEP I task 4 Comms: serves HWLINK on USART3: info, identity, button and LED commands
+[   3008] C-ZEP I task 2 Button: debounces B1, short press cycles the LED pattern, long press resets it
+[   3010] C-ZEP I task 3 Health: watches thread check-ins, kicks the watchdog, confirms the slot
+[   4006] C-ZEP I task 1 LED: drives LD1-LD3 patterns, LD3 shows health and fault state
+[   4009] C-ZEP I task 4 Comms: serves HWLINK on USART3: info, identity, button and LED commands
+[   4009] C-ZEP I task 2 Button: debounces B1, short press cycles the LED pattern, long press resets it
+[   4012] C-ZEP I task 3 Health: watches thread check-ins, kicks the watchdog, confirms the slot
+[   5006] C-ZEP I task 1 LED: drives LD1-LD3 patterns, LD3 shows health and fault state
+[   5010] C-ZEP I task 4 Comms: serves HWLINK on USART3: info, identity, button and LED commands
+[   5010] C-ZEP I task 2 Button: debounces B1, short press cycles the LED pattern, long press resets it
 [   5014] C-ZEP I health: passed, CONFIRMED written
+[   5014] C-ZEP I task 3 Health: watches thread check-ins, kicks the watchdog, confirms the slot
+[   6006] C-ZEP I task 1 LED: drives LD1-LD3 patterns, LD3 shows health and fault state
+[   6011] C-ZEP I task 4 Comms: serves HWLINK on USART3: info, identity, button and LED commands
+[   6011] C-ZEP I task 2 Button: debounces B1, short press cycles the LED pattern, long press resets it
+[   6016] C-ZEP I task 3 Health: watches thread check-ins, kicks the watchdog, confirms the slot
+[   7006] C-ZEP I task 1 LED: drives LD1-LD3 patterns, LD3 shows health and fault state
+[   7012] C-ZEP I task 4 Comms: serves HWLINK on USART3: info, identity, button and LED commands
+[   7012] C-ZEP I task 2 Button: debounces B1, short press cycles the LED pattern, long press resets it
+[   7018] C-ZEP I task 3 Health: watches thread check-ins, kicks the watchdog, confirms the slot
+[   8006] C-ZEP I task 1 LED: drives LD1-LD3 patterns, LD3 shows health and fault state
+[   8013] C-ZEP I task 4 Comms: serves HWLINK on USART3: info, identity, button and LED commands
+[   8013] C-ZEP I task 2 Button: debounces B1, short press cycles the LED pattern, long press resets it
+[   8020] C-ZEP I task 3 Health: watches thread check-ins, kicks the watchdog, confirms the slot
+[   9006] C-ZEP I task 1 LED: drives LD1-LD3 patterns, LD3 shows health and fault state
+[   9014] C-ZEP I task 4 Comms: serves HWLINK on USART3: info, identity, button and LED commands
+[   9014] C-ZEP I task 2 Button: debounces B1, short press cycles the LED pattern, long press resets it
+[   9022] C-ZEP I task 3 Health: watches thread check-ins, kicks the watchdog, confirms the slot
+[  10006] C-ZEP I task 1 LED: drives LD1-LD3 patterns, LD3 shows health and fault state
+[  10015] C-ZEP I task 4 Comms: serves HWLINK on USART3: info, identity, button and LED commands
+[  10015] C-ZEP I task 2 Button: debounces B1, short press cycles the LED pattern, long press resets it
+[  10024] C-ZEP I task 3 Health: watches thread check-ins, kicks the watchdog, confirms the slot

@@ -344,3 +344,13 @@ html.motion .icon-btn { transition: background .2s, color .2s, border-color .2s,
 html.motion.deck .hero.in > .wrap,
 html.motion.deck .section.in > .wrap { animation: none; }
 @media (max-width: 900px) { .scroll-hint { display: none; } }
+
+/* the recorded-log terminals follow the same swap as the screenshots */
+html.motion .stage.is-out .stage-frame .term-body {
+  opacity: 0; translate: -34px 0; scale: .98; filter: blur(6px);
+  transition: opacity .22s ease-in, translate .22s ease-in, scale .22s ease-in, filter .22s ease-in;
+}
+html.motion .stage.is-in .stage-frame .term-body { animation: stage-swap-in .6s cubic-bezier(.2, .8, .2, 1) both; }
+html.motion .reel-item .mini-term { transition: opacity .4s ease, filter .4s ease; }
+html.motion .hero.mo-in .reel-item:not([aria-selected="true"]) .mini-term { opacity: .7; filter: saturate(.8); }
+html.motion .hero.mo-in .reel-item:not([aria-selected="true"]):hover .mini-term { opacity: 1; filter: none; }

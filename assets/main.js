@@ -32,6 +32,61 @@
     darkMq.addEventListener('change', sync);
   }
 
+  /* ---- recorded logs: replay a terminal line by line --------------------
+     Each line carries its replay time (data-t, seconds). With JavaScript off,
+     or when the visitor prefers reduced motion, the whole log is simply shown. */
+  var Replay = function (body) {
+    var lines = $$('.ln', body);
+    var timers = [];
+    var again = null;
+    var self = {};
+
+    var mark = function (last) {
+      lines.forEach(function (l) { l.classList.remove('cursor'); });
+      if (last) { last.classList.add('cursor'); }
+    };
+    var clear = function () {
+      timers.forEach(clearTimeout);
+      timers = [];
+      if (again) { clearTimeout(again); again = null; }
+    };
+    self.showAll = function () {
+      clear();
+      lines.forEach(function (l) { l.classList.remove('is-hidden'); });
+      mark(null);
+      body.scrollTop = body.scrollHeight;
+    };
+    self.stop = function () { self.showAll(); };
+    self.play = function (loop) {
+      clear();
+      if (reduce) { self.showAll(); return; }
+      lines.forEach(function (l) { l.classList.add('is-hidden'); });
+      mark(null);
+      body.scrollTop = 0;
+      var end = 0;
+      lines.forEach(function (line) {
+        var at = (parseFloat(line.dataset.t) || 0) * 1000;
+        end = Math.max(end, at);
+        timers.push(setTimeout(function () {
+          line.classList.remove('is-hidden');
+          mark(line);
+          body.scrollTop = body.scrollHeight;
+        }, at));
+      });
+      if (loop) { again = setTimeout(function () { self.play(true); }, end + 5000); }
+    };
+    return self;
+  };
+
+  /* the terminals on the slides play while their slide is on screen */
+  $$('.term[data-replay] .term-body').forEach(function (body) {
+    var replay = Replay(body);
+    if (reduce || !('IntersectionObserver' in window)) { replay.showAll(); return; }
+    new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) { replay.play(true); } else { replay.stop(); }
+    }, { threshold: 0.5 }).observe(body);
+  });
+
   /* ---- hero showcase: pick a capture and put it on the stage ---------- */
   var reel = $('.reel');
   var stageImg = $('#shot-img');
@@ -49,9 +104,23 @@
     var current = tabs.filter(function (t) { return t.getAttribute('aria-selected') === 'true'; })[0] || tabs[0];
 
     /* the stage content for one capture, swapped in one go */
+    var shotTerm = $('#shot-term');
+    var stageReplay = null;
     var applyStage = function (tab) {
-      stageImg.src = tab.dataset.src;
-      stageImg.alt = tab.dataset.alt || '';
+      var slideLog = tab.dataset.term ? $('#' + tab.dataset.term + ' .term-body code') : null;
+      var showLog = !!(slideLog && shotTerm);
+      if (showLog) {
+        /* a recorded log: the lines come from the slide that holds the same log */
+        shotTerm.querySelector('code').innerHTML = slideLog.innerHTML;
+        shotTerm.setAttribute('aria-label', tab.dataset.alt || 'Debug log recorded from the board');
+        stageReplay = Replay(shotTerm);
+      } else {
+        if (stageReplay) { stageReplay.stop(); stageReplay = null; }
+        stageImg.src = tab.dataset.src;
+        stageImg.alt = tab.dataset.alt || '';
+      }
+      stageImg.hidden = showLog;
+      if (shotTerm) { shotTerm.hidden = !showLog; }
       shotTitle.textContent = tab.dataset.title || '';
       var tagText = tab.dataset.tag || '';
       shotTag.textContent = tagText;
@@ -60,6 +129,7 @@
       var term = tab.dataset.kind === 'term';
       frame.classList.toggle('term', term);
       frame.classList.toggle('win', !term);
+      if (stageReplay) { stageReplay.play(false); }
     };
 
     /* swap with a transition: the old capture slides out, the new one sweeps
@@ -123,7 +193,7 @@
       if (paused()) { pause(); return; }
       showcase.classList.remove('is-paused');
       var nextTab = tabs[(tabs.indexOf(current) + 1) % tabs.length];
-      new Image().src = nextTab.dataset.src; /* have it ready before the swap */
+      if (nextTab.dataset.src) { new Image().src = nextTab.dataset.src; } /* ready before the swap */
       started = Date.now();
       timer = setTimeout(function () {
         timer = null;
@@ -227,6 +297,8 @@
       clone.removeAttribute('aria-haspopup');
       clone.removeAttribute('id');
       $$('[id]', clone).forEach(function (el) { el.removeAttribute('id'); });
+      // a replayed terminal opens with its whole log, whatever the replay has reached
+      $$('.ln', clone).forEach(function (l) { l.classList.remove('is-hidden', 'cursor'); });
       // a capture that was still lazy on the page must paint in the maxed view
       $$('img', clone).forEach(function (img) {
         img.loading = 'eager';
