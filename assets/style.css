@@ -784,6 +784,10 @@ h1 {
 }
 
 .panel.spec { gap: clamp(6px, 1vh, 10px); }
+.feature-list { display: grid; gap: clamp(7px, 1.2vh, 11px); margin: 0; padding: 0; list-style: none; flex: 1; align-content: start; }
+.feature-list li { position: relative; padding-left: 20px; font-size: 14px; line-height: 1.5; color: var(--ink-2); text-wrap: pretty; }
+.feature-list li::before { content: ""; position: absolute; left: 2px; top: .62em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.feature-list code { font-family: var(--mono); font-size: .88em; color: var(--ink); }
 .spec-list { display: grid; border-top: 1px solid var(--line); flex: 1; align-content: space-between; }
 .spec-list > div {
   display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: 14px;
