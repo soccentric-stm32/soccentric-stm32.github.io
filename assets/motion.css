@@ -135,7 +135,7 @@ html.motion .stage-frame img { animation: shot-in .6s ease both; }
 html.motion .reel-item {
   opacity: 0; translate: 0 14px; scale: .9;
   transition: opacity .5s ease, translate .5s cubic-bezier(.2, .8, .2, 1), scale .5s cubic-bezier(.2, .8, .2, 1),
-              border-color .2s, box-shadow .2s, transform .2s;
+              border-color .2s, box-shadow .2s, transform .45s cubic-bezier(.2, .8, .2, 1);
   transition-delay: calc(1.2s + var(--r, 0) * 45ms), calc(1.2s + var(--r, 0) * 45ms), calc(1.2s + var(--r, 0) * 45ms), 0s, 0s, 0s;
 }
 html.motion .hero.mo-in .reel-item { opacity: 1; translate: 0 0; scale: 1; }
@@ -145,6 +145,57 @@ html.motion .reel-item[aria-selected="true"] { animation: tile-glow 2.6s ease-in
   0%, 100% { box-shadow: inset 0 0 0 1px var(--accent), 0 0 0 0 transparent; }
   50% { box-shadow: inset 0 0 0 1px var(--accent), 0 0 14px 0 color-mix(in srgb, var(--accent) 45%, transparent); }
 }
+
+/* choosing a capture (main.js adds is-out, then is-in, to the stage): the old
+   one slides out, the new one sweeps in under a band of light, and the window
+   title and caption fade up with it */
+html.motion .stage.is-out .stage-frame img {
+  animation: none; opacity: 0; translate: -34px 0; scale: .98; filter: blur(6px);
+  transition: opacity .22s ease-in, translate .22s ease-in, scale .22s ease-in, filter .22s ease-in;
+}
+html.motion .stage.is-in .stage-frame img { animation: stage-swap-in .6s cubic-bezier(.2, .8, .2, 1) both; }
+@keyframes stage-swap-in {
+  from { opacity: 0; translate: 40px 0; scale: 1.06; filter: blur(8px); }
+  to { opacity: 1; translate: 0 0; scale: 1; filter: none; }
+}
+html.motion .stage-frame::before {
+  content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; opacity: 0;
+  background: linear-gradient(105deg, transparent 38%, rgba(255, 255, 255, .34) 50%, transparent 62%);
+}
+html.motion .stage.is-in .stage-frame::before { animation: stage-sweep .95s ease-out both; }
+@keyframes stage-sweep {
+  0% { opacity: 0; transform: translateX(-110%); }
+  15%, 80% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(110%); }
+}
+html.motion .stage-frame .win-bar { transition: background-color .35s ease, color .35s ease; }
+html.motion .stage .win-title, html.motion .stage .win-tag, html.motion .stage .fig-cap {
+  transition: opacity .22s ease, translate .22s ease;
+}
+html.motion .stage.is-out .win-title, html.motion .stage.is-out .win-tag, html.motion .stage.is-out .fig-cap {
+  opacity: 0; translate: 0 5px;
+}
+html.motion .stage.is-in .win-title { animation: stage-text-in .5s ease .12s both; }
+html.motion .stage.is-in .win-tag { animation: stage-text-in .5s ease .18s both; }
+html.motion .stage.is-in .fig-cap { animation: stage-text-in .5s ease .24s both; }
+@keyframes stage-text-in { from { opacity: 0; translate: 0 6px; } to { opacity: 1; translate: 0 0; } }
+
+/* thumbnails: the selected one lifts and brightens while the others rest, and a
+   bar along its foot counts down the five seconds (frozen while paused) */
+html.motion .reel-item { position: relative; }
+html.motion .reel-item img { transition: opacity .4s ease, filter .4s ease; }
+html.motion .hero.mo-in .reel-item:not([aria-selected="true"]) img { opacity: .7; filter: saturate(.8); }
+html.motion .hero.mo-in .reel-item:not([aria-selected="true"]):hover img { opacity: 1; filter: none; }
+html.motion .hero.mo-in .reel-item[aria-selected="true"] { transform: translateY(-4px) scale(1.06); z-index: 2; }
+html.motion .reel-item::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; z-index: 1;
+  background: var(--accent); transform: scaleX(0); transform-origin: left; pointer-events: none;
+}
+html.motion .showcase.tick-a .reel-item[aria-selected="true"]::after { animation: reel-count-a 5s linear forwards; }
+html.motion .showcase.tick-b .reel-item[aria-selected="true"]::after { animation: reel-count-b 5s linear forwards; }
+html.motion .showcase.is-paused .reel-item[aria-selected="true"]::after { animation-play-state: paused; }
+@keyframes reel-count-a { to { transform: scaleX(1); } }
+@keyframes reel-count-b { to { transform: scaleX(1); } }
 
 /* a hint that there is more below the first page */
 .scroll-hint {
