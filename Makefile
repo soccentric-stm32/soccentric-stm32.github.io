@@ -46,4 +46,4 @@ clean:
 .DEFAULT_GOAL := help
 
 help:
-	@sed -n '/^#   make/p' Makefile | sed 's/^#//'
+	@sed -n "/^#   make/p" Makefile | sed "s/^#//"
