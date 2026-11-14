@@ -28,7 +28,9 @@ make serve                    # then open http://localhost:8000/
 ```
 
 `make check` is the repository's build target; it needs only Python 3. Pushing
-to `main` deploys the site with GitHub Pages.
+to `main` deploys the site with GitHub Pages. On Windows, run it from Git Bash:
+the Makefile calls `python` there, because `python3` is the Microsoft Store
+stub.
 
 ## Screen captures
 

@@ -14,7 +14,14 @@
 # repos.yaml.
 #
 
+# Git Bash only offers `python3` as the Microsoft Store stub, which exits
+# 9009; there the interpreter is `python`.
+ifeq ($(OS),Windows_NT)
+PYTHON ?= python
+else
 PYTHON ?= python3
+endif
+
 PORT   ?= 8000
 
 .PHONY: all build check serve shots clean help
