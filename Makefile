@@ -16,6 +16,24 @@
 
 # Git Bash only offers `python3` as the Microsoft Store stub, which exits
 # 9009; there the interpreter is `python`.
+# Windows: run every recipe under Git's POSIX sh, also from cmd.exe or
+# PowerShell with only Git\cmd on PATH. Otherwise native make falls back to
+# cmd.exe, which cannot run the recipes (quotes, pipes, find, rm -rf), and
+# `sh scripts/...` is not found. Git's usr\bin goes first on PATH so find,
+# sort and friends are the POSIX tools, not the Windows ones of the same name.
+ifeq ($(OS),Windows_NT)
+ifneq ($(origin SHELL),command line)
+GIT_USR_BIN := $(firstword \
+  $(if $(wildcard C:/Program?Files/Git/usr/bin/sh.exe),C:/Program?Files/Git/usr/bin) \
+  $(if $(wildcard $(subst \,/,$(LOCALAPPDATA))/Programs/Git/usr/bin/sh.exe),$(subst \,/,$(LOCALAPPDATA))/Programs/Git/usr/bin) \
+  $(if $(wildcard C:/msys64/usr/bin/sh.exe),C:/msys64/usr/bin))
+ifneq ($(GIT_USR_BIN),)
+SHELL := $(subst ?, ,$(GIT_USR_BIN))/sh.exe
+export PATH := $(subst /,\,$(subst ?, ,$(GIT_USR_BIN)));$(PATH)
+endif
+endif
+endif
+
 ifeq ($(OS),Windows_NT)
 PYTHON ?= python
 else
