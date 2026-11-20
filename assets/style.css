@@ -476,15 +476,22 @@ h1 {
 .fig-cap { color: var(--muted); }
 .flashmap { display: grid; gap: 10px; }
 .bank { display: grid; grid-template-columns: 64px 1fr 1.6fr; gap: 6px; align-items: stretch; }
-.bank small { font: 500 10.5px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); align-self: center; }
+.bank.bank-3 { grid-template-columns: 68px 1.05fr .9fr 1.75fr; }
+.bank.bank-ram { grid-template-columns: 68px 1fr; }
+.bank small { font: 500 10.5px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); align-self: center; line-height: 1.3; }
 .bank .fm:only-of-type { grid-column: 2 / -1; }
 .fm {
-  display: flex; align-items: center; min-height: 48px; padding: 8px 12px;
+  display: flex; flex-direction: column; justify-content: center; gap: 2px;
+  min-height: 48px; padding: 8px 11px;
   border: 1px solid var(--line-2); background: var(--bg);
-  font: 500 11px var(--mono); letter-spacing: .05em; text-transform: uppercase; color: var(--ink-2);
+  font: 500 11px/1.25 var(--mono); letter-spacing: .05em; text-transform: uppercase; color: var(--ink-2);
 }
+.fm span { font-size: 9.5px; letter-spacing: .04em; color: var(--muted); text-transform: none; }
 .fm.boot { background: repeating-linear-gradient(45deg, transparent 0 5px, var(--line) 5px 6px), var(--bg); }
 .fm.on { border-color: var(--accent); color: var(--ink); box-shadow: inset 3px 0 0 var(--accent); }
+.arch-left { display: flex; flex-direction: column; gap: clamp(14px, 2vh, 22px); min-width: 0; }
+.arch-left .spec-list { flex: 0 0 auto; }
+.arch-left .spec-list > div { grid-template-columns: 118px minmax(0, 1fr); }
 .stack { display: grid; gap: 6px; }
 .stack li {
   display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
@@ -661,8 +668,9 @@ h1 {
   .mit { flex-wrap: wrap; gap: 10px; }
   .stack li { flex-direction: column; gap: 2px; }
   .stack span { text-align: left; }
-  .bank { grid-template-columns: 1fr 1.4fr; }
+  .bank, .bank.bank-3, .bank.bank-ram { grid-template-columns: 1fr; }
   .bank small { grid-column: 1 / -1; }
+  .arch-left .spec-list > div { grid-template-columns: 1fr; gap: 2px; }
   .contact h2 { font-size: clamp(30px, 9.5vw, 44px); }
   .contact-cta .btn { width: 100%; }
   .repo-index ul { grid-template-columns: 1fr 1fr; }
