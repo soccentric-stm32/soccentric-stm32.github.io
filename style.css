@@ -110,3 +110,6 @@ td.n a::after{content:" ↓";opacity:.45}
 .rcard,.card{border-radius:8px}
 .rcard{padding:28px 28px 24px}
 .rcard .tech,.rcard .gh{border-radius:6px}
+
+.repolist{list-style:none;padding:0;margin:.5rem 0 1.5rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.4rem .75rem}
+h3 small{font-weight:400;opacity:.65;font-size:.7em}
