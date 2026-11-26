@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-
-Sitemap: https://soccentric-stm32.github.io/sitemap.xml
+Sitemap: https://soccentric-lyra.github.io/sitemap.xml
