@@ -95,3 +95,18 @@ h3.cat-fac::before{background:var(--accent-3)}
 h3.cat-fac+.cards .rcard{background:var(--tint-3)}
 h3.cat-fac+.cards .rcard .tech{color:var(--accent-3)}
 h3.cat-fac+.cards .rcard li::before{background:var(--accent-3)}
+
+/* repo table -> card jump */
+.rcard{scroll-margin-top:92px;display:flex;flex-direction:column}
+.rcard ul{flex:1}
+.rcard .gh{margin-top:16px;align-self:flex-start;font:500 14px var(--mono);text-decoration:none;padding:7px 14px;border-radius:999px;background:var(--bg);color:var(--ink);transition:background .3s var(--ease),color .3s var(--ease)}
+.rcard .gh:hover{background:var(--accent);color:var(--accent-ink)}
+.rcard:target{animation:pick 1.6s var(--ease)}
+@keyframes pick{0%{transform:scale(.985);box-shadow:0 0 0 0 var(--accent)}35%{transform:scale(1.015);box-shadow:0 0 0 6px color-mix(in srgb,var(--accent) 35%,transparent)}100%{transform:none;box-shadow:0 0 0 0 transparent}}
+td.n a::after{content:" ↓";opacity:.45}
+@media(prefers-reduced-motion:reduce){.rcard:target{animation:none;outline:3px solid var(--accent)}}
+
+/* squarer cards */
+.rcard,.card{border-radius:8px}
+.rcard{padding:28px 28px 24px}
+.rcard .tech,.rcard .gh{border-radius:6px}
