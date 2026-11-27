@@ -430,3 +430,4 @@ h2 em{font-size:1.06em}
 .brand .mark{width:30px;height:30px}
 @media(max-width:420px){.brand{font-size:14px;letter-spacing:.16em;gap:9px}.brand .mark{width:24px;height:24px}}
 @media(max-width:420px){nav a.hire{padding:0;width:38px;height:38px;justify-content:center}nav a.hire span{display:none}nav a.hire .ic{display:block;width:19px;height:19px}}
+#features{scroll-margin-top:84px}
