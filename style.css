@@ -405,3 +405,7 @@ footer{border-top:1px solid var(--line)}
 .brand:hover .mark{transform:rotate(90deg)}
 @media(max-width:420px){.brand{font-size:12.5px;letter-spacing:.18em;gap:8px}.brand .mark{width:20px;height:20px}}
 @media(prefers-reduced-motion:reduce){.brand:hover .mark{transform:none}}
+
+/* the italic serif accent, carried from the hub headline to every heading and hero */
+h2 em,.lead em{font-family:var(--italic);font-style:italic;font-weight:400;color:var(--accent);letter-spacing:-.005em}
+h2 em{font-size:1.06em}
