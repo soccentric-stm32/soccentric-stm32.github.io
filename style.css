@@ -255,3 +255,22 @@ section:nth-of-type(even) .note{background:var(--bg)}
 /* phone header: keep everything on one line */
 nav a,nav button{white-space:nowrap}
 @media(max-width:420px){.wrap{padding:0 16px}header nav{gap:6px}nav a.hire{padding:7px 12px}nav a.hire .ic{display:none}.brand{gap:8px}}
+
+/* ---- top menu: text links, current-section highlight, phone dropdown ---- */
+nav .links{display:flex;gap:4px;align-items:center}
+nav .links a.active{background:var(--bg-2);color:var(--ink);font-weight:600}
+nav button.menu{display:none;place-items:center;width:38px;height:38px;padding:0;border:0;border-radius:999px;background:var(--bg-2);color:var(--ink);cursor:pointer}
+nav button.menu .ic{width:20px;height:20px}
+#arch{scroll-margin-top:84px}
+@media(max-width:1000px){nav .links a{padding:7px 10px}}
+@media(max-width:900px){
+  nav button.menu{display:inline-grid}
+  nav .links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:2px;
+    padding:10px 16px 16px;background:var(--bg);border-bottom:1px solid var(--line);box-shadow:0 12px 24px rgba(0,0,0,.08)}
+  header.open nav .links{display:flex}
+  nav .links a,nav .links a:not(.hire){display:block;padding:12px 14px;border-radius:10px;font-size:16px}
+}
+@media(max-width:560px){nav a.demo span{display:none}}
+nav .links .only-menu{display:none}
+@media(max-width:900px){nav .links a.only-menu{display:flex;align-items:center;gap:8px;color:var(--accent);font-weight:600}nav .links .only-menu .ic{width:17px;height:17px}}
+@media(max-width:560px){nav > a.demo{display:none!important}}
