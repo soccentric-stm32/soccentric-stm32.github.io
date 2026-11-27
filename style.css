@@ -409,3 +409,11 @@ footer{border-top:1px solid var(--line)}
 /* the italic serif accent, carried from the hub headline to every heading and hero */
 h2 em,.lead em{font-family:var(--italic);font-style:italic;font-weight:400;color:var(--accent);letter-spacing:-.005em}
 h2 em{font-size:1.06em}
+
+/* ---- card: GitHub icon top right instead of a "View repository" button ---- */
+.rcard{position:relative}
+.rcard h4{padding-right:44px}
+.rcard .gh,.rcard .gh:hover{position:absolute;top:18px;right:18px;margin:0;width:34px;height:34px;padding:0;display:grid;place-items:center;
+  border:1px solid var(--line-2);border-radius:var(--r);background:transparent;color:var(--muted);transition:color .2s var(--ease),border-color .2s var(--ease)}
+.rcard .gh:hover,.rcard .gh:focus-visible{color:var(--ink);border-color:var(--accent)}
+.rcard .gh svg{width:18px;height:18px;fill:currentColor}
