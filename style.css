@@ -4,7 +4,7 @@
 @font-face{font-family:"Geist Mono";font-weight:300 600;font-display:swap;src:url("fonts/geist-mono-latin.woff2") format("woff2")}
 :root{--bg:#faf6ec;--bg-2:#f3ecdb;--ink:#1d1c1a;--ink-2:#4b4a45;--muted:#6b6961;--line:rgba(60,45,20,.10);--line-2:rgba(60,45,20,.20);--accent:#c0390f;--accent-ink:#fff;
 --display:"Inter","Helvetica Neue",Arial,sans-serif;--serif:"Source Serif 4",Charter,Georgia,serif;--mono:"Geist Mono",ui-monospace,Menlo,Consolas,monospace;color-scheme:light}
-@media(prefers-color-scheme:dark){:root{--bg:#171410;--bg-2:#211c16;--ink:#ece9e1;--ink-2:#bfbcb3;--muted:#94918a;--line:rgba(236,233,225,.11);--line-2:rgba(236,233,225,.24);--accent:#ff5c31;--accent-ink:#101215;color-scheme:dark}}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171410;--bg-2:#211c16;--ink:#ece9e1;--ink-2:#bfbcb3;--muted:#94918a;--line:rgba(236,233,225,.11);--line-2:rgba(236,233,225,.24);--accent:#ff5c31;--accent-ink:#101215;color-scheme:dark}}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--display);-webkit-font-smoothing:antialiased}
 a{color:var(--accent);text-underline-offset:3px}a:hover{text-decoration-thickness:2px}
@@ -42,7 +42,7 @@ footer{padding:30px 0 60px;color:var(--muted);font-size:14px}footer a{color:var(
 
 /* ---- flat, creamy, fluid ---- */
 :root{--accent-2:#3b6fd4;--tint:color-mix(in srgb,var(--accent) 11%,var(--bg));--tint-2:color-mix(in srgb,var(--accent-2) 11%,var(--bg));--r:22px;--ease:cubic-bezier(.22,.8,.3,1)}
-@media(prefers-color-scheme:dark){:root{--accent-2:#7aa2ff}}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--accent-2:#7aa2ff}}
 html{scroll-behavior:smooth}
 body{font-size:17px;line-height:1.65}
 header{background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:0}
@@ -90,7 +90,7 @@ footer{border-top:0;padding-top:40px;background:var(--bg)}
 
 /* third category colour (Lyra: Factory) */
 :root{--accent-3:#3f8a5a;--tint-3:color-mix(in srgb,var(--accent-3) 12%,var(--bg))}
-@media(prefers-color-scheme:dark){:root{--accent-3:#6cc08b}}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--accent-3:#6cc08b}}
 h3.cat-fac::before{background:var(--accent-3)}
 h3.cat-fac+.cards .rcard{background:var(--tint-3)}
 h3.cat-fac+.cards .rcard .tech{color:var(--accent-3)}
@@ -179,3 +179,28 @@ nav .ic .fill{fill:currentColor;stroke:none}
 .hero-math b{display:block;color:var(--ink-2);font-weight:600;letter-spacing:.02em}
 @media(max-width:1100px){.hero3d{width:360px!important;height:360px!important;right:-80px!important}.hero3d.on{opacity:.5!important}.hero-math{display:none}}
 @media(max-width:720px){.hero3d{width:240px!important;height:240px!important;right:-70px!important;top:25%!important}.hero3d.on{opacity:.4!important}}
+
+/* no disc flash: hide it from first paint whenever a scene canvas is present.
+   If WebGL fails, hero.js removes the canvas and the disc comes back as the fallback. */
+.hero:has(.hero3d)::after{display:none}
+
+/* room to move: bigger canvas, camera pulled back in hero.js, and the hero no longer clips it */
+html,body{overflow-x:clip}
+.hero{overflow:visible}
+.hero::after{display:none}
+.hero:not(:has(.hero3d))::after{display:block}
+.hero3d{width:640px!important;height:640px!important;right:max(0px,calc(50% - 760px))!important}
+@media(max-width:1100px){.hero3d{width:500px!important;height:500px!important;right:-120px!important}}
+@media(max-width:720px){.hero3d{width:340px!important;height:340px!important;right:-110px!important;top:25%!important}}
+
+/* explicit theme choice from the toggle wins over the system setting */
+:root[data-theme="dark"]{--bg:#171410;--bg-2:#211c16;--ink:#ece9e1;--ink-2:#bfbcb3;--muted:#94918a;--line:rgba(236,233,225,.11);--line-2:rgba(236,233,225,.24);--accent:#ff5c31;--accent-ink:#101215;color-scheme:dark;--accent-2:#7aa2ff;--accent-3:#6cc08b}
+:root[data-theme="light"]{color-scheme:light}
+nav button.theme{display:inline-grid;place-items:center;width:38px;height:38px;padding:0;border:0;border-radius:999px;background:var(--bg-2);color:var(--ink);cursor:pointer;transition:background .3s var(--ease)}
+nav button.theme:hover{background:var(--tint)}
+nav button.theme .ic{width:18px;height:18px}
+nav button.theme .sun{display:none}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) nav button.theme .sun{display:block}:root:not([data-theme="light"]) nav button.theme .moon{display:none}}
+:root[data-theme="dark"] nav button.theme .sun{display:block}:root[data-theme="dark"] nav button.theme .moon{display:none}
+body,header,section,.hero{transition:background-color .35s var(--ease),color .35s var(--ease)}
+nav .ic{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}

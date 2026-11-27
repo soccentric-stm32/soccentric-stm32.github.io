@@ -14,7 +14,7 @@ async function start(canvas) {
   renderer.setPixelRatio(small ? Math.min(devicePixelRatio || 1, 2) : Math.min((devicePixelRatio || 1) * 2, 4));
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 100);
-  camera.position.set(0, 0, 9);
+  camera.position.set(0, 0, 12.5);   // canvas is ~1.4x the visual size: scenes keep their size but never touch the edge
 
   // Colours follow the page tokens, so light and dark mode both match.
   const mats = [];
@@ -48,6 +48,7 @@ async function start(canvas) {
   const update = def.build(root, kit);
   paint();
   matchMedia("(prefers-color-scheme: dark)").addEventListener("change", paint);
+  addEventListener("themechange", paint);
 
   const cap = document.createElement("div");
   cap.className = "hero-math"; cap.innerHTML = `<b>${def.name}</b><span>${def.eq}</span>`;
