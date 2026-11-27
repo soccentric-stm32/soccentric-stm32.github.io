@@ -363,3 +363,20 @@ code{font-family:var(--mono)}
 footer{border-top:1px solid var(--line)}
 :focus-visible{outline-color:var(--accent)}
 @media(min-width:1101px){.hero h1{max-width:11.5em}}
+
+/* ---- squarer cards + diagram in the site style ---- */
+:root{--r:4px}
+.rcard,.card,.pillars>div,.note,.facts li,.help-box,.arch,table,pre,.code pre,.pull,.proof{border-radius:var(--r)}
+.proof{border-radius:0 var(--r) var(--r) 0}
+.rcard .tech,.chips span,.code .copy,.legend .lg::before{border-radius:3px}
+.arch-svg .box,.arch-svg .box.prod,.arch-svg .box.vv,.arch-svg .box.fac{fill:var(--bg-2);stroke:var(--line-2);stroke-width:1}
+.arch-svg .box.inner{fill:var(--bg);stroke:var(--line-2)}
+.arch-svg a:hover .box,.arch-svg a:focus .box{stroke:var(--accent);stroke-width:1.5;filter:none}
+.arch-svg .tag.prod{fill:var(--accent)}.arch-svg .tag.vv{fill:var(--accent-2)}.arch-svg .tag.fac{fill:var(--accent-3)}
+.arch-svg .bt{font:600 16px var(--display);fill:var(--ink)}.arch-svg .bt.sm{font-size:13.5px}
+.arch-svg .bs{font:400 12.5px var(--mono);fill:var(--muted)}
+.arch-svg .edge{stroke:var(--line-2);stroke-width:1.5}.arch-svg .ah{fill:var(--muted)}
+.arch-svg .edge-t{font:500 11px var(--mono);fill:var(--accent);letter-spacing:.04em}
+.arch-svg .device{stroke:var(--line-2);stroke-dasharray:4 5}
+.arch-svg .pill{fill:transparent;stroke:var(--line-2)}.arch-svg .pill-t{font:500 12px var(--mono);fill:var(--ink-2)}
+.legend .lg::before{width:10px;height:10px}
