@@ -1,13 +1,17 @@
 // Hero animation: one mathematical system per platform, picked by <canvas data-anim>.
 // Every scene is driven by an algorithm (attractors, DFT, cellular automata, wave sums),
 // not by hand-keyed motion. Falls back silently (the CSS disc stays) without WebGL.
-import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js";
+import * as THREE from "three";
+import { Line2 } from "three/addons/lines/Line2.js";
+import { LineGeometry } from "three/addons/lines/LineGeometry.js";
+import { LineMaterial } from "three/addons/lines/LineMaterial.js";
 
 const canvas = document.querySelector("canvas.hero3d");
 
 async function start(canvas) {
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 2));
+  const small = matchMedia("(max-width: 720px)").matches;
+  renderer.setPixelRatio(small ? Math.min(devicePixelRatio || 1, 2) : Math.min((devicePixelRatio || 1) * 2, 4));
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 100);
   camera.position.set(0, 0, 9);
@@ -24,6 +28,16 @@ async function start(canvas) {
     L: (token, o) => mat(THREE.LineBasicMaterial, token, { transparent: true, opacity: 0.85, ...o }),
     P: (token, o) => mat(THREE.PointsMaterial, token, { size: 0.05, transparent: true, opacity: 0.9, ...o }),
   };
+  const fats = [];
+  kit.fat = (src, token, width = 2, opacity = 1) => {
+    const m = mat(LineMaterial, token, { linewidth: width, transparent: opacity < 1, opacity, worldUnits: false });
+    const line = new Line2(new LineGeometry(), m); line.frustumCulled = false;
+    line.userData = { src, ver: -1 }; fats.push(line); return line;
+  };
+  const syncFats = () => fats.forEach((l) => {
+    const a = l.userData.src.attributes.position;
+    if (a.version !== l.userData.ver) { l.geometry.setPositions(a.array); l.userData.ver = a.version; }
+  });
   kit.trail = (n, token, map) => trail(kit, n, token, map);
 
   scene.add(new THREE.AmbientLight(0xffffff, 0.75));
@@ -43,6 +57,7 @@ async function start(canvas) {
     const { width, height } = canvas.getBoundingClientRect();
     if (!width || !height) return;
     renderer.setSize(width, height, false);
+    mats.forEach((m) => m.isLineMaterial && m.resolution.set(width, height));
     camera.aspect = width / height; camera.updateProjectionMatrix();
   };
   new ResizeObserver(resize).observe(canvas); resize();
@@ -52,22 +67,22 @@ async function start(canvas) {
   new IntersectionObserver(([e]) => (visible = e.isIntersecting)).observe(canvas);
   const frame = (now) => {
     const dt = Math.min((now - last) / 1000, 0.05); last = now;
-    if (visible && !document.hidden) { t += dt; update(t, dt); renderer.render(scene, camera); }
+    if (visible && !document.hidden) { t += dt; update(t, dt); syncFats(); renderer.render(scene, camera); }
     if (!still) requestAnimationFrame(frame);
   };
-  if (still) { update(3, 1 / 60); renderer.render(scene, camera); } else requestAnimationFrame(frame);
+  if (still) { update(3, 1 / 60); syncFats(); renderer.render(scene, camera); } else requestAnimationFrame(frame);
   canvas.classList.add("on");
   canvas.closest(".hero")?.classList.add("has3d");
 }
 
 // A fixed-length polyline + dots that follows a moving point (ring buffer).
-function trail({ THREE, L, P }, n, token, map) {
+function trail({ THREE, fat }, n, token, map) {
   const pos = new Float32Array(n * 3), g = new THREE.BufferGeometry();
   g.setAttribute("position", new THREE.BufferAttribute(pos, 3));
-  const line = new THREE.Line(g, L(token)), dots = new THREE.Points(g, P(token, { size: 0.035, opacity: 0.6 }));
+  const line = fat(g, token, 1.8, 0.95);
   let filled = false;
   return {
-    objects: [line, dots],
+    objects: [line],
     push(x, y, z) {
       const [X, Y, Z] = map(x, y, z);
       if (!filled) { for (let i = 0; i < n; i++) pos.set([X, Y, Z], i * 3); filled = true; }
@@ -91,7 +106,7 @@ function rk4(f, s, h) {
 function attractor({ f, s0, h, perSec, n, map, warm = 3000, spin = 0.12, tilt = [0, 0] }) {
   return (root, kit) => {
     const tr = kit.trail(n, "--accent", map); tr.objects.forEach((o) => root.add(o));
-    const head = new kit.THREE.Mesh(new kit.THREE.SphereGeometry(0.09, 16, 12), kit.B()); root.add(head);
+    const head = new kit.THREE.Mesh(new kit.THREE.SphereGeometry(0.1, 32, 24), kit.B()); root.add(head);
     let s = s0.slice(), acc = 0;
     for (let i = 0; i < warm; i++) s = rk4(f, s, h);           // settle onto the attractor
     for (let i = 0; i < n; i++) { s = rk4(f, s, h); tr.push(...s); }
@@ -109,14 +124,14 @@ const SCENES = {
   hub: {
     name: "Fibonacci sphere", eq: "θₙ = n·137.5°, yₙ = 1 − 2(n+½)/N",
     build(root, { THREE, P, B }) {
-      const N = 520, ga = Math.PI * (3 - Math.sqrt(5)), base = [], pos = new Float32Array(N * 3);
+      const N = 900, ga = Math.PI * (3 - Math.sqrt(5)), base = [], pos = new Float32Array(N * 3);
       for (let i = 0; i < N; i++) {
         const y = 1 - (2 * (i + 0.5)) / N, r = Math.sqrt(1 - y * y), th = i * ga;
         base.push([Math.cos(th) * r, y, Math.sin(th) * r]);
       }
       const g = new THREE.BufferGeometry(); g.setAttribute("position", new THREE.BufferAttribute(pos, 3));
-      root.add(new THREE.Points(g, P("--accent", { size: 0.17, opacity: 1 })));
-      const core = new THREE.Mesh(new THREE.IcosahedronGeometry(0.55, 0), B({ flatShading: true })); root.add(core);
+      root.add(new THREE.Points(g, P("--accent", { size: 0.13, opacity: 1 })));
+      const core = new THREE.Mesh(new THREE.IcosahedronGeometry(0.55, 1), B({ flatShading: true })); root.add(core);
       root.rotation.x = 0.35;
       return (t) => {
         base.forEach(([x, y, z], i) => {
@@ -134,7 +149,7 @@ const SCENES = {
     name: "Lorenz attractor", eq: "σ = 10, ρ = 28, β = 8⁄3",
     build: attractor({
       f: ([x, y, z]) => [10 * (y - x), x * (28 - z) - y, x * y - (8 / 3) * z],
-      s0: [0.1, 0, 0], h: 0.005, perSec: 420, n: 2600,
+      s0: [0.1, 0, 0], h: 0.0025, perSec: 840, n: 6000,
       map: (x, y, z) => [x * 0.1, (z - 25) * 0.1, y * 0.1], tilt: [0.15, 0],
     }),
   },
@@ -143,7 +158,7 @@ const SCENES = {
   arches: {
     name: "Two-source interference", eq: "h = sin(kr₁ − ωt) + sin(kr₂ − ωt)",
     build(root, { THREE, A, B }) {
-      const n = 22, sp = 0.2, g = new THREE.BoxGeometry(0.15, 0.15, 0.15);
+      const n = 32, sp = 0.14, g = new THREE.BoxGeometry(0.105, 0.105, 0.105);
       const lo = new THREE.InstancedMesh(g, A(), n * n), hi = new THREE.InstancedMesh(g, B(), n * n);
       root.add(lo, hi); root.rotation.set(-1.05, 0, 0.5);
       const d = new THREE.Object3D(), zero = new THREE.Matrix4().makeScale(0, 0, 0);
@@ -165,11 +180,11 @@ const SCENES = {
   // Joshua: a torus knot T(p,q) whose winding numbers glide between knot types.
   joshua: {
     name: "Torus knot T(p, q)", eq: "r = 2 + cos qφ, (x, y, z) = (r cos pφ, r sin pφ, sin qφ)",
-    build(root, { THREE, L, P, B }) {
-      const N = 1600, pos = new Float32Array(N * 3), g = new THREE.BufferGeometry();
+    build(root, { THREE, fat, B }) {
+      const N = 3200, pos = new Float32Array(N * 3), g = new THREE.BufferGeometry();
       g.setAttribute("position", new THREE.BufferAttribute(pos, 3));
-      root.add(new THREE.Line(g, L("--accent", { opacity: 1 })), new THREE.Points(g, P("--accent", { size: 0.04, opacity: 0.55 })));
-      const bead = new THREE.Mesh(new THREE.SphereGeometry(0.11, 16, 12), B()); root.add(bead);
+      root.add(fat(g, "--accent", 2.6));
+      const bead = new THREE.Mesh(new THREE.SphereGeometry(0.12, 32, 24), B()); root.add(bead);
       const knots = [[2, 3], [3, 5], [2, 5], [3, 7], [5, 8]];
       const at = (p, q, phi, o = [0, 0, 0]) => { const r = 2 + Math.cos(q * phi); o[0] = r * Math.cos(p * phi) * 0.85; o[1] = r * Math.sin(p * phi) * 0.85; o[2] = Math.sin(q * phi) * 0.85; return o; };
       const v = [0, 0, 0];
@@ -189,11 +204,11 @@ const SCENES = {
   // Pinnacle: a 3-D Lissajous figure, frequency ratio 3:4:5 with a drifting phase.
   pinnacle: {
     name: "Lissajous curve", eq: "x = sin(3t + δ), y = sin 4t, z = sin 5t",
-    build(root, { THREE, L, P, B }) {
-      const N = 2000, pos = new Float32Array(N * 3), g = new THREE.BufferGeometry();
+    build(root, { THREE, fat, B }) {
+      const N = 4000, pos = new Float32Array(N * 3), g = new THREE.BufferGeometry();
       g.setAttribute("position", new THREE.BufferAttribute(pos, 3));
-      root.add(new THREE.Line(g, L("--accent", { opacity: 1 })), new THREE.Points(g, P("--accent", { size: 0.035, opacity: 0.5 })));
-      const bead = new THREE.Mesh(new THREE.SphereGeometry(0.11, 16, 12), B()); root.add(bead);
+      root.add(fat(g, "--accent", 2.2));
+      const bead = new THREE.Mesh(new THREE.SphereGeometry(0.12, 32, 24), B()); root.add(bead);
       const R = 2.2;
       return (time) => {
         const d = time * 0.35;
@@ -213,16 +228,16 @@ const SCENES = {
     name: "Rössler attractor", eq: "a = 0.2, b = 0.2, c = 5.7",
     build: attractor({
       f: ([x, y, z]) => [-y - z, x + 0.2 * y, 0.2 + z * (x - 5.7)],
-      s0: [1, 1, 0], h: 0.012, perSec: 300, n: 2400,
+      s0: [1, 1, 0], h: 0.006, perSec: 600, n: 5000,
       map: (x, y, z) => [x * 0.2, (z - 4) * 0.13, y * 0.2], tilt: [0.35, 0.1], spin: 0.15,
     }),
   },
 
   // Zion: Conway's Game of Life on a torus, a fabric of reconfigurable cells.
   zion: {
-    name: "Conway's Game of Life", eq: "rule B3/S23 on a 24 × 24 torus",
+    name: "Conway's Game of Life", eq: "rule B3/S23 on a 32 × 32 torus",
     build(root, { THREE, A, B }) {
-      const n = 24, sp = 0.19, g = new THREE.BoxGeometry(0.16, 0.16, 0.16);
+      const n = 32, sp = 0.145, g = new THREE.BoxGeometry(0.12, 0.12, 0.12);
       const cells = new THREE.InstancedMesh(g, A(), n * n), born = new THREE.InstancedMesh(g, B(), n * n);
       root.add(cells, born); root.rotation.set(-0.9, 0, 0.55);
       let grid = new Uint8Array(n * n), age = new Uint8Array(n * n), h = new Float32Array(n * n), gen = 0, acc = 0;
@@ -238,7 +253,7 @@ const SCENES = {
           nx[i] = live ? 1 : 0; age[i] = live ? Math.min(age[i] + 1, 9) : 0; alive += nx[i]; changed += nx[i] !== grid[i];
         }
         grid = nx; gen++;
-        if (alive < 25 || changed < 4 || gen > 260) seed();
+        if (alive < 45 || changed < 6 || gen > 260) seed();
       };
       seed();
       const d = new THREE.Object3D(), zero = new THREE.Matrix4().makeScale(0, 0, 0);
@@ -262,8 +277,8 @@ const SCENES = {
   // Orion: a chain of Fourier epicycles (DFT of a closed curve) redrawing it.
   orion: {
     name: "Fourier epicycles", eq: "z(t) = Σ cₖ e^{ikt}, 48 DFT terms",
-    build(root, { THREE, L, B }) {
-      const M = 256, pts = [];
+    build(root, { THREE, L, B, fat }) {
+      const M = 512, pts = [];
       for (let i = 0; i < M; i++) {                       // target: a 5-point star rounded by a cosine term
         const a = (i / M) * Math.PI * 2, r = 1 + 0.42 * Math.cos(5 * a) + 0.08 * Math.cos(10 * a);
         pts.push([r * Math.cos(a), r * Math.sin(a)]);
@@ -275,13 +290,13 @@ const SCENES = {
         terms.push({ k, a: Math.hypot(re, im) / M, ph: Math.atan2(im, re) });
       }
       terms.sort((u, v) => v.a - u.a); const T = terms.slice(0, 48), S = 1.75;
-      const unit = new THREE.BufferGeometry().setFromPoints(Array.from({ length: 64 }, (_, i) => new THREE.Vector3(Math.cos((i / 64) * 6.283), Math.sin((i / 64) * 6.283), 0)));
+      const unit = new THREE.BufferGeometry().setFromPoints(Array.from({ length: 160 }, (_, i) => new THREE.Vector3(Math.cos((i / 160) * 6.2832), Math.sin((i / 160) * 6.2832), 0)));
       const rings = T.map(() => { const c = new THREE.LineLoop(unit, L("--accent-2", { opacity: 0.45 })); root.add(c); return c; });
       const armPos = new Float32Array((T.length + 1) * 3), arm = new THREE.BufferGeometry();
-      arm.setAttribute("position", new THREE.BufferAttribute(armPos, 3)); root.add(new THREE.Line(arm, L("--accent-2", { opacity: 0.8 })));
-      const tr = { n: 500 }; const tp = new Float32Array(tr.n * 3), tg = new THREE.BufferGeometry();
-      tg.setAttribute("position", new THREE.BufferAttribute(tp, 3)); root.add(new THREE.Line(tg, L("--accent", { opacity: 1 })));
-      const pen = new THREE.Mesh(new THREE.SphereGeometry(0.07, 12, 10), B()); root.add(pen);
+      arm.setAttribute("position", new THREE.BufferAttribute(armPos, 3)); root.add(fat(arm, "--accent-2", 1.4, 0.85));
+      const tr = { n: 1400 }; const tp = new Float32Array(tr.n * 3), tg = new THREE.BufferGeometry();
+      tg.setAttribute("position", new THREE.BufferAttribute(tp, 3)); root.add(fat(tg, "--accent", 2.6));
+      const pen = new THREE.Mesh(new THREE.SphereGeometry(0.08, 32, 24), B()); root.add(pen);
       root.rotation.set(-0.35, 0.3, 0);
       return (t) => {
         const w = t * 0.55; let x = 0, y = 0;
@@ -307,14 +322,14 @@ const SCENES = {
   polaris: {
     name: "Phyllotaxis (Vogel)", eq: "rₙ = c√n, θₙ = n · 137.508°",
     build(root, { THREE, P, B }) {
-      const N = 1400, pos = new Float32Array(N * 3), g = new THREE.BufferGeometry(), ga = 137.508 * (Math.PI / 180);
+      const N = 2400, pos = new Float32Array(N * 3), g = new THREE.BufferGeometry(), ga = 137.508 * (Math.PI / 180);
       g.setAttribute("position", new THREE.BufferAttribute(pos, 3)); g.setDrawRange(0, 0);
-      root.add(new THREE.Points(g, P("--accent", { size: 0.16, opacity: 1 })));
-      const star = new THREE.Mesh(new THREE.OctahedronGeometry(0.28), B({ flatShading: true })); root.add(star);
+      root.add(new THREE.Points(g, P("--accent", { size: 0.11, opacity: 1 })));
+      const star = new THREE.Mesh(new THREE.OctahedronGeometry(0.28, 0), B({ flatShading: true })); root.add(star);
       const c = 2.6 / Math.sqrt(N);
       root.rotation.x = 0.6;
       return (t) => {
-        const shown = Math.min(N, Math.floor((t * 160 + N * 0.7) % (N * 1.35)));   // starts mostly grown, regrows on a loop
+        const shown = Math.min(N, Math.floor((t * 260 + N * 0.7) % (N * 1.35)));   // starts mostly grown, regrows on a loop
         for (let n = 0; n < shown; n++) {
           const r = c * Math.sqrt(n), th = n * ga + t * 0.15;
           pos[n * 3] = r * Math.cos(th); pos[n * 3 + 1] = Math.sin(r * 2.2 - t * 1.5) * 0.12; pos[n * 3 + 2] = r * Math.sin(th);
@@ -329,9 +344,9 @@ const SCENES = {
   vela: {
     name: "Gerstner waves", eq: "x += Σ Qᵢ Aᵢ dᵢ cos(kᵢ·x − ωᵢt), y = Σ Aᵢ sin(kᵢ·x − ωᵢt)",
     build(root, { THREE, A, L }) {
-      const S = 40, g = new THREE.PlaneGeometry(4, 4, S, S), base = g.attributes.position.array.slice();
+      const S = 80, g = new THREE.PlaneGeometry(4, 4, S, S), base = g.attributes.position.array.slice();
       const surf = new THREE.Mesh(g, A({ side: THREE.DoubleSide, flatShading: true }));
-      const wire = new THREE.LineSegments(new THREE.WireframeGeometry(g), L("--accent-2", { opacity: 0.22 }));
+      const wire = new THREE.LineSegments(new THREE.WireframeGeometry(g), L("--accent-2", { opacity: 0.14 }));
       root.add(surf, wire); root.rotation.set(-1.05, 0, 0.45);
       const W = [[1, 0.25, 0.22, 2.2], [0.6, 0.8, 0.12, 3.1], [-0.4, 0.9, 0.07, 4.6]].map(([dx, dy, a, k]) => {
         const l = Math.hypot(dx, dy); return { dx: dx / l, dy: dy / l, a, k, w: Math.sqrt(9.8 * k) * 0.45, q: 0.7 };
@@ -362,7 +377,7 @@ const SCENES = {
         3.5 * x + (z - 0.7) * y,
         0.6 + 0.95 * z - (z ** 3) / 3 - (x * x + y * y) * (1 + 0.25 * z) + 0.1 * z * x ** 3,
       ],
-      s0: [0.1, 0, 0], h: 0.008, perSec: 360, n: 3000,
+      s0: [0.1, 0, 0], h: 0.004, perSec: 720, n: 6000,
       map: (x, y, z) => [x * 1.55, (z - 0.6) * 1.55, y * 1.55], tilt: [0.25, 0], spin: 0.18,
     }),
   },
