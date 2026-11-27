@@ -275,3 +275,91 @@ nav .links .only-menu{display:none}
 @media(max-width:900px){nav .links a.only-menu{display:flex;align-items:center;gap:8px;color:var(--accent);font-weight:600}nav .links .only-menu .ic{width:17px;height:17px}}
 @media(max-width:560px){nav > a.demo{display:none!important}}
 .arch-svg .box.inner{fill:var(--bg)}
+
+/* =====================================================================
+   Look and feel v2: dark-first, Switzer sans, mono labels and buttons,
+   flat bordered surfaces, coral accent. Content and layout unchanged.
+   ===================================================================== */
+:root:not([data-theme="light"]){--bg:#0a0a0a;--bg-2:#121212;--ink:#fafafa;--ink-2:#c7c7c7;--muted:#a3a3a3;--line:#262626;--line-2:#3a3a3a;
+  --accent:#f5654a;--accent-ink:#0a0a0a;--accent-2:#9e9eff;--accent-3:#5fd39a;color-scheme:dark}
+:root[data-theme="light"]{--bg:#fafafa;--bg-2:#ffffff;--ink:#0a0a0a;--ink-2:#404040;--muted:#6b6b6b;--line:#e5e5e5;--line-2:#d4d4d4;
+  --accent:#e5533a;--accent-ink:#0a0a0a;--accent-2:#4f46e5;--accent-3:#16a34a;color-scheme:light}
+:root{--display:"Switzer",system-ui,-apple-system,"Segoe UI",sans-serif;--serif:"Switzer",system-ui,sans-serif;--italic:"Sentient",Georgia,serif;
+  --mono:ui-monospace,"SF Mono","JetBrains Mono","Fira Code",Menlo,monospace;
+  --tint:color-mix(in srgb,var(--accent) 7%,var(--bg-2));--tint-2:color-mix(in srgb,var(--accent-2) 7%,var(--bg-2));--tint-3:color-mix(in srgb,var(--accent-3) 7%,var(--bg-2));--r:10px}
+nav button.theme .sun{display:block}nav button.theme .moon{display:none}
+:root[data-theme="light"] nav button.theme .sun{display:none}:root[data-theme="light"] nav button.theme .moon{display:block}
+
+body{font:16px/1.6 var(--display);letter-spacing:-.005em}
+a{color:var(--accent-2)}
+h1{font:600 clamp(40px,6.4vw,64px)/1.06 var(--display);letter-spacing:-.035em}
+h1 em{font-family:var(--italic);font-style:italic;font-weight:400;color:var(--accent);letter-spacing:-.01em}
+h2,section>.wrap>h2{font:600 clamp(26px,3vw,34px)/1.15 var(--display);letter-spacing:-.025em}
+h3{font:600 19px/1.3 var(--display);letter-spacing:-.015em}
+.lead{color:var(--ink-2);font-size:clamp(17px,2vw,19px)}
+.sub{color:var(--muted)}
+
+/* labels: coral mono, uppercase, tracked, no pill */
+.eyebrow,.help-box .eyebrow,.ctaband .eyebrow{background:none;padding:0;border-radius:0;font:600 12px var(--mono);letter-spacing:.12em;color:var(--accent)}
+.zone,.arch-svg .zone{fill:var(--accent)}
+
+/* header */
+header{background:color-mix(in srgb,var(--bg) 82%,transparent);border-bottom:1px solid var(--line)}
+.brand{font:600 15px var(--display);letter-spacing:-.01em}
+nav a{font-size:14px;color:var(--muted)}nav a:hover{background:none;color:var(--ink)}
+nav .links a.active{background:none;color:var(--ink)}
+nav a.hire,nav a.demo,nav button.theme,nav button.menu{font:600 13px var(--mono);border-radius:8px}
+nav a.hire{background:var(--accent);color:var(--accent-ink)}nav a.hire:hover{background:var(--accent);color:var(--accent-ink);filter:brightness(1.06)}
+nav a.demo,nav button.theme,nav button.menu{background:transparent;border:1px solid var(--line-2);color:var(--ink)}
+nav a.demo:hover,nav button.theme:hover,nav button.menu:hover{background:transparent;border-color:var(--accent)}
+
+/* buttons: mono, 8px radius, coral filled or outlined */
+.btn{font:600 13.5px var(--mono);border-radius:8px;padding:13px 22px;background:transparent;border:1px solid var(--line-2);color:var(--ink)}
+.btn:hover{background:transparent;border-color:var(--accent);transform:none}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}.btn.primary:hover{background:var(--accent);filter:brightness(1.06)}
+
+/* chips */
+.chips span{font:500 12px var(--mono);border-radius:6px;background:transparent;border:1px solid var(--line-2);color:var(--ink-2)}
+.chips span:first-child{background:transparent;border-color:var(--accent);color:var(--accent)}
+
+/* sections: flat, separated by hairlines instead of tinted bands */
+section,section:nth-of-type(even){background:transparent;border-top:1px solid var(--line)}
+.hero{background:var(--bg)}
+.ctaband{background:transparent!important}
+
+/* surfaces: one flat card style everywhere */
+.rcard,.card,.pillars>div,section:nth-of-type(odd) .pillars>div,.note,section:nth-of-type(even) .note,.facts li,.help-box,.arch,section:nth-of-type(odd) .arch,
+table,pre,.pull,.proof{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r);box-shadow:none}
+.rcard:hover,.card:hover{transform:none;border-color:var(--line-2)}
+h3.cat-vv+.cards .rcard,h3.cat-fac+.cards .rcard{background:var(--bg-2)}
+.rcard .tech,h3.cat-vv+.cards .rcard .tech,h3.cat-fac+.cards .rcard .tech{background:transparent;border:1px solid var(--line-2);border-radius:6px;font:500 11.5px var(--mono)}
+.rcard .gh{background:transparent;border:1px solid var(--line-2);border-radius:8px;font:600 12.5px var(--mono);color:var(--ink)}
+.rcard .gh:hover{border-color:var(--accent);background:transparent;color:var(--ink)}
+.card b{font:600 21px var(--display);letter-spacing:-.02em}
+.card em{color:var(--accent)}
+.proof{border-left:3px solid var(--accent)}
+.pull{font:400 italic clamp(24px,3vw,32px)/1.25 var(--italic);color:var(--ink)}
+.facts b,.pillars b,.note h3,.steps b{font-family:var(--display);letter-spacing:-.015em}
+.help-box{padding:44px 44px 36px}
+.ctaband h2{letter-spacing:-.03em}
+.others a{background:transparent;border:1px solid var(--line);border-radius:8px;font:500 13px var(--mono)}
+.others a:hover{border-color:var(--accent);background:transparent}
+
+/* tables */
+th{background:transparent!important;font:600 11.5px var(--mono);letter-spacing:.1em;color:var(--muted)}
+tbody tr:hover{background:color-mix(in srgb,var(--ink) 4%,transparent)}
+td.n a{font:600 13.5px var(--mono);color:var(--ink)}td.n a:hover{color:var(--accent)}
+
+/* code */
+pre,.code pre{background:var(--bg-2);font:13px/1.7 var(--mono);color:var(--ink)}
+code{font-family:var(--mono)}
+.code .copy{border:1px solid var(--line-2);background:transparent;border-radius:6px}
+
+/* diagram strokes follow the new palette */
+.arch-svg .bt{font-family:var(--display);letter-spacing:-.01em}
+.arch-svg .box.prod,.arch-svg .box.vv,.arch-svg .box.fac{fill:var(--bg)}
+.arch-svg .box.inner{fill:var(--bg-2)}
+
+footer{border-top:1px solid var(--line)}
+:focus-visible{outline-color:var(--accent)}
+@media(min-width:1101px){.hero h1{max-width:11.5em}}
