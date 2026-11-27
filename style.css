@@ -394,3 +394,14 @@ footer{border-top:1px solid var(--line)}
 .arch-svg .edge-g.on .edge-t{fill:var(--ink)}
 @keyframes flow{to{stroke-dashoffset:-13}}
 @media(prefers-reduced-motion:reduce){.arch-svg .edge-g.on .edge{animation:none;stroke-dasharray:none}}
+
+/* ---- wordmark: chip glyph + wide-tracked capitals ---- */
+.brand::before{display:none}
+.brand{display:inline-flex;align-items:center;gap:11px;font:700 14px/1 var(--display);letter-spacing:.24em;text-transform:uppercase;color:var(--ink);text-decoration:none}
+.brand span{margin-right:-.24em}
+.brand .mark{width:24px;height:24px;flex:none;transition:transform .5s var(--ease)}
+.brand .mark .pkg{fill:var(--accent)}.brand .mark .die{fill:var(--bg)}
+.brand .mark .pins{stroke:var(--accent);stroke-width:2;stroke-linecap:round;fill:none}
+.brand:hover .mark{transform:rotate(90deg)}
+@media(max-width:420px){.brand{font-size:12.5px;letter-spacing:.18em;gap:8px}.brand .mark{width:20px;height:20px}}
+@media(prefers-reduced-motion:reduce){.brand:hover .mark{transform:none}}
