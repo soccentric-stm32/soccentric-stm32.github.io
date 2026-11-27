@@ -417,3 +417,10 @@ h2 em{font-size:1.06em}
   border:1px solid var(--line-2);border-radius:var(--r);background:transparent;color:var(--muted);transition:color .2s var(--ease),border-color .2s var(--ease)}
 .rcard .gh:hover,.rcard .gh:focus-visible{color:var(--ink);border-color:var(--accent)}
 .rcard .gh svg{width:18px;height:18px;fill:currentColor}
+
+/* closing consulting block on the hub */
+.closing{margin-top:44px;padding-top:36px;border-top:1px solid var(--line);text-align:center}
+.closing h3{display:block;font:600 clamp(26px,3.4vw,36px)/1.15 var(--display);letter-spacing:-.025em;margin:0 0 8px}
+.closing h3::before{display:none}
+.closing h3 em{font-family:var(--italic);font-style:italic;font-weight:400;color:var(--accent)}
+.closing .lead{margin:0 auto 22px}.closing .btns{justify-content:center}
