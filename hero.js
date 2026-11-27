@@ -1,17 +1,19 @@
 // Hero animation: one mathematical system per platform, picked by <canvas data-anim>.
 // Every scene is driven by an algorithm (attractors, DFT, cellular automata, wave sums),
-// not by hand-keyed motion. Falls back silently (the CSS disc stays) without WebGL.
-import * as THREE from "three";
-import { Line2 } from "three/addons/lines/Line2.js";
-import { LineGeometry } from "three/addons/lines/LineGeometry.js";
-import { LineMaterial } from "three/addons/lines/LineMaterial.js";
-
+// not by hand-keyed motion. Falls back silently (the CSS disc returns) without WebGL or on data-saver.
+// Three.js (~700 KB) is fetched only once the page has loaded and the browser is idle,
+// so it never competes with the text, fonts and CSS for the first paint.
 const canvas = document.querySelector("canvas.hero3d");
 
 async function start(canvas) {
+  const [THREE, { Line2 }, { LineGeometry }, { LineMaterial }] = await Promise.all([
+    import("three"), import("three/addons/lines/Line2.js"),
+    import("three/addons/lines/LineGeometry.js"), import("three/addons/lines/LineMaterial.js")]);
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
   const small = matchMedia("(max-width: 720px)").matches;
-  renderer.setPixelRatio(small ? Math.min(devicePixelRatio || 1, 2) : Math.min((devicePixelRatio || 1) * 2, 4));
+  const dpr = devicePixelRatio || 1;
+  let ratio = small ? Math.min(dpr, 2) : Math.min(dpr * 2, 4);     // supersampled on desktop
+  renderer.setPixelRatio(ratio);
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 100);
   camera.position.set(0, 0, 12.5);   // canvas is ~1.4x the visual size: scenes keep their size but never touch the edge
@@ -66,9 +68,18 @@ async function start(canvas) {
   const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
   let visible = true, last = performance.now(), t = 0;
   new IntersectionObserver(([e]) => (visible = e.isIntersecting)).observe(canvas);
+  let probe = 0, probeT = 0;
   const frame = (now) => {
-    const dt = Math.min((now - last) / 1000, 0.05); last = now;
-    if (visible && !document.hidden) { t += dt; update(t, dt); syncFats(); renderer.render(scene, camera); }
+    const raw = (now - last) / 1000, dt = Math.min(raw, 0.05); last = now;
+    if (visible && !document.hidden) {
+      t += dt; update(t, dt); syncFats(); renderer.render(scene, camera);
+      if (raw < 0.25 && ++probe <= 90) {                   // average the first 90 frames
+        probeT += raw;
+        if (probe === 90 && probeT / 90 > 1 / 40 && ratio > 1) {
+          ratio = Math.max(1, ratio / 2); renderer.setPixelRatio(ratio); resize(); probe = probeT = 0;
+        }
+      }
+    }
     if (!still) requestAnimationFrame(frame);
   };
   if (still) { update(3, 1 / 60); syncFats(); renderer.render(scene, camera); } else requestAnimationFrame(frame);
@@ -384,4 +395,8 @@ const SCENES = {
   },
 };
 
-if (canvas) start(canvas).catch((e) => { console.warn("hero3d:", e); canvas.remove(); });
+const lite = navigator.connection?.saveData;           // honour data-saver: keep the static disc
+const go = () => start(canvas).catch((e) => { console.warn("hero3d:", e); canvas.remove(); });
+const idle = (cb) => (window.requestIdleCallback ? requestIdleCallback(cb, { timeout: 1500 }) : setTimeout(cb, 200));
+if (canvas && lite) canvas.remove();
+else if (canvas) document.readyState === "complete" ? idle(go) : addEventListener("load", () => idle(go), { once: true });

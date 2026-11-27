@@ -209,3 +209,49 @@ nav .ic{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stro
 .wrap{max-width:1240px}
 .hero3d{right:max(0px,calc(50% - 780px))!important}
 .hero-math{right:max(20px,calc(50% - 600px))}
+
+/* ---- architecture diagram ---- */
+.arch{margin:18px 0 10px;padding:22px;border-radius:12px;background:var(--bg);overflow-x:auto}
+section:nth-of-type(odd) .arch{background:var(--bg-2)}
+.arch-svg{display:block;width:100%;min-width:760px;height:auto;font-family:var(--display)}
+.arch-svg .zone{font:600 12px var(--mono);letter-spacing:.12em;fill:var(--muted)}
+.arch-svg .device{fill:none;stroke:var(--line-2);stroke-width:1.5;stroke-dasharray:6 6}
+.arch-svg .box{stroke-width:1.5;transition:filter .25s var(--ease)}
+.arch-svg .box.prod{fill:var(--tint);stroke:var(--accent)}
+.arch-svg .box.vv{fill:var(--tint-2);stroke:var(--accent-2)}
+.arch-svg .box.fac{fill:var(--tint-3);stroke:var(--accent-3)}
+.arch-svg a:hover .box,.arch-svg a:focus .box{filter:brightness(1.06);stroke-width:2.5}
+.arch-svg .bt{font:600 17px var(--display);fill:var(--ink)}
+.arch-svg .bs{font:400 13.5px var(--display);fill:var(--ink-2)}
+.arch-svg .edge{stroke:var(--ink-2);stroke-width:1.6;fill:none}.arch-svg .edge.dash{stroke-dasharray:4 4}
+.arch-svg .ah{fill:var(--ink-2)}
+.arch-svg .edge-t{font:500 12px var(--mono);fill:var(--muted)}
+.arch-svg .pill{fill:var(--bg-2);stroke:var(--line-2)}.arch-svg .pill-t{font:500 12.5px var(--mono);fill:var(--ink-2);text-anchor:middle}
+.legend{display:flex;flex-wrap:wrap;gap:8px 22px;margin:4px 0 26px;font-size:14px;color:var(--ink-2)}
+.legend .lg::before{content:"";display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:8px;vertical-align:-1px;background:var(--accent)}
+.legend .lg.vv::before{background:var(--accent-2)}
+
+/* ---- engineering notes ---- */
+.notes{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.note{background:var(--bg-2);border-radius:10px;padding:24px 24px 18px}
+section:nth-of-type(even) .note{background:var(--bg)}
+.note h3{margin:0 0 10px;font-size:20px}.note h3::before{display:none}
+.note p{color:var(--ink-2);font-size:15.5px;margin:0 0 12px}
+.note ul{margin:0;padding-left:18px;color:var(--ink-2);font-size:14.5px}.note li{margin:4px 0}
+@media(max-width:900px){.notes{grid-template-columns:1fr}}
+
+/* ---- repo activity + copyable commands ---- */
+.rmeta{display:block;margin-top:3px;font:400 12px var(--mono);color:var(--muted)}
+.code{position:relative}.code pre{margin:0 0 14px}
+.code .copy{position:absolute;top:10px;right:10px;border:0;border-radius:6px;padding:6px 12px;font:500 12px var(--mono);background:var(--bg);color:var(--ink-2);cursor:pointer}
+.code .copy:hover{color:var(--accent)}
+
+/* ---- accessibility ---- */
+.skip{position:absolute;left:-9999px;top:10px;z-index:20;padding:10px 16px;border-radius:8px;background:var(--accent);color:var(--accent-ink);font-weight:600;text-decoration:none}
+.skip:focus{left:16px}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+.arch-svg a:focus-visible{outline:none}
+.arch-svg .bt.sm{font-size:14px}
+/* phone header: keep everything on one line */
+nav a,nav button{white-space:nowrap}
+@media(max-width:420px){.wrap{padding:0 16px}header nav{gap:6px}nav a.hire{padding:7px 12px}nav a.hire .ic{display:none}.brand{gap:8px}}
