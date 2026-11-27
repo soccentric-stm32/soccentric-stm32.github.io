@@ -380,3 +380,17 @@ footer{border-top:1px solid var(--line)}
 .arch-svg .device{stroke:var(--line-2);stroke-dasharray:4 5}
 .arch-svg .pill{fill:transparent;stroke:var(--line-2)}.arch-svg .pill-t{font:500 12px var(--mono);fill:var(--ink-2)}
 .legend .lg::before{width:10px;height:10px}
+
+/* ---- diagram hover: light the path through a box, arrows flow along it ---- */
+.arch-svg .node,.arch-svg .edge-g{transition:opacity .25s var(--ease)}
+.arch-svg .node{cursor:default}.arch-svg .node a,.arch-svg a .box{cursor:pointer}
+.arch-svg.hovering .node:not(.on){opacity:.28}
+.arch-svg.hovering .edge-g:not(.on){opacity:.18}
+.arch-svg .node.on .box,.arch-svg .node.on .pill{stroke:var(--accent);stroke-width:1.5}
+.arch-svg .node.focus .box,.arch-svg .node.focus .pill{stroke-width:2.5;fill:color-mix(in srgb,var(--accent) 9%,var(--bg-2))}
+.arch-svg .ah-on{fill:var(--accent)}
+.arch-svg .edge-g.on .edge{stroke:var(--accent);stroke-width:2;stroke-dasharray:7 6;animation:flow .7s linear infinite;marker-end:url(#ah-on)}
+.arch-svg .edge-g.on .edge.dash{marker-end:none}
+.arch-svg .edge-g.on .edge-t{fill:var(--ink)}
+@keyframes flow{to{stroke-dashoffset:-13}}
+@media(prefers-reduced-motion:reduce){.arch-svg .edge-g.on .edge{animation:none;stroke-dasharray:none}}
