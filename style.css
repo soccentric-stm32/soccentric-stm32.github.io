@@ -204,3 +204,8 @@ nav button.theme .sun{display:none}
 :root[data-theme="dark"] nav button.theme .sun{display:block}:root[data-theme="dark"] nav button.theme .moon{display:none}
 body,header,section,.hero{transition:background-color .35s var(--ease),color .35s var(--ease)}
 nav .ic{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* wider layout: content column 1040 -> 1240px; hero scene and caption follow the new edge */
+.wrap{max-width:1240px}
+.hero3d{right:max(0px,calc(50% - 780px))!important}
+.hero-math{right:max(20px,calc(50% - 600px))}
