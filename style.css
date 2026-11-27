@@ -431,3 +431,16 @@ h2 em{font-size:1.06em}
 @media(max-width:420px){.brand{font-size:14px;letter-spacing:.16em;gap:9px}.brand .mark{width:24px;height:24px}}
 @media(max-width:420px){nav a.hire{padding:0;width:38px;height:38px;justify-content:center}nav a.hire span{display:none}nav a.hire .ic{display:block;width:19px;height:19px}}
 #features{scroll-margin-top:84px}
+
+/* ---- subtle hover on every card: small lift, warmer border, soft shadow, a faint coral top edge ---- */
+.rcard,.card,.pillars>div,.note,.facts li{position:relative;
+  transition:transform .35s var(--ease),border-color .35s var(--ease),box-shadow .35s var(--ease),background-color .35s var(--ease)}
+.rcard::after,.card::after,.pillars>div::after,.note::after,.facts li::after{content:"";position:absolute;left:0;right:0;top:-1px;height:2px;
+  border-radius:var(--r) var(--r) 0 0;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0;transform:scaleX(.4);
+  transition:opacity .35s var(--ease),transform .5s var(--ease);pointer-events:none}
+.rcard:hover,.card:hover,.pillars>div:hover,.note:hover,.facts li:hover{transform:translateY(-3px);
+  border-color:color-mix(in srgb,var(--accent) 45%,var(--line-2));box-shadow:0 12px 28px -14px color-mix(in srgb,var(--accent) 35%,transparent)}
+.rcard:hover::after,.card:hover::after,.pillars>div:hover::after,.note:hover::after,.facts li:hover::after{opacity:1;transform:scaleX(1)}
+.card:hover b{color:var(--accent)}.card b{transition:color .3s var(--ease)}
+.rcard:hover .tech{border-color:color-mix(in srgb,var(--accent) 40%,var(--line-2))}
+@media(prefers-reduced-motion:reduce){.rcard:hover,.card:hover,.pillars>div:hover,.note:hover,.facts li:hover{transform:none}}
