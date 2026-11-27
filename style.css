@@ -424,3 +424,9 @@ h2 em{font-size:1.06em}
 .closing h3::before{display:none}
 .closing h3 em{font-family:var(--italic);font-style:italic;font-weight:400;color:var(--accent)}
 .closing .lead{margin:0 auto 22px}.closing .btns{justify-content:center}
+
+/* bigger wordmark */
+.brand{font-size:17px;gap:13px;letter-spacing:.22em}
+.brand .mark{width:30px;height:30px}
+@media(max-width:420px){.brand{font-size:14px;letter-spacing:.16em;gap:9px}.brand .mark{width:24px;height:24px}}
+@media(max-width:420px){nav a.hire{padding:0;width:38px;height:38px;justify-content:center}nav a.hire span{display:none}nav a.hire .ic{display:block;width:19px;height:19px}}
