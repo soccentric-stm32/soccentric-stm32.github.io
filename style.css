@@ -274,3 +274,4 @@ nav button.menu .ic{width:20px;height:20px}
 nav .links .only-menu{display:none}
 @media(max-width:900px){nav .links a.only-menu{display:flex;align-items:center;gap:8px;color:var(--accent);font-weight:600}nav .links .only-menu .ic{width:17px;height:17px}}
 @media(max-width:560px){nav > a.demo{display:none!important}}
+.arch-svg .box.inner{fill:var(--bg)}
