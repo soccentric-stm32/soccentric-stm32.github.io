@@ -162,3 +162,11 @@ nav a.demo{background:var(--bg-2);color:var(--ink)}nav a.demo:hover{background:v
 nav .ic{width:17px;height:17px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 nav .ic .fill{fill:currentColor;stroke:none}
 @media(max-width:560px){nav a.demo span{display:none}nav a.demo{padding:7px 10px}}
+
+/* hero: Three.js scene sits in the accent disc */
+.hero3d{position:absolute;right:max(-120px,calc(50% - 680px));top:50%;width:500px;height:500px;transform:translateY(-50%);pointer-events:none;z-index:1;opacity:0;transition:opacity 1.2s var(--ease)}
+.hero3d.on{opacity:1}
+.hero .wrap{z-index:2}
+@media(max-width:1100px){.hero3d{width:380px;height:380px;right:-90px;opacity:0}.hero3d.on{opacity:.55}}
+@media(max-width:720px){.hero3d{width:240px;height:240px;right:-70px;top:25%}.hero3d.on{opacity:.45}}
+@media(min-width:1101px){.hero .lead{max-width:34em}.hero3d{width:460px;height:460px;right:max(-120px,calc(50% - 700px))}}
