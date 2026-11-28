@@ -444,3 +444,20 @@ h2 em{font-size:1.06em}
 .card:hover b{color:var(--accent)}.card b{transition:color .3s var(--ease)}
 .rcard:hover .tech{border-color:color-mix(in srgb,var(--accent) 40%,var(--line-2))}
 @media(prefers-reduced-motion:reduce){.rcard:hover,.card:hover,.pillars>div:hover,.note:hover,.facts li:hover{transform:none}}
+
+/* ---- supported hardware: vendor family links + demo board card ---- */
+.hw{display:grid;grid-template-columns:2fr 1fr;gap:20px;align-items:stretch}
+.hw-fam{border:1px solid var(--line);border-radius:var(--r);background:var(--bg-2);padding:24px 26px}
+.hw-list{list-style:none;margin:14px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.hw-list a{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;border:1px solid var(--line-2);border-radius:var(--r);
+  color:var(--ink);text-decoration:none;font-weight:500;transition:border-color .25s var(--ease),transform .25s var(--ease)}
+.hw-list a:hover{border-color:var(--accent);transform:translateY(-2px)}
+.hw-demo{position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:16px;padding:24px 26px;border:1px solid color-mix(in srgb,var(--accent) 45%,var(--line-2));
+  border-radius:var(--r);background:color-mix(in srgb,var(--accent) 7%,var(--bg-2));color:var(--ink);text-decoration:none;
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease)}
+.hw-demo b{font:600 22px/1.25 var(--display);letter-spacing:-.02em}
+.hw-demo span{display:inline-flex;align-items:center;gap:6px;font:600 12.5px var(--mono);color:var(--accent)}
+.hw-demo:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:0 12px 28px -14px color-mix(in srgb,var(--accent) 45%,transparent)}
+.ext{width:11px;height:11px;flex:none;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;opacity:.7}
+@media(max-width:820px){.hw{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.hw-list a:hover,.hw-demo:hover{transform:none}}
