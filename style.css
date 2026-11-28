@@ -470,3 +470,29 @@ h2 em{font-size:1.06em}
   .hero-math{display:block!important;left:20px;right:20px;bottom:22px;max-width:none;text-align:left;font-size:11px}
 }
 @media(max-width:420px){.hero-math{left:16px;right:16px}}
+
+/* ---- per-platform story: pitch, at a glance, what makes it different ---- */
+.pitch{font:600 clamp(24px,3.4vw,38px)/1.15 var(--display);letter-spacing:-.03em;color:var(--ink);margin:-4px 0 14px;max-width:18em}
+.pitch em{font-family:var(--italic);font-style:italic;font-weight:400;color:var(--accent)}
+.built{color:var(--ink-2)}.built b{display:block;font:600 11.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:2px}
+.glance{border:1px solid var(--line);border-radius:var(--r);background:var(--bg-2);padding:22px 24px}
+.glance ul{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:0}
+.glance li{display:grid;grid-template-columns:110px 1fr;gap:12px;padding:11px 0;border-top:1px solid var(--line)}
+.glance li:first-child{border-top:0}
+.glance li span{font:600 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:2px}
+.glance li b{font:500 14.5px/1.45 var(--display);color:var(--ink)}
+.diffs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
+.diff{position:relative;border:1px solid var(--line);border-radius:var(--r);background:var(--bg-2);padding:24px 24px 20px;
+  transition:transform .35s var(--ease),border-color .35s var(--ease),box-shadow .35s var(--ease)}
+.diff::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);border-radius:var(--r) 0 0 var(--r)}
+.diff h3{margin:0 0 8px;font-size:19px}.diff h3::before{display:none}
+.diff p{margin:0;color:var(--ink-2);font-size:15.5px}
+.diff:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--accent) 45%,var(--line-2));box-shadow:0 12px 28px -14px color-mix(in srgb,var(--accent) 35%,transparent)}
+.inds{margin-top:30px}.inds .sub{margin:6px 0 14px}
+.inds ul{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+.inds li{font:500 12.5px var(--mono);padding:6px 12px;border:1px solid var(--line-2);border-radius:3px;color:var(--ink-2)}
+.card .cpitch{display:block;margin-top:12px;font:500 14px/1.4 var(--display);font-style:normal;color:var(--ink-2)}
+.card .cpitch em{font-family:var(--italic);font-style:italic;color:var(--accent)}
+@media(max-width:900px){.diffs{grid-template-columns:1fr}.glance li{grid-template-columns:96px 1fr}}
+@media(prefers-reduced-motion:reduce){.diff:hover{transform:none}}
+.card .cpitch em{display:inline;margin:0;font:400 italic 1.05em var(--italic);letter-spacing:0}
