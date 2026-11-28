@@ -53,7 +53,7 @@ async function start(canvas) {
   addEventListener("themechange", paint);
 
   const cap = document.createElement("div");
-  cap.className = "hero-math"; cap.innerHTML = `<b>${def.name}</b><span>${def.eq}</span>`;
+  cap.className = "hero-math"; cap.innerHTML = `<b>${def.name}</b>` + [].concat(def.eq).map((l) => `<span>${l}</span>`).join("");
   canvas.after(cap);
 
   const resize = () => {
@@ -158,7 +158,7 @@ const SCENES = {
 
   // Acadia: the Lorenz system, the original chaotic attractor.
   acadia: {
-    name: "Lorenz attractor", eq: "σ = 10, ρ = 28, β = 8⁄3",
+    name: "Lorenz attractor", eq: ["ẋ = σ(y − x)", "ẏ = x(ρ − z) − y", "ż = xy − βz", "σ = 10, ρ = 28, β = 8⁄3"],
     build: attractor({
       f: ([x, y, z]) => [10 * (y - x), x * (28 - z) - y, x * y - (8 / 3) * z],
       s0: [0.1, 0, 0], h: 0.0025, perSec: 840, n: 6000,
@@ -191,7 +191,7 @@ const SCENES = {
 
   // Joshua: a torus knot T(p,q) whose winding numbers glide between knot types.
   joshua: {
-    name: "Torus knot T(p, q)", eq: "r = 2 + cos qφ, (x, y, z) = (r cos pφ, r sin pφ, sin qφ)",
+    name: "Torus knot T(p, q)", eq: ["r = 2 + cos qφ", "(x, y, z) = (r cos pφ, r sin pφ, sin qφ)"],
     build(root, { THREE, fat, B }) {
       const N = 3200, pos = new Float32Array(N * 3), g = new THREE.BufferGeometry();
       g.setAttribute("position", new THREE.BufferAttribute(pos, 3));
@@ -237,7 +237,7 @@ const SCENES = {
 
   // Sequoia: the Rössler system, a single folded band of chaos.
   sequoia: {
-    name: "Rössler attractor", eq: "a = 0.2, b = 0.2, c = 5.7",
+    name: "Rössler attractor", eq: ["ẋ = −y − z", "ẏ = x + ay", "ż = b + z(x − c)", "a = 0.2, b = 0.2, c = 5.7"],
     build: attractor({
       f: ([x, y, z]) => [-y - z, x + 0.2 * y, 0.2 + z * (x - 5.7)],
       s0: [1, 1, 0], h: 0.006, perSec: 600, n: 5000,
@@ -247,7 +247,7 @@ const SCENES = {
 
   // Zion: Conway's Game of Life on a torus, a fabric of reconfigurable cells.
   zion: {
-    name: "Conway's Game of Life", eq: "rule B3/S23 on a 32 × 32 torus",
+    name: "Conway's Game of Life", eq: ["born with 3 neighbours, survives with 2 or 3", "rule B3/S23 on a 32 × 32 torus"],
     build(root, { THREE, A, B }) {
       const n = 32, sp = 0.145, g = new THREE.BoxGeometry(0.12, 0.12, 0.12);
       const cells = new THREE.InstancedMesh(g, A(), n * n), born = new THREE.InstancedMesh(g, B(), n * n);
@@ -288,7 +288,7 @@ const SCENES = {
 
   // Orion: a chain of Fourier epicycles (DFT of a closed curve) redrawing it.
   orion: {
-    name: "Fourier epicycles", eq: "z(t) = Σ cₖ e^{ikt}, 48 DFT terms",
+    name: "Fourier epicycles", eq: ["z(t) = Σ cₖ eⁱᵏᵗ", "48 largest DFT terms of a star curve"],
     build(root, { THREE, L, B, fat }) {
       const M = 512, pts = [];
       for (let i = 0; i < M; i++) {                       // target: a 5-point star rounded by a cosine term
@@ -354,7 +354,7 @@ const SCENES = {
 
   // Vela: Gerstner (trochoidal) ocean waves, three components summed.
   vela: {
-    name: "Gerstner waves", eq: "x += Σ Qᵢ Aᵢ dᵢ cos(kᵢ·x − ωᵢt), y = Σ Aᵢ sin(kᵢ·x − ωᵢt)",
+    name: "Gerstner waves", eq: ["x = x₀ + Σ Qᵢ Aᵢ dᵢ cos(kᵢ·x₀ − ωᵢt)", "z = Σ Aᵢ sin(kᵢ·x₀ − ωᵢt)"],
     build(root, { THREE, A, L }) {
       const S = 80, g = new THREE.PlaneGeometry(4, 4, S, S), base = g.attributes.position.array.slice();
       const surf = new THREE.Mesh(g, A({ side: THREE.DoubleSide, flatShading: true }));
@@ -382,7 +382,7 @@ const SCENES = {
 
   // Lyra: the Aizawa attractor, a sphere-like chaotic flow with an axial tube.
   lyra: {
-    name: "Aizawa attractor", eq: "a = 0.95, b = 0.7, c = 0.6, d = 3.5, e = 0.25, f = 0.1",
+    name: "Aizawa attractor", eq: ["ẋ = (z − b)x − dy", "ẏ = dx + (z − b)y", "ż = c + az − z³⁄3 − (x² + y²)(1 + ez) + fzx³", "a = 0.95, b = 0.7, c = 0.6, d = 3.5, e = 0.25, f = 0.1"],
     build: attractor({
       f: ([x, y, z]) => [
         (z - 0.7) * x - 3.5 * y,

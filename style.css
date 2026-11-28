@@ -461,3 +461,12 @@ h2 em{font-size:1.06em}
 .ext{width:11px;height:11px;flex:none;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;opacity:.7}
 @media(max-width:820px){.hw{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.hw-list a:hover,.hw-demo:hover{transform:none}}
+
+/* equation caption: one line per equation, visible at every screen size */
+.hero-math{max-width:440px}
+.hero-math span{display:block}
+@media(max-width:1100px){
+  .hero{padding-bottom:150px}
+  .hero-math{display:block!important;left:20px;right:20px;bottom:22px;max-width:none;text-align:left;font-size:11px}
+}
+@media(max-width:420px){.hero-math{left:16px;right:16px}}
