@@ -496,3 +496,12 @@ h2 em{font-size:1.06em}
 @media(max-width:900px){.diffs{grid-template-columns:1fr}.glance li{grid-template-columns:96px 1fr}}
 @media(prefers-reduced-motion:reduce){.diff:hover{transform:none}}
 .card .cpitch em{display:inline;margin:0;font:400 italic 1.05em var(--italic);letter-spacing:0}
+
+/* container cards get the same subtle hover as every other card */
+.hw-fam,.glance{position:relative;transition:transform .35s var(--ease),border-color .35s var(--ease),box-shadow .35s var(--ease)}
+.hw-fam:hover,.glance:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--accent) 45%,var(--line-2));
+  box-shadow:0 12px 28px -14px color-mix(in srgb,var(--accent) 35%,transparent)}
+.hw-fam::after,.glance::after{content:"";position:absolute;left:0;right:0;top:-1px;height:2px;border-radius:var(--r) var(--r) 0 0;
+  background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0;transform:scaleX(.4);transition:opacity .35s var(--ease),transform .5s var(--ease);pointer-events:none}
+.hw-fam:hover::after,.glance:hover::after{opacity:1;transform:scaleX(1)}
+@media(prefers-reduced-motion:reduce){.hw-fam:hover,.glance:hover{transform:none}}
